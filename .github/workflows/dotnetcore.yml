@@ -5,12 +5,13 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v1
-    - task: UseDotNet@2
-      inputs:
-        version: '3.0.x'
+    - name: Setup .NET Core 2.2
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.x
     - name: Build with dotnet
       run: dotnet build --configuration Release

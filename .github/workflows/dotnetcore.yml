@@ -9,9 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 3.0.x
+    - task: UseDotNet@2
+      inputs:
+        version: '3.0.x'
     - name: Build with dotnet
       run: dotnet build --configuration Release

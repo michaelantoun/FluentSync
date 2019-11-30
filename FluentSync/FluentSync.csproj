@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Version>0.1</Version>
+    <Authors>Michael Antoun</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>A .Net library with fluent interface for comparing and synchronizing records.</Description>
+    <Copyright>Copyright (c) Michael Antoun 2019</Copyright>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/michaelantoun/FluentSync</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/michaelantoun/FluentSync</RepositoryUrl>
+    <NeutralLanguage>English</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

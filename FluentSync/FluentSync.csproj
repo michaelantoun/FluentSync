@@ -11,6 +11,7 @@
     <PackageProjectUrl>https://github.com/michaelantoun/FluentSync</PackageProjectUrl>
     <RepositoryUrl>https://github.com/michaelantoun/FluentSync</RepositoryUrl>
     <NeutralLanguage>English</NeutralLanguage>
+    <PackageTags>fluent, sync, fluentsync</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

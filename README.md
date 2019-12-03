@@ -1,4 +1,4 @@
-<img src="https://github.com/michaelantoun/FluentSync/Icon512x512.png" alt="FluentSync" width="250px" />
+<img src="https://github.com/michaelantoun/FluentSync/blob/master/Icon512x512.png" alt="FluentSync" width="250px" />
 A .Net library with fluent interface for comparing and synchronizing entities/records.
 
 

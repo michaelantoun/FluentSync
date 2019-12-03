@@ -1,0 +1,1906 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FluentSync</name>
+    </assembly>
+    <members>
+        <member name="T:FluentSync.Comparers.ComparerAgent`2">
+            <summary>
+            The comparer agent compares the source and the destination items, and provides a comparison result.
+            </summary>
+            <typeparam name="TKey">The type of the item key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Comparers.ComparerAgent`2.KeySelector">
+            <summary>
+            The key selector is a function that is executed against the item to return the key.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.ComparerAgent`2.CompareItemFunc">
+            <summary>
+            The compare item function compares two items and determines if they are the same, one of them is newer, or there is a conflict.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.ComparerAgent`2.ValidateItemsAction">
+            <summary>
+            An action is called during the validation step to support custom validation.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.ComparerAgent`2.Configurations">
+            <summary>
+            The configurations of the comparer agent.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.ComparerAgent`2.SourceProvider">
+            <summary>
+            The provider which retrieves the items from the source.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.ComparerAgent`2.DestinationProvider">
+            <summary>
+            The provider which retrieves the items from the destination.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgent`2.Create">
+            <summary>
+            Creates a new instance of the comparer agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgent`2.Validate">
+            <summary>
+            Validates the comparer agent's properties before comparing items.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgent`2.AddItemsToDictionary(System.Collections.Generic.Dictionary{`0,System.Collections.Generic.List{`1}},System.Collections.Generic.List{`1},System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Adds items that have null-able keys to the list and the others to the dictionary.
+            </summary>
+            <param name="dic"></param>
+            <param name="nullableKeysItems"></param>
+            <param name="items"></param>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgent`2.CompareAsync(System.Threading.CancellationToken)">
+            <summary>
+            Compares the source and destination items, and returns the comparison result.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns>The comparison result.</returns>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgent`2.MatchItemsWithTheSameKey(FluentSync.Comparers.ComparisonResult{`1},System.Collections.Generic.List{`1},System.Collections.Generic.List{`1})">
+            <summary>
+            Match items that have the same key.
+            </summary>
+            <param name="comparisonResult">The comparison result of the source and destination items.</param>
+            <param name="srcItems">The source items.</param>
+            <param name="destItems">The destination items.</param>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgent`2.Validate(System.Collections.Generic.Dictionary{`0,System.Collections.Generic.List{`1}},System.Collections.Generic.Dictionary{`0,System.Collections.Generic.List{`1}},System.Collections.Generic.List{`1},System.Collections.Generic.List{`1})">
+            <summary>
+            Validates the source and destination items.
+            </summary>
+            <param name="dicSrc">The source items that have non null-able keys.</param>
+            <param name="dicDest">The destination items that have non null-able keys.</param>
+            <param name="nullableKeysSrcItems">The source items that have null-able keys.</param>
+            <param name="nullableKeysDestItems">The destination items that have null-able keys.</param>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgent`2.ValidateDuplicateKeys(System.Collections.Generic.Dictionary{`0,System.Collections.Generic.List{`1}},System.Collections.Generic.Dictionary{`0,System.Collections.Generic.List{`1}},System.Collections.Generic.List{`1},System.Collections.Generic.List{`1})">
+            <summary>
+            Validate the item keys and throw an ArgumentException if there is a duplicate.
+            </summary>
+            <param name="dicSrc">The source items that have non null-able keys.</param>
+            <param name="dicDest">The destination items that have non null-able keys.</param>
+            <param name="nullableKeysSrcItems">The source items that have null-able keys.</param>
+            <param name="nullableKeysDestItems">The destination items that have null-able keys.</param>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgent`2.ValidateDuplicateItems(System.Collections.Generic.Dictionary{`0,System.Collections.Generic.List{`1}},System.Collections.Generic.Dictionary{`0,System.Collections.Generic.List{`1}},System.Collections.Generic.List{`1},System.Collections.Generic.List{`1})">
+            <summary>
+            Validate the items and throw an ArgumentException if there is a duplicate.
+            </summary>
+            <param name="dicSrc">The source items that have non null-able keys.</param>
+            <param name="dicDest">The destination items that have non null-able keys.</param>
+            <param name="nullableKeysSrcItems">The source items that have null-able keys.</param>
+            <param name="nullableKeysDestItems">The destination items that have null-able keys.</param>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgent`2.ValidateNullableItems(System.Collections.Generic.Dictionary{`0,System.Collections.Generic.List{`1}},System.Collections.Generic.Dictionary{`0,System.Collections.Generic.List{`1}},System.Collections.Generic.List{`1},System.Collections.Generic.List{`1})">
+            <summary>
+            Validate the items and throw an ArgumentException if there is a null-able item.
+            </summary>
+            <param name="dicSrc">The source items that have non null-able keys.</param>
+            <param name="dicDest">The destination items that have non null-able keys.</param>
+            <param name="nullableKeysSrcItems">The source items that have null-able keys.</param>
+            <param name="nullableKeysDestItems">The destination items that have null-able keys.</param>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgent`2.ToString">
+            <summary>
+            Returns a string that represents the comparer agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Comparers.ComparerAgent`1">
+            <summary>
+            The comparer agent compares the source items and the destination items, and provides a comparison result.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgent`1.#ctor">
+            <summary>
+            Creates an instance of the comparer agent.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgent`1.Create">
+            <summary>
+            Creates an instance of the comparer agent.
+            </summary>
+        </member>
+        <member name="T:FluentSync.Comparers.ComparerAgentExtensions">
+            <summary>
+            The extension methods of the comparer agent.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgentExtensions.Configure``2(FluentSync.Comparers.IComparerAgent{``0,``1},System.Action{FluentSync.Comparers.Configurations.ComparerConfigurations})">
+            <summary>
+            Configures the comparer agent.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="comparerAgent">The comparer agent.</param>
+            <param name="configure">The configure action.</param>
+            <returns>The comparer agent.</returns>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgentExtensions.SetSourceProvider``2(FluentSync.Comparers.IComparerAgent{``0,``1},FluentSync.Comparers.Providers.IComparerProvider{``1})">
+            <summary>
+            Sets the source provider.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="comparerAgent">The comparer agent.</param>
+            <param name="sourceProvider">The source provider of the comparer agent.</param>
+            <returns>The comparer agent.</returns>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgentExtensions.SetSourceProvider``2(FluentSync.Comparers.IComparerAgent{``0,``1},System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            Sets the source items.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="comparerAgent">The comparer agent.</param>
+            <param name="items">The source items.</param>
+            <returns>The comparer agent.</returns>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgentExtensions.SetDestinationProvider``2(FluentSync.Comparers.IComparerAgent{``0,``1},FluentSync.Comparers.Providers.IComparerProvider{``1})">
+            <summary>
+            Sets the destination provider.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="comparerAgent">The comparer agent.</param>
+            <param name="destinationProvider">The destination provider of the comparer agent.</param>
+            <returns>The comparer agent.</returns>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgentExtensions.SetDestinationProvider``2(FluentSync.Comparers.IComparerAgent{``0,``1},System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            Sets the destination items.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="comparerAgent">The comparer agent.</param>
+            <param name="items">The destination items.</param>
+            <returns>The comparer agent.</returns>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgentExtensions.SetCompareItemFunc``2(FluentSync.Comparers.IComparerAgent{``0,``1},FluentSync.CompareItemFunc{``1})">
+            <summary>
+            Sets the CompareItemFunc.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="comparerAgent">The comparer agent.</param>
+            <param name="compareItemFunc">The compare item function compares two items and determines if they are the same, one of them is newer, or there is a conflict.</param>
+            <returns>The comparer agent.</returns>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgentExtensions.SetValidateItemsAction``2(FluentSync.Comparers.IComparerAgent{``0,``1},FluentSync.ValidateComparerItemsAction{``1})">
+            <summary>
+            Sets the ValidateItemsAction.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="comparerAgent">The comparer agent.</param>
+            <param name="validateItemsAction">The ValidateItemsAction is a method called during the validation step to support custom validation.</param>
+            <returns>The comparer agent.</returns>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparerAgentExtensions.SetKeySelector``2(FluentSync.Comparers.IComparerAgent{``0,``1},System.Func{``1,``0})">
+            <summary>
+            Sets the KeySelector.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="comparerAgent">The comparer agent.</param>
+            <param name="keySelector"> The key selector is a function that is executed against the item to return the key.</param>
+            <returns>The comparer agent.</returns>
+        </member>
+        <member name="T:FluentSync.Comparers.ComparisonResult`1">
+            <summary>
+            The comparison result of the source and destination items.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Comparers.ComparisonResult`1.ItemsInSourceOnly">
+            <summary>
+            The items that exist only in the source.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.ComparisonResult`1.ItemsInDestinationOnly">
+            <summary>
+            The items that exist only in the destination.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.ComparisonResult`1.Matches">
+            <summary>
+            The items that exist in the source and destination.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Comparers.ComparisonResult`1.ToString">
+            <summary>
+            Returns a string that represents the comparison result of the source and destination items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Comparers.Configurations.ComparerConfigurations">
+            <summary>
+            The configurations of the comparer agent.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.Configurations.ComparerConfigurations.AllowDuplicateKeys">
+            <summary>
+            Allow duplicate items in source/destination providers.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.Configurations.ComparerConfigurations.AllowDuplicateItems">
+            <summary>
+            Allow duplicate keys in source/destination providers.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.Configurations.ComparerConfigurations.AllowNullableItems">
+            <summary>
+            Allow null-able items in source/destination providers.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Comparers.Configurations.ComparerConfigurations.ToString">
+            <summary>
+            Returns a string that represents the configurations of the comparer agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Comparers.Configurations.RuleAllowanceType">
+            <summary>
+            Allow rule on source and/or destination providers.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Comparers.Configurations.RuleAllowanceType.None">
+            <summary>
+            Do not allow the rule.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Comparers.Configurations.RuleAllowanceType.Source">
+            <summary>
+            Allow the rule on the source provider only.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Comparers.Configurations.RuleAllowanceType.Destination">
+            <summary>
+            Allow the rule on the destination provider only.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Comparers.Configurations.RuleAllowanceType.Both">
+            <summary>
+            Allow the rule on the source and destination providers.
+            </summary>
+        </member>
+        <member name="T:FluentSync.Comparers.IBaseComparerAgent`1">
+            <summary>
+            The common interface of the comparer agent.
+            </summary>
+            <typeparam name="T">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Comparers.IBaseComparerAgent`1.SourceProvider">
+            <summary>
+            The provider which retrieves the items from the source.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.IBaseComparerAgent`1.DestinationProvider">
+            <summary>
+            The provider which retrieves the items from the destination.
+            </summary>
+        </member>
+        <member name="T:FluentSync.Comparers.IComparerAgent`2">
+            <summary>
+            The comparer agent compares the source and the destination items, and provides a comparison result.
+            </summary>
+            <typeparam name="TKey">The type of the item key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Comparers.IComparerAgent`2.Configurations">
+            <summary>
+            The configurations of the comparer agent.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.IComparerAgent`2.CompareItemFunc">
+            <summary>
+            The compare item function compares two items and determines if they are the same, one of them is newer, or there is a conflict.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.IComparerAgent`2.KeySelector">
+            <summary>
+            The key selector is a function that is executed against the item to return the key.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.IComparerAgent`2.ValidateItemsAction">
+            <summary>
+            An action is called during the validation step to support custom validation.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Comparers.IComparerAgent`2.CompareAsync(System.Threading.CancellationToken)">
+            <summary>
+            Compares the source and destination items and returns the comparison result.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns>The comparison result.</returns>
+        </member>
+        <member name="T:FluentSync.Comparers.IKeyComparerAgent`1">
+            <summary>
+            The key comparer agent compares the source and destination keys, and returns the comparison result. It does not allow null-able nor duplicate keys.
+            </summary>
+            <typeparam name="TKey">The type of the item key.</typeparam>
+        </member>
+        <member name="M:FluentSync.Comparers.IKeyComparerAgent`1.CompareAsync(System.Threading.CancellationToken)">
+            <summary>
+            Compares the source and destination keys, and returns the comparison result.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns>The comparison result.</returns>
+        </member>
+        <member name="T:FluentSync.Comparers.KeyComparerAgent`1">
+            <summary>
+            The key comparer agent compares the source and destination keys, and returns the comparison result. It does not allow null-able nor duplicate keys.
+            </summary>
+            <typeparam name="TKey">The type of the item key.</typeparam>
+        </member>
+        <member name="P:FluentSync.Comparers.KeyComparerAgent`1.SourceProvider">
+            <summary>
+            The provider which retrieves the item keys from the source.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.KeyComparerAgent`1.DestinationProvider">
+            <summary>
+            The provider which retrieves the item keys from the destination.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Comparers.KeyComparerAgent`1.Create">
+            <summary>
+            Creates a new instance of the key comparer agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Comparers.KeyComparerAgent`1.Validate">
+            <summary>
+            Validates the comparer agent's properties before comparing items.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Comparers.KeyComparerAgent`1.AddKeysToSet``1(System.Collections.Generic.SortedSet{``0},System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Adds the keys to the SortedSet.
+            </summary>
+            <typeparam name="T">The type of the key.</typeparam>
+            <param name="sortedSet">The keys set.</param>
+            <param name="keys">The keys to be added.</param>
+            <param name="listName">The name of the list.</param>
+        </member>
+        <member name="M:FluentSync.Comparers.KeyComparerAgent`1.CompareAsync(System.Threading.CancellationToken)">
+            <summary>
+            Compares the source and destination keys, and returns the comparison result.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns>The comparison result.</returns>
+        </member>
+        <member name="T:FluentSync.Comparers.KeyComparerAgentExtensions">
+            <summary>
+            The extension methods of the key comparer agent.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Comparers.KeyComparerAgentExtensions.SetSourceProvider``1(FluentSync.Comparers.IKeyComparerAgent{``0},FluentSync.Comparers.Providers.IComparerProvider{``0})">
+            <summary>
+            Sets the source provider.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="comparerAgent">The comparer agent.</param>
+            <param name="sourceProvider">The source provider of the comparer agent.</param>
+            <returns>The comparer agent.</returns>
+        </member>
+        <member name="M:FluentSync.Comparers.KeyComparerAgentExtensions.SetSourceProvider``1(FluentSync.Comparers.IKeyComparerAgent{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Sets the source keys.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="comparerAgent">The comparer agent.</param>
+            <param name="keys">The source keys.</param>
+            <returns>The comparer agent.</returns>
+        </member>
+        <member name="M:FluentSync.Comparers.KeyComparerAgentExtensions.SetDestinationProvider``1(FluentSync.Comparers.IKeyComparerAgent{``0},FluentSync.Comparers.Providers.IComparerProvider{``0})">
+            <summary>
+            Sets the destination provider.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="comparerAgent">The comparer agent.</param>
+            <param name="destinationProvider">The destination provider of the comparer agent.</param>
+            <returns>The comparer agent.</returns>
+        </member>
+        <member name="M:FluentSync.Comparers.KeyComparerAgentExtensions.SetDestinationProvider``1(FluentSync.Comparers.IKeyComparerAgent{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Sets the destination keys.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="comparerAgent">The comparer agent.</param>
+            <param name="keys">The destination keys.</param>
+            <returns>The comparer agent.</returns>
+        </member>
+        <member name="T:FluentSync.Comparers.KeysComparisonResult`1">
+            <summary>
+            The comparison result of the source and destination keys.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:FluentSync.Comparers.KeysComparisonResult`1.KeysInSourceOnly">
+            <summary>
+            The keys that exist only in the source.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.KeysComparisonResult`1.KeysInDestinationOnly">
+            <summary>
+            The keys that exist only in the destination.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Comparers.KeysComparisonResult`1.Matches">
+            <summary>
+            The keys that exist in the source and destination.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Comparers.KeysComparisonResult`1.ToString">
+            <summary>
+            Returns a string that represents the comparison result of the source and destination keys.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Comparers.MatchComparisonResultType">
+            <summary>
+            The comparison result of the source and destination items.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Comparers.MatchComparisonResultType.Same">
+            <summary>
+            The source item is the same as the destination item.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Comparers.MatchComparisonResultType.NewerSource">
+            <summary>
+            The source item is newer than the destination item.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Comparers.MatchComparisonResultType.NewerDestination">
+            <summary>
+            The destination item is newer than the source item.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Comparers.MatchComparisonResultType.Conflict">
+            <summary>
+            There is a conflict, cannot determine which item is newer.
+            </summary>
+        </member>
+        <member name="T:FluentSync.Comparers.Providers.ComparerProvider`1">
+            <summary>
+            The comparer provider which retrieves the items for the comparer agent.
+            </summary>
+            <typeparam name="T">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Comparers.Providers.ComparerProvider`1.Items">
+            <summary>
+            The provider items.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Comparers.Providers.ComparerProvider`1.GetAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get all the items.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Comparers.Providers.IComparerProvider`1">
+            <summary>
+            The comparer provider which retrieves the items for the comparer agent.
+            </summary>
+            <typeparam name="T">The type of the item.</typeparam>
+        </member>
+        <member name="M:FluentSync.Comparers.Providers.IComparerProvider`1.GetAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get all the items.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.CompareItemFunc`1">
+            <summary>
+            The compare item function compares two items and determines if they are the same, one of them is newer, or there is a conflict.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="source">The source item.</param>
+            <param name="destination">The destination item.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.ValidateComparerItemsAction`1">
+            <summary>
+            The ValidateComparerItems is a method called during the validation step to support custom validation.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="source">The source items.</param>
+            <param name="destination">The destination items.</param>
+        </member>
+        <member name="T:FluentSync.Sync.Providers.IComparerBatchSyncProvider`2">
+            <summary>
+            The key comparer and batch sync providers.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+        </member>
+        <member name="T:FluentSync.Sync.Providers.IComparerSyncProvider`1">
+            <summary>
+            The comparer and sync providers.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="T:FluentSync.Sync.Providers.DictionaryBatchSyncProvider`2">
+            <summary>
+            The batch sync provider of the dictionary.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Sync.Providers.DictionaryBatchSyncProvider`2.Items">
+            <summary>
+            The batch sync provider items.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Providers.DictionaryBatchSyncProvider`2.KeySelector">
+            <summary>
+            The key selector is a function that is executed against the item to return the key.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.DictionaryBatchSyncProvider`2.Validate">
+            <summary>
+            Validates that the required properties are not null-able.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.DictionaryBatchSyncProvider`2.AddAsync(System.Collections.Generic.List{`1},System.Threading.CancellationToken)">
+            <summary>
+            Adds the items to the dictionary.
+            </summary>
+            <param name="items">The list of items to be added.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.DictionaryBatchSyncProvider`2.DeleteAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Deletes the items by keys from the dictionary.
+            </summary>
+            <param name="keys">The keys of the items.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.DictionaryBatchSyncProvider`2.GetAsync(System.Collections.Generic.IEnumerable{`0},System.Threading.CancellationToken)">
+            <summary>
+            Gets the items by keys from the dictionary.
+            </summary>
+            <param name="keys">The keys of the items.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.DictionaryBatchSyncProvider`2.GetAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets all the keys from the dictionary.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.DictionaryBatchSyncProvider`2.UpdateAsync(System.Collections.Generic.List{FluentSync.MatchValuePair{`1}},System.Threading.CancellationToken)">
+            <summary>
+            Updates the items in the dictionary by using the KeySelector to find them.
+            </summary>
+            <param name="items">The items to be updated.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.DictionaryBatchSyncProvider`2.ToString">
+            <summary>
+            Returns a string that represents the batch sync provider of the dictionary.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.Providers.IBatchSyncProvider`2">
+            <summary>
+            The batch sync provider which used by the batch sync agent to add, update, and delete items.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.IBatchSyncProvider`2.GetAsync(System.Collections.Generic.IEnumerable{`0},System.Threading.CancellationToken)">
+            <summary>
+            Gets the items by their keys.
+            </summary>
+            <param name="keys">The keys of the items.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.IBatchSyncProvider`2.DeleteAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Deletes the items by their keys.
+            </summary>
+            <param name="keys">The keys of the items.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.Providers.ISyncBaseProvider`1">
+            <summary>
+            The base sync provider which used by the sync agent to add and update items.
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.ISyncBaseProvider`1.AddAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Adds the items.
+            </summary>
+            <param name="items">The items to be added.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.ISyncBaseProvider`1.UpdateAsync(System.Collections.Generic.List{FluentSync.MatchValuePair{`0}},System.Threading.CancellationToken)">
+            <summary>
+            Updates the items.
+            </summary>
+            <param name="pairs">The pairs of the old items and new items to be updated.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.Providers.ISyncProvider`1">
+            <summary>
+            The sync provider which used by the sync agent to add, update, and delete items.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.ISyncProvider`1.DeleteAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Deletes the items.
+            </summary>
+            <param name="items">The items to be deleted.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.Providers.ListSyncProvider`1">
+            <summary>
+            The sync provider of the list.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Sync.Providers.ListSyncProvider`1.Items">
+            <summary>
+            The sync provider items.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.ListSyncProvider`1.AddAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Adds the items to the list.
+            </summary>
+            <param name="items">The items to be added.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.ListSyncProvider`1.DeleteAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Deletes the items from the list.
+            </summary>
+            <param name="items">The items to be deleted.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.ListSyncProvider`1.UpdateAsync(System.Collections.Generic.List{FluentSync.MatchValuePair{`0}},System.Threading.CancellationToken)">
+            <summary>
+            Updates the items in the list.
+            </summary>
+            <param name="pairs">The pairs of the old items and new items to be updated.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.ListSyncProvider`1.GetAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets all the items of the list.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.ListSyncProvider`1.ToString">
+            <summary>
+            Returns a string that represents the sync provider of the list.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.Providers.SortedSetSyncProvider`1">
+            <summary>
+            The sync provider of the sorted set.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Sync.Providers.SortedSetSyncProvider`1.Items">
+            <summary>
+            The sync provider items.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.SortedSetSyncProvider`1.AddAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Adds the items to the sorted set.
+            </summary>
+            <param name="items">The items to be added.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.SortedSetSyncProvider`1.DeleteAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Deletes the items from the sorted set.
+            </summary>
+            <param name="items">The items to be deleted.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.SortedSetSyncProvider`1.UpdateAsync(System.Collections.Generic.List{FluentSync.MatchValuePair{`0}},System.Threading.CancellationToken)">
+            <summary>
+            Updates the items in the sorted set.
+            </summary>
+            <param name="pairs">The pairs of the old items and new items to be updated.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.SortedSetSyncProvider`1.GetAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets all the items of the sorted set.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Providers.SortedSetSyncProvider`1.ToString">
+            <summary>
+            Returns a string that represents the sync provider of the sorted set.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.BaseSyncAgent`1">
+            <summary>
+            The base sync agent which has the common logic for the sync agent and batch sync agent.
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="M:FluentSync.Sync.BaseSyncAgent`1.GetSyncConfigurations">
+            <summary>
+            Gets the sync configurations of the sync agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BaseSyncAgent`1.Validate">
+            <summary>
+            Validates the sync agent properties and configurations.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.BaseSyncAgent`1.GetSourceSyncProvider">
+            <summary>
+            Gets the sync provider of the source.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BaseSyncAgent`1.GetDestinationSyncProvider">
+            <summary>
+            Gets the sync provider of the destination.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BaseSyncAgent`1.DeleteFromSourceAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Deletes the items from the source.
+            </summary>
+            <param name="items">The items to be deleted.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BaseSyncAgent`1.DeleteFromDestinationAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Delete the items from the destination.
+            </summary>
+            <param name="items">The items to be deleted.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="P:FluentSync.Sync.BaseSyncAgent`1.BeforeSyncingAction">
+            <summary>
+            An action to be called before syncing the items.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.BaseSyncAgent`1.SyncAsync(FluentSync.Comparers.ComparisonResult{`0},System.Threading.CancellationToken)">
+            <summary>
+            Synchronizes the source and destination items based on the comparison result.
+            </summary>
+            <param name="comparisonResult">The comparison result of the source and destination items which is generated from the comparer agent.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BaseSyncAgent`1.InterpretSingleItemOperations(FluentSync.Comparers.ComparisonResult{`0},FluentSync.Sync.SyncContext{`0})">
+            <summary>
+            Determines the sync operation of the single items that exist either in the source or the destination.
+            </summary>
+            <param name="comparisonResult">The comparison result of the source and destination items.</param>
+            <param name="syncContext">The sync context contains the items that will be inserted/updated/deleted in source/destination.</param>
+        </member>
+        <member name="M:FluentSync.Sync.BaseSyncAgent`1.InterpretSameMatchesOperations(FluentSync.Comparers.ComparisonResult{`0},FluentSync.Sync.SyncContext{`0})">
+            <summary>
+            Determines the sync operation of the items that exist in the source and the destination which are equivalent.
+            </summary>
+            <param name="comparisonResult">The comparison result of the source and destination items.</param>
+            <param name="syncContext">The sync context contains the items that will be inserted/updated/deleted in source/destination.</param>
+        </member>
+        <member name="M:FluentSync.Sync.BaseSyncAgent`1.InterpretConflictMatchesOperations(FluentSync.Comparers.ComparisonResult{`0},FluentSync.Sync.SyncContext{`0})">
+            <summary>
+            Determines the sync operation of the items that exist in the source and the destination which are not the same and no item is newer.
+            </summary>
+            <param name="comparisonResult">The comparison result of the source and destination items.</param>
+            <param name="syncContext">The sync context contains the items that will be inserted/updated/deleted in source/destination.</param>
+        </member>
+        <member name="M:FluentSync.Sync.BaseSyncAgent`1.InterpretDifferentMatchesOperations(FluentSync.Comparers.ComparisonResult{`0},FluentSync.Sync.SyncContext{`0})">
+            <summary>
+            Determines the sync operation of the items that exist in the source and the destination which one of the pair items is newer.
+            </summary>
+            <param name="comparisonResult">The comparison result of the source and destination items.</param>
+            <param name="syncContext">The sync context contains the items that will be inserted/updated/deleted in source/destination.</param>
+        </member>
+        <member name="T:FluentSync.Sync.BatchSyncAgent`2">
+            <summary>
+            The batch sync agent synchronizes the items based on the batch size.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Sync.BatchSyncAgent`2.Configurations">
+            <summary>
+            The configurations of the batch sync agent.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.BatchSyncAgent`2.ComparerAgent">
+            <summary>
+            The comparer agent which compares the source and destination items before syncing them by key.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.BatchSyncAgent`2.CompareItemFunc">
+            <summary>
+            The compare item function compares two items and determines if they are the same, one of them is newer, or there is a conflict.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.BatchSyncAgent`2.KeySelector">
+            <summary>
+            The key selector is a function that is executed against the item to return the key.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.BatchSyncAgent`2.SourceProvider">
+            <summary>
+            The source sync provider which is used for adding, updating, and deleting items.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.BatchSyncAgent`2.DestinationProvider">
+            <summary>
+            The destination sync provider which is used for adding, updating, and deleting items.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.BatchSyncAgent`2.BeforeSyncingKeysAction">
+            <summary>
+            An action to be called after comparing the source and destination items by keys and before syncing. This action is called one time before syncing batches.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.BatchSyncAgent`2.BeforeDeletingItemsFromSourceAction">
+            <summary>
+            An action to be called before deleting a set of items by keys from the source.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.BatchSyncAgent`2.BeforeDeletingItemsFromDestinationAction">
+            <summary>
+            An action to be called before deleting a set of items by keys from the destination.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.Create">
+            <summary>
+            Creates a new instance of the batch sync agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.Validate">
+            <summary>
+            Validates the batch sync agent's configurations and properties.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.SyncAsync(System.Threading.CancellationToken)">
+            <summary>
+            Synchronizes the source and destination items.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.SyncAsync(FluentSync.Comparers.KeysComparisonResult{`0},System.Threading.CancellationToken)">
+            <summary>
+            Synchronizes the source and destination items by using the provided key comparison result.
+            </summary>
+            <param name="keysComparisonResult">The comparison result of the source and destination keys.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.SyncBatchesAsync(System.Int32,System.Collections.Generic.IEnumerable{`0},System.Func{System.Collections.Generic.List{`0},System.Threading.CancellationToken,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Loops through the keys and synchronize them in batches.
+            </summary>
+            <param name="batchSize">The size of the batch.</param>
+            <param name="keys">The list of the keys.</param>
+            <param name="syncItemsBatchFunc">A method to be called to synchronize a batch.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.SyncItemsInSourceOnlyBatchAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Synchronizes the items that exist in the source only.
+            </summary>
+            <param name="batchKeys">The keys of the items.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.SyncItemsInDestinationOnlyBatchAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Synchronizes the items that exist in the destination only.
+            </summary>
+            <param name="batchKeys">The keys of the items.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.SyncMatchesBatchAsync(System.Collections.Generic.List{`0},System.Threading.CancellationToken)">
+            <summary>
+            Synchronizes the items that exist in the source and destination.
+            </summary>
+            <param name="batchKeys">The keys of the items.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.ToString">
+            <summary>
+            Returns a string that represents the batch sync agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.GetSyncConfigurations">
+            <summary>
+            Gets the sync configurations of the sync agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.GetSourceSyncProvider">
+            <summary>
+            Gets the sync provider of the source.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.GetDestinationSyncProvider">
+            <summary>
+            Gets the sync provider of the destination.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.DeleteFromSourceAsync(System.Collections.Generic.List{`1},System.Threading.CancellationToken)">
+            <summary>
+            Deletes the items from the source.
+            </summary>
+            <param name="items">The items to be deleted.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgent`2.DeleteFromDestinationAsync(System.Collections.Generic.List{`1},System.Threading.CancellationToken)">
+            <summary>
+            Delete the items from the destination.
+            </summary>
+            <param name="items">The items to be deleted.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.BatchSyncAgentExtensions">
+            <summary>
+            The extension methods of the batch sync agent.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.Configure``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},System.Action{FluentSync.Sync.Configurations.BatchSyncConfigurations})">
+            <summary>
+            Configures the sync agent.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="configure">The configure action.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetComparerAgent``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},FluentSync.Comparers.IKeyComparerAgent{``0})">
+            <summary>
+            Sets the comparer agent of the sync agent.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="comparerAgent">The comparer agent.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetKeySelector``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},System.Func{``1,``0})">
+            <summary>
+            Sets the KeySelector function.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="keySelector">The key selector is a function that is executed against the item to return the key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetCompareItemFunc``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},FluentSync.CompareItemFunc{``1})">
+            <summary>
+            Sets the CompareItemFunc.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="compareItemFunc">The compare item function compares two items and determines if they are the same, one of them is newer, or there is a conflict.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetBeforeSyncingAction``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},System.Action{FluentSync.Comparers.ComparisonResult{``1}})">
+            <summary>
+            Sets the BeforeSyncingAction
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="beforeSyncingAction">An action to be called before syncing the items.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetBeforeSyncingKeysAction``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},System.Action{FluentSync.Comparers.KeysComparisonResult{``0}})">
+            <summary>
+            Sets BeforeSyncingKeysAction.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="beforeSyncingKeysAction">An action to be called after comparing the source and destination items by keys and before syncing. This action is called one time before syncing batches.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetBeforeDeletingItemsFromDestinationAction``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},System.Action{System.Collections.Generic.List{``0}})">
+            <summary>
+            Sets BeforeDeletingItemsFromDestinationAction.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="beforeDeletingItemsFromDestinationAction">An action to be called before deleting a set of items by keys from the destination.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetBeforeDeletingItemsFromSourceAction``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},System.Action{System.Collections.Generic.List{``0}})">
+            <summary>
+            Sets BeforeDeletingItemsFromSourceAction.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="beforeDeletingItemsFromSourceAction">An action to be called before deleting a set of items by keys from the source.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetSourceProvider``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},FluentSync.Sync.Providers.IBatchSyncProvider{``0,``1})">
+            <summary>
+            Sets the source sync provider.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="syncProvider">The source sync provider which is used for adding, updating, and deleting items.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetDestinationProvider``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},FluentSync.Sync.Providers.IBatchSyncProvider{``0,``1})">
+            <summary>
+            Sets the destination sync provider.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="syncProvider">The destination sync provider which is used for adding, updating, and deleting items.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetSourceProvider``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},FluentSync.Sync.Providers.IComparerBatchSyncProvider{``0,``1})">
+            <summary>
+            Sets the source comparer and sync providers.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="sourceProvider">The source key comparer and batch sync providers.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetDestinationProvider``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},FluentSync.Sync.Providers.IComparerBatchSyncProvider{``0,``1})">
+            <summary>
+            Sets the destination comparer and sync providers.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="destinationProvider">The destination key comparer and batch sync providers.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetSourceProvider``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+            Sets the source items.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="items">The source items.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.BatchSyncAgentExtensions.SetDestinationProvider``2(FluentSync.Sync.IBatchSyncAgent{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+            Sets the destination items.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="items">The destination items.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.Configurations.BatchSyncConfigurations">
+            <summary>
+            The configurations of the batch sync agent.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.BatchSyncConfigurations.BatchSize">
+            <summary>
+            The batch size.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.BatchSyncConfigurations.BatchSyncListsOrder">
+            <summary>
+            The order of the lists to be synced.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.Configurations.BatchSyncConfigurations.Validate">
+            <summary>
+            Validates the sync configurations.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.Configurations.BatchSyncConfigurations.ToString">
+            <summary>
+            Returns a string that represents the configurations of the batch sync agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.Configurations.BatchSyncListsOrder">
+            <summary>
+            The order of the lists to be synced.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.BatchSyncListsOrder.Order">
+            <summary>
+            The order of the lists to be synced.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.Configurations.BatchSyncListsOrder.HasDuplicates">
+            <summary>
+            Checks for duplicates in the order array.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Configurations.BatchSyncListsOrder.ToString">
+            <summary>
+            Returns a string that represents the order of the lists to be synced.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.Configurations.BatchSyncListType">
+            <summary>
+            The sync lists.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.BatchSyncListType.ItemsInSourceOnly">
+            <summary>
+            The list of items that exist only in the source.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.BatchSyncListType.ItemsInDestinationOnly">
+            <summary>
+            The list of items that exist only in the destination.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.BatchSyncListType.Matches">
+            <summary>
+            The list of items that exist in the source and destination.
+            </summary>
+        </member>
+        <member name="T:FluentSync.Sync.Configurations.ISyncConfigurations">
+            <summary>
+            The configurations of the sync agent.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.ISyncConfigurations.SyncMode">
+            <summary>
+            The sync mode that determines which items will be inserted/updated/deleted in the source/destination.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.ISyncConfigurations.SyncOperationsOrder">
+            <summary>
+            The order of the sync operations: Insert, Update, and Delete.
+            </summary>
+        </member>
+        <member name="T:FluentSync.Sync.Configurations.SyncConfigurations">
+            <summary>
+            The configurations of the sync agent.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.SyncConfigurations.SyncMode">
+            <summary>
+            The sync mode that determines which items will be inserted/updated/deleted in the source/destination.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.SyncConfigurations.SyncOperationsOrder">
+            <summary>
+            The order of the sync operations: Insert, Update, and Delete.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.Configurations.SyncConfigurations.Validate">
+            <summary>
+            Validates the sync configurations.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.Configurations.SyncConfigurations.ToString">
+            <summary>
+            Returns a string that represents the configurations of the sync agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.Configurations.SyncItemOperation">
+            <summary>
+            The sync operation of an item that does not have a match.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncItemOperation.None">
+            <summary>
+            Do nothing.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncItemOperation.Add">
+            <summary>
+            Adds items to other list.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncItemOperation.Delete">
+            <summary>
+            Deletes items from the current list.
+            </summary>
+        </member>
+        <member name="T:FluentSync.Sync.Configurations.SyncMatchOperation">
+            <summary>
+            The sync operation of an item that has a match.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncMatchOperation.None">
+            <summary>
+            Do nothing.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncMatchOperation.UpdateSource">
+            <summary>
+            Updates the source items with the destination items regardless which item is newer.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncMatchOperation.UpdateDestination">
+            <summary>
+            Updates the destination items with the source items regardless which item is newer.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncMatchOperation.UpdateOldItem">
+            <summary>
+            Updates the old items with the new items in either the source or destination.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncMatchOperation.UpdateOldDestination">
+            <summary>
+            Updates the destination items with the source items if they are old.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncMatchOperation.UpdateOldSource">
+            <summary>
+            Updates the source items with the destination items if they are old.
+            </summary>
+        </member>
+        <member name="T:FluentSync.Sync.Configurations.SyncMode">
+            <summary>
+            The sync mode that determines which items will be inserted/updated/deleted in the source/destination.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.SyncMode.SyncModePreset">
+            <summary>
+            Presets for the sync mode to facilitate updating source/destination items.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.SyncMode.ItemsInSourceOnly">
+            <summary>
+            Items that exist only in source.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.SyncMode.ItemsInDestinationOnly">
+            <summary>
+            Items that exist only in destination.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.SyncMode.SameMatches">
+            <summary>
+            Same items that exist in the source and destination.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.SyncMode.NewerMatches">
+            <summary>
+            Matches that have either newer source items or newer destination items.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.SyncMode.ConflictMatches">
+            <summary>
+            Items that have matches in the other list but could not determine which one is newer.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.Configurations.SyncMode.ToString">
+            <summary>
+            Returns a string that represents the sync mode.
+            </summary>
+        </member>
+        <member name="T:FluentSync.Sync.Configurations.SyncModePreset">
+            <summary>
+            Presets for the sync mode to facilitate updating source/destination items.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncModePreset.None">
+            <summary>
+            Do nothing.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncModePreset.TwoWay">
+            <summary>
+            Updates the source and the destination to have the same items.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncModePreset.MirrorToDestination">
+            <summary>
+            Updates the destination only to have the same items as in the source and deletes any item in destination that does have a match.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncModePreset.MirrorToSource">
+            <summary>
+            Updates the source only to have the same items as in the destination and deletes any item in source that does have a match.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncModePreset.UpdateDestination">
+            <summary>
+            Updates the destination items only to have the same items as in the source. It does not delete any item from the destination and it does not update conflicts.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncModePreset.UpdateSource">
+            <summary>
+            Updates the source items only to have the same items as in the destination. It does not delete any item from the source and it does not update conflicts.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncModePreset.Custom">
+            <summary>
+            Custom sync mode that is not similar to any other presets.
+            </summary>
+        </member>
+        <member name="T:FluentSync.Sync.Configurations.SyncOperationsOrder">
+            <summary>
+            The order of the sync operations: Insert, Update, and Delete.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.Configurations.SyncOperationsOrder.Order">
+            <summary>
+            The order of the sync operations: Insert, Update, and Delete.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.Configurations.SyncOperationsOrder.HasDuplicates">
+            <summary>
+            Checks for duplicates in the order array.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.Configurations.SyncOperationsOrder.ToString">
+            <summary>
+            Returns a string that represents the order of the sync operations: Insert, Update, and Delete.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.Configurations.SyncOperationType">
+            <summary>
+            The type of the sync operation.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncOperationType.Insert">
+            <summary>
+            The insert operation.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncOperationType.Update">
+            <summary>
+            The update operation.
+            </summary>
+        </member>
+        <member name="F:FluentSync.Sync.Configurations.SyncOperationType.Delete">
+            <summary>
+            The delete operation.
+            </summary>
+        </member>
+        <member name="T:FluentSync.Sync.IBaseSyncAgent`1">
+            <summary>
+            The base sync agent which has the common logic for the sync agent and batch sync agent.
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="P:FluentSync.Sync.IBaseSyncAgent`1.BeforeSyncingAction">
+            <summary>
+            An action to be called before syncing the items.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.IBaseSyncAgent`1.SyncAsync(FluentSync.Comparers.ComparisonResult{`0},System.Threading.CancellationToken)">
+            <summary>
+            Synchronizes the source and destination items based on the comparison result.
+            </summary>
+            <param name="comparisonResult">The comparison result of the source and destination items which is generated from the comparer agent.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.IBatchSyncAgent`2">
+            <summary>
+            The batch sync agent synchronizes the items based on the batch size.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Sync.IBatchSyncAgent`2.BeforeDeletingItemsFromDestinationAction">
+            <summary>
+            An action to be called before deleting a set of items by keys from the destination.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.IBatchSyncAgent`2.BeforeDeletingItemsFromSourceAction">
+            <summary>
+            An action to be called before deleting a set of items by keys from the source.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.IBatchSyncAgent`2.BeforeSyncingKeysAction">
+            <summary>
+            An action to be called after comparing the source and destination items by keys and before syncing. This action is called one time before syncing batches.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.IBatchSyncAgent`2.CompareItemFunc">
+            <summary>
+            The compare item function compares two items and determines if they are the same, one of them is newer, or there is a conflict.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.IBatchSyncAgent`2.Configurations">
+            <summary>
+            The configurations of the batch sync agent.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.IBatchSyncAgent`2.DestinationProvider">
+            <summary>
+            The destination sync provider which is used for adding, updating, and deleting items.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.IBatchSyncAgent`2.ComparerAgent">
+            <summary>
+            The comparer agent which compares the source and destination items before syncing them by key.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.IBatchSyncAgent`2.KeySelector">
+            <summary>
+            The key selector is a function that is executed against the item to return the key.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.IBatchSyncAgent`2.SourceProvider">
+            <summary>
+            The source sync provider which is used for adding, updating, and deleting items.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.IBatchSyncAgent`2.SyncAsync(System.Threading.CancellationToken)">
+            <summary>
+            Synchronizes the source and destination items.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.IBatchSyncAgent`2.SyncAsync(FluentSync.Comparers.KeysComparisonResult{`0},System.Threading.CancellationToken)">
+            <summary>
+            Synchronizes the source and destination items by using the provided key comparison result.
+            </summary>
+            <param name="keysComparisonResult">The comparison result of the source and destination keys.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.ISyncAgent`2">
+            <summary>
+            The sync agent which synchronizes the source and destination items all at once.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Sync.ISyncAgent`2.BeforeSyncingAction">
+            <summary>
+            An action to be called before syncing the items.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.ISyncAgent`2.ComparerAgent">
+            <summary>
+            The comparer agent which compares the source and destination items before syncing them.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.ISyncAgent`2.Configurations">
+            <summary>
+            The configurations of the sync agent.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.ISyncAgent`2.DestinationProvider">
+            <summary>
+            The destination sync provider which is used for adding, updating, and deleting items.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.ISyncAgent`2.SourceProvider">
+            <summary>
+            The source sync provider which is used for adding, updating, and deleting items.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.ISyncAgent`2.SyncAsync(System.Threading.CancellationToken)">
+            <summary>
+            Synchronizes the source and destination items.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.ISyncAgent`2.SyncAsync(FluentSync.Comparers.ComparisonResult{`1},System.Threading.CancellationToken)">
+            <summary>
+            Synchronizes the source and destination items based on the comparison result.
+            </summary>
+            <param name="comparisonResult">The comparison result of the source and destination items which is generated from the comparer agent.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.SyncAgent`2">
+            <summary>
+            The sync agent which synchronizes the source and destination items all at once.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Sync.SyncAgent`2.Configurations">
+            <summary>
+            The configurations of the sync agent.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.SyncAgent`2.ComparerAgent">
+            <summary>
+            The comparer agent which compares the source and destination items before syncing them.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.SyncAgent`2.SourceProvider">
+            <summary>
+            The source sync provider which is used for adding, updating, and deleting items.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.SyncAgent`2.DestinationProvider">
+            <summary>
+            The destination sync provider which is used for adding, updating, and deleting items.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgent`2.Create">
+            <summary>
+            Creates a new instance of the sync agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgent`2.Validate">
+            <summary>
+            Validates the sync agent's configurations and properties.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgent`2.SyncAsync(System.Threading.CancellationToken)">
+            <summary>
+            Synchronizes the source and destination items.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgent`2.ToString">
+            <summary>
+            Returns a string that represents the sync agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgent`2.GetSyncConfigurations">
+            <summary>
+            Gets the sync configurations of the sync agent.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgent`2.GetSourceSyncProvider">
+            <summary>
+            Gets the sync provider of the source.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgent`2.GetDestinationSyncProvider">
+            <summary>
+            Gets the sync provider of the destination.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgent`2.DeleteFromSourceAsync(System.Collections.Generic.List{`1},System.Threading.CancellationToken)">
+            <summary>
+            Deletes the items from the source.
+            </summary>
+            <param name="items">The items to be deleted.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgent`2.DeleteFromDestinationAsync(System.Collections.Generic.List{`1},System.Threading.CancellationToken)">
+            <summary>
+            Delete the items from the destination.
+            </summary>
+            <param name="items">The items to be deleted.</param>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.SyncAgent`1">
+            <summary>
+            The sync agent which synchronizes the source and destination items all at once.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="T:FluentSync.Sync.SyncAgentExtensions">
+            <summary>
+            The extension methods of the sync agent.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgentExtensions.Configure``2(FluentSync.Sync.ISyncAgent{``0,``1},System.Action{FluentSync.Sync.Configurations.ISyncConfigurations})">
+            <summary>
+            Configures the sync agent.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="configure">The configure action.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgentExtensions.SetComparerAgent``2(FluentSync.Sync.ISyncAgent{``0,``1},FluentSync.Comparers.IComparerAgent{``0,``1})">
+            <summary>
+            Sets the comparer agent of the sync agent.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="comparerAgent">The comparer agent.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgentExtensions.SetSourceProvider``2(FluentSync.Sync.ISyncAgent{``0,``1},FluentSync.Sync.Providers.ISyncProvider{``1})">
+            <summary>
+            Sets the source sync provider.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="syncProvider">The source sync provider of the sync agent.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgentExtensions.SetDestinationProvider``2(FluentSync.Sync.ISyncAgent{``0,``1},FluentSync.Sync.Providers.ISyncProvider{``1})">
+            <summary>
+            Sets the destination sync provider.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="syncProvider">The destination sync provider of the sync agent.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgentExtensions.SetSourceProvider``2(FluentSync.Sync.ISyncAgent{``0,``1},FluentSync.Sync.Providers.IComparerSyncProvider{``1})">
+            <summary>
+            Sets the source comparer and sync providers.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="sourceProvider">The source comparer and sync providers.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgentExtensions.SetDestinationProvider``2(FluentSync.Sync.ISyncAgent{``0,``1},FluentSync.Sync.Providers.IComparerSyncProvider{``1})">
+            <summary>
+            Sets the destination comparer and sync providers.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="destinationProvider">The destination comparer and sync providers.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgentExtensions.SetSourceProvider``2(FluentSync.Sync.ISyncAgent{``0,``1},System.Collections.Generic.IList{``1})">
+            <summary>
+            Sets the source items.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="items">The source items.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgentExtensions.SetDestinationProvider``2(FluentSync.Sync.ISyncAgent{``0,``1},System.Collections.Generic.IList{``1})">
+            <summary>
+            Sets the destination items.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="items">The destination items.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgentExtensions.SetSourceProvider``2(FluentSync.Sync.ISyncAgent{``0,``1},System.Collections.Generic.SortedSet{``1})">
+            <summary>
+            Sets the source items.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="items">The source items.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgentExtensions.SetDestinationProvider``2(FluentSync.Sync.ISyncAgent{``0,``1},System.Collections.Generic.SortedSet{``1})">
+            <summary>
+            Sets the destination items.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="items">The destination items.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentSync.Sync.SyncAgentExtensions.SetBeforeSyncingAction``2(FluentSync.Sync.ISyncAgent{``0,``1},System.Action{FluentSync.Comparers.ComparisonResult{``1}})">
+            <summary>
+            Sets the BeforeSyncingAction.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TItem">The type of the item.</typeparam>
+            <param name="syncAgent">The sync agent.</param>
+            <param name="beforeSyncingAction">An action to be called before syncing the items.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.Sync.SyncContext`1">
+            <summary>
+            The sync context contains the items that will be inserted/updated/deleted in source/destination.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.Sync.SyncContext`1.ItemsToBeInsertedInSource">
+            <summary>
+            The items that will be inserted in the source.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.SyncContext`1.ItemsToBeDeletedFromSource">
+            <summary>
+            The items that will be deleted from the source.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.SyncContext`1.ItemsToBeInsertedInDestination">
+            <summary>
+            The items that will be inserted in the destination.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.SyncContext`1.ItemsToBeDeletedFromDestination">
+            <summary>
+            The items that will be deleted from the destination.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.SyncContext`1.ItemsToBeUpdatedInSource">
+            <summary>
+            The items that will be updated in the source.
+            </summary>
+        </member>
+        <member name="P:FluentSync.Sync.SyncContext`1.ItemsToBeUpdatedInDestination">
+            <summary>
+            The items that will be updated in the destination.
+            </summary>
+        </member>
+        <member name="M:FluentSync.Sync.SyncContext`1.ToString">
+            <summary>
+            Returns a string that represents the SyncContext.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.ListExtension">
+            <summary>
+            The extension methods of the list.
+            </summary>
+        </member>
+        <member name="M:FluentSync.ListExtension.GetDuplicatesCountForUnsortedList``1(System.Collections.Generic.List{``0},FluentSync.CompareItemFunc{``0})">
+            <summary>
+            Finds the duplicates in the list and returns count.
+            </summary>
+            <typeparam name="T">The type of the item.</typeparam>
+            <param name="list">The list of items.</param>
+            <param name="compareItemFunc">The function that is used to compare the items.</param>
+            <returns>The duplicates count.</returns>
+        </member>
+        <member name="T:FluentSync.MatchComparisonResult`1">
+            <summary>
+            The comparison result of the two items that have the same key.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.MatchComparisonResult`1.Source">
+            <summary>
+            The source item.
+            </summary>
+        </member>
+        <member name="P:FluentSync.MatchComparisonResult`1.Destination">
+            <summary>
+            The destination item.
+            </summary>
+        </member>
+        <member name="P:FluentSync.MatchComparisonResult`1.ComparisonResult">
+            <summary>
+            The comparison result of the two items.
+            </summary>
+        </member>
+        <member name="M:FluentSync.MatchComparisonResult`1.ToString">
+            <summary>
+            Returns a string that represents the MatchComparisonResult.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FluentSync.MatchValuePair`1">
+            <summary>
+            A pair of the current and new value of the item.
+            </summary>
+            <typeparam name="TItem">The type of the item.</typeparam>
+        </member>
+        <member name="P:FluentSync.MatchValuePair`1.CurrentValue">
+            <summary>
+            The current value of the item.
+            </summary>
+        </member>
+        <member name="P:FluentSync.MatchValuePair`1.NewValue">
+            <summary>
+            The new value of the item.
+            </summary>
+        </member>
+        <member name="T:FluentSync.ValueTypeExtensions">
+            <summary>
+            The extension methods of the value types.
+            </summary>
+        </member>
+        <member name="M:FluentSync.ValueTypeExtensions.CompareTo``1(System.Nullable{``0},System.Nullable{``0})">
+            <summary>
+            Compares the null-able x object with the null-able y object.
+            </summary>
+            <typeparam name="T">The type of the x and y objects.</typeparam>
+            <param name="x">The x object.</param>
+            <param name="y">The y object.</param>
+            <returns>A value that indicates the relative order of the objects being compared.
+            The return value has these meanings: Value Meaning Less than zero This instance precedes other in the sort order.
+            Zero This instance occurs in the same position in the sort order as other.
+            Greater than zero This instance follows other in the sort order.</returns>
+        </member>
+    </members>
+</doc>

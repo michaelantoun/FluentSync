@@ -1,8 +1,8 @@
-A .Net library with fluent interface for comparing and synchronizing records.
+A .Net library with fluent interface for comparing and synchronizing entities.
 
 
 ### Overview
-Have you ever wanted to synchronize data between multiple databases, systems, database and another API, etc.? Have you ever wanted to resync data between multiple systems because something went wrong and some data is not not up-to-date? If the answer is **Yes** then this library is for you.
+Have you ever wanted to synchronize data between multiple databases, systems, database and an API, etc.? Have you ever wanted to resync data between multiple systems because something went wrong and some data is not up-to-date? If the answer is **Yes** then this library is for you.
 
 ### Get Started
 FluentSync can be installed using the Nuget package manager or the `dotnet` CLI.
@@ -12,7 +12,7 @@ Install-Package FluentSync
 ```
 
 [nuget]:     https://www.nuget.org/packages/FluentSync
----
+
 
 ### Usage
 The FluentSync library has Comparer agents and Sync agents. The Comparer agent compares the source and destination items/entities. Then the Sync agent uses this comparison result to determine which items/entities will be inserted/updated/deleted in the source and destination according to the sync configurations.
@@ -37,7 +37,7 @@ var comparisonResult = await ComparerAgent<string>.Create()
 	.SetDestinationProvider(destination)
 	.CompareAsync(CancellationToken.None).ConfigureAwait(false);
     
-// This is the comparison result which is verified by FluentAssertion library
+// This is the comparison result which is verified by the FluentAssertion library
 comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { "Tom", "bob", "Zoo" });
 comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Bob", "Sam" });
 
@@ -47,7 +47,7 @@ comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<
 });
 ```
 
-You can also have custom key selector for the ComparerAgent to identify each item.
+You can also have a custom key selector for the ComparerAgent to identify each item.
 ```csharp
 List<string> source = new List<string> { "Tom", "Tim", "bob", "Zoo" }
 	, destination = new List<string> { "Bob", "Sam", "Tim" };
@@ -100,7 +100,7 @@ var comparisonResult = await ComparerAgent<Tuple<int?, int?>, PersonHobby>.Creat
 ```
 
 #### SyncAgent Usage
-Simply, you can compare the sync two lists with the following code:
+Simply, you can compare and sync the two lists with the following code:
 ```csharp
 List<int> source = new List<int> { 5, 4, 9 }
 	, destination = new List<int> { 6, 10, 5 };
@@ -129,7 +129,7 @@ await SyncAgent<string>.Create()
     .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 ```
 
-Also, you can compare and sync entities with a custom sync mode. The Source/Destination provider for the sync agent is a provider that implements IComparerSyncProvider<TItem> interface which does the CRUD operations for the items/entities.
+You can also compare and sync entities. The Source/Destination provider for the sync agent is a provider that implements IComparerSyncProvider<TItem> interface which does the CRUD operations for the items/entities.
 ```csharp
 await SyncAgent<int?, Event>.Create()
 	.Configure((c) => c.SyncMode.ItemsInSourceOnly = SyncItemOperation.Add) // Custom SyncMode
@@ -185,7 +185,7 @@ await BatchSyncAgent<int, Person>.Create()
 	.SetBeforeDeletingItemsFromDestinationAction((list) => Console.WriteLine($"Deleting from destination {list.Count} persons"))
 	.SyncAsync(cancellationToken);
 ```
-**Important note:** the BatchSyncAgent loads all the keys in memory in one call at the beginning, which consumes less memory than loading all entities, then compares the keys only. After that it loads the batch entities and compares them, and finally syncs the entities.
+**Important note:** the BatchSyncAgent loads all the keys in memory in one call at the beginning, which consumes less memory than loading all entities, then compares the keys only. After that it loads the batch entities by the keys and compares them, and finally syncs the entities.
 
 #### More Examples
 For more examples you can look at the unit tests project **FluentSync.Tests**.

@@ -1,4 +1,5 @@
-A .Net library with fluent interface for comparing and synchronizing entities.
+<img src="https://raw.githubusercontent.com/michaelantoun/FluentSync/Icon512x512.png" alt="FluentSync" width="250px" />
+A .Net library with fluent interface for comparing and synchronizing entities/records.
 
 
 ### Overview

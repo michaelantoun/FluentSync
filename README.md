@@ -154,7 +154,7 @@ await SyncAgent<int?, Event>.Create()
 **Important note:** the SyncAgent loads all the entities in memory in one call, then compares them, and finally synchronizes the entities. It is not recommended to use this agent if you have thousands of entities, use BatchSyncAgent instead.
 
 #### BatchSyncAgent Usage
-It is **highly recommended** to use the **BatchSyncAgent** to synchronize the entities if you have thousands of entities; it synchronizes them in batches. The Source/Destination provider for the batch sync agent is a provider that implements IComparerBatchSyncProvider<TKey, TItem> interface which does the CRUD operations for the items/records.
+It is **highly recommended** to use the **BatchSyncAgent** to synchronize the entities if you have thousands of entities; it synchronizes them in batches. The Source/Destination provider for the batch sync agent is a provider that implements IComparerBatchSyncProvider<TKey, TItem> interface which does the CRUD operations for the items/entities.
 ```csharp
 await BatchSyncAgent<int, Person>.Create()
 	.Configure((c) =>

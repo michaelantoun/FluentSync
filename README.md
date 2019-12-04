@@ -8,12 +8,11 @@ Have you ever wanted to synchronize data between multiple databases, systems, da
 ### Get Started
 FluentSync can be installed using the Nuget package manager or the `dotnet` CLI.
 
+[![NuGet](https://github.com/michaelantoun/FluentSync/blob/master/Icon.svg)](https://www.nuget.org/packages/FluentSync/)
+
 ```
 Install-Package FluentSync
 ```
-
-[nuget]:     https://www.nuget.org/packages/FluentSync
-
 
 ### Usage
 The FluentSync library has Comparer agents and Sync agents. The Comparer agent compares the source and destination items/entities. Then the Sync agent uses this comparison result to determine which items/entities will be inserted/updated/deleted in the source and destination according to the sync configurations.

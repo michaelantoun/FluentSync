@@ -1,4 +1,4 @@
-<img src="https://github.com/michaelantoun/FluentSync/blob/master/Icon512x512.png" alt="FluentSync" width="250px" />
+<img src="https://github.com/michaelantoun/FluentSync/blob/master/Icon512x512.png" alt="FluentSync" width="128px" />
 A .Net library with fluent interface for comparing and synchronizing entities/records.
 
 
@@ -7,8 +7,6 @@ Have you ever wanted to synchronize data between multiple databases, systems, da
 
 ### Get Started
 FluentSync can be installed using the Nuget package manager or the `dotnet` CLI.
-
-[![NuGet](https://github.com/michaelantoun/FluentSync/blob/master/Icon.svg)](https://www.nuget.org/packages/FluentSync/)
 
 ```
 Install-Package FluentSync

@@ -1,3 +1,6 @@
+1.0 - Jan 14 2020
+* First official release
+
 0.1.1 - Dec 3 2019
 * Added an icon to the library
 * Enabled code documentation

@@ -12,6 +12,13 @@ FluentSync can be installed using the Nuget package manager or the `dotnet` CLI.
 Install-Package FluentSync
 ```
 
+### Why FluentSync
+* The library is developed with .Net Standard
+* Fluent interface
+* No dependencies on other libraries
+* More than 220+ tests
+* 99% Code coverage
+
 ### Usage
 The FluentSync library has Comparer agents and Sync agents. The Comparer agent compares the source and destination items/entities. Then the Sync agent uses this comparison result to determine which items/entities will be inserted/updated/deleted in the source and destination according to the sync configurations.
 

@@ -19,7 +19,7 @@ namespace FluentSync
         {
             int duplicatesCount = 0;
 
-            if (list?.Count == 0)
+            if (list?.Count <= 1)
             {
                 return 0;
             }

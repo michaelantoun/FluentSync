@@ -109,7 +109,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 5 items were found.");
+            act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 5 items were found.");
         }
 
         [Fact]
@@ -139,7 +139,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<ArgumentException>().WithMessage("Duplicated items are not allowed in the destination list, 5 items were found.");
+            act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the destination list, 5 items were found.");
         }
 
         [Fact]
@@ -171,7 +171,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 6 items were found.");
+            act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 6 items were found.");
         }
 
         [Fact]
@@ -202,7 +202,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<ArgumentException>().WithMessage("Duplicated items are not allowed in the destination list, 5 items were found.");
+            act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the destination list, 5 items were found.");
         }
 
         [Fact]
@@ -237,7 +237,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<ArgumentException>().WithMessage("Negative Ids are invalid in the source list, 1 item was found.");
+            act.Should().ThrowAsync<ArgumentException>().WithMessage("Negative Ids are invalid in the source list, 1 item was found.");
         }
 
         [Fact]
@@ -272,7 +272,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<ArgumentException>().WithMessage("Negative Ids are invalid in the destination list, 2 items were found.");
+            act.Should().ThrowAsync<ArgumentException>().WithMessage("Negative Ids are invalid in the destination list, 2 items were found.");
         }
     }
 }

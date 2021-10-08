@@ -86,7 +86,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 1 item was found.");
+            act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 1 item was found.");
         }
 
         [Fact]
@@ -101,7 +101,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<ArgumentException>().WithMessage("Duplicated items are not allowed in the destination list, 1 item was found.");
+            act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the destination list, 1 item was found.");
         }
 
         [Fact]
@@ -116,7 +116,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<ArgumentException>().WithMessage("Null-able items are not allowed in the source list, 1 item was found.");
+            act.Should().ThrowAsync<ArgumentException>().WithMessage("Null-able items are not allowed in the source list, 1 item was found.");
         }
 
         [Fact]
@@ -131,7 +131,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<ArgumentException>().WithMessage("Null-able items are not allowed in the destination list, 1 item was found.");
+            act.Should().ThrowAsync<ArgumentException>().WithMessage("Null-able items are not allowed in the destination list, 1 item was found.");
         }
     }
 }

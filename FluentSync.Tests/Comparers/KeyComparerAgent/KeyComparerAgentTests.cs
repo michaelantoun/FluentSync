@@ -21,7 +21,7 @@ namespace FluentSync.Tests.Comparers.BatchComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.SourceProvider)} cannot be null.");
+            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.SourceProvider)} cannot be null.");
         }
 
         [Fact]
@@ -33,7 +33,7 @@ namespace FluentSync.Tests.Comparers.BatchComparerAgent
                 .SetSourceProvider(source)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.DestinationProvider)} cannot be null.");
+            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.DestinationProvider)} cannot be null.");
         }
 
         #endregion
@@ -135,7 +135,7 @@ namespace FluentSync.Tests.Comparers.BatchComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<NullReferenceException>().WithMessage("Null-able keys found in the source list.");
+            act.Should().ThrowAsync<NullReferenceException>().WithMessage("Null-able keys found in the source list.");
         }
 
         [Fact]
@@ -149,7 +149,7 @@ namespace FluentSync.Tests.Comparers.BatchComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<NullReferenceException>().WithMessage("Null-able keys found in the destination list.");
+            act.Should().ThrowAsync<NullReferenceException>().WithMessage("Null-able keys found in the destination list.");
         }
 
         [Fact]
@@ -163,7 +163,7 @@ namespace FluentSync.Tests.Comparers.BatchComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<ArgumentException>().WithMessage("Key '1' already exists in the source list.");
+            act.Should().ThrowAsync<ArgumentException>().WithMessage("Key '1' already exists in the source list.");
         }
 
         [Fact]
@@ -177,7 +177,7 @@ namespace FluentSync.Tests.Comparers.BatchComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().Throw<ArgumentException>().WithMessage("Key '2' already exists in the destination list.");
+            act.Should().ThrowAsync<ArgumentException>().WithMessage("Key '2' already exists in the destination list.");
         }
 
         #endregion

@@ -6,8 +6,7 @@
     <Authors>Michael Antoun</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A .Net library with fluent interface for comparing and synchronizing entities/records.</Description>
-    <Copyright>Copyright (c) Michael Antoun 2019 - 2021</Copyright>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <Copyright>Copyright (c) Michael Antoun 2019 - 2023</Copyright>
     <PackageProjectUrl>https://github.com/michaelantoun/FluentSync</PackageProjectUrl>
     <RepositoryUrl>https://github.com/michaelantoun/FluentSync</RepositoryUrl>
     <NeutralLanguage>English</NeutralLanguage>
@@ -18,6 +17,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <PackageIcon>Icon512x512.png</PackageIcon>
     <PackageReleaseNotes>Updated the library to .Net Standard 2.1 and supported .Net Framework v4.6.2</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

@@ -19,21 +19,23 @@ namespace FluentSync
         {
             int duplicatesCount = 0;
 
-            if (list?.Count > 1)
+            if (list?.Count <= 1)
             {
-                var clonedList = new List<T>(list);
+                return 0;
+            }
+            
+            var clonedList = new List<T>(list);
 
-                for (int i = 0; i < clonedList.Count; i++)
+            for (int i = 0; i < clonedList.Count; i++)
+            {
+                for (int j = i + 1; j < clonedList.Count; j++)
                 {
-                    for (int j = i + 1; j < clonedList.Count; j++)
+                    if (compareItemFunc(clonedList[i], clonedList[j]) == MatchComparisonResultType.Same)
                     {
-                        if (compareItemFunc(clonedList[i], clonedList[j]) == MatchComparisonResultType.Same)
-                        {
-                            duplicatesCount++;
+                        duplicatesCount++;
 
-                            clonedList.RemoveAt(j);
-                            j--;
-                        }
+                        clonedList.RemoveAt(j);
+                        j--;
                     }
                 }
             }

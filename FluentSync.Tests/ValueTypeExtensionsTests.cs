@@ -1,7 +1,4 @@
-﻿using FluentAssertions;
-using Xunit;
-
-namespace FluentSync.Tests
+﻿namespace FluentSync.Tests
 {
     public class ValueTypeExtensionsTests
     {

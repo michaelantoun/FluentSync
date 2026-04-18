@@ -1,10 +1,4 @@
-﻿using FluentAssertions;
-using FluentSync.Sync.Providers;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Xunit;
+﻿using FluentSync.Sync.Providers;
 
 namespace FluentSync.Tests.Sync.Providers
 {

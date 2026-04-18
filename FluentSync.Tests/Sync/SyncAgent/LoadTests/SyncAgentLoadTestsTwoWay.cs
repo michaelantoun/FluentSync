@@ -1,9 +1,6 @@
 ﻿using FluentSync.Sync;
 using FluentSync.Sync.Configurations;
 using FluentSync.Tests.Internals;
-using System.Threading;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace FluentSync.Tests.Sync.SyncAgent.LoadTests
 {

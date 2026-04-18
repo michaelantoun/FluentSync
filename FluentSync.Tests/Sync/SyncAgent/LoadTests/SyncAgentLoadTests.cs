@@ -1,7 +1,4 @@
-﻿using FluentSync.Comparers;
-using FluentSync.Sync;
-using System;
-using System.Collections.Generic;
+﻿using FluentSync.Sync;
 
 namespace FluentSync.Tests.Sync.SyncAgent.LoadTests
 {

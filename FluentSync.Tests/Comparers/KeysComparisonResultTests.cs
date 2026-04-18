@@ -1,8 +1,4 @@
-﻿using FluentAssertions;
-using FluentSync.Comparers;
-using Xunit;
-
-namespace FluentSync.Tests.Comparers
+﻿namespace FluentSync.Tests.Comparers
 {
     public class KeysComparisonResultTests
     {

@@ -1,0 +1,11 @@
+﻿global using FluentAssertions;
+global using FluentSync.Comparers;
+global using FluentSync.Comparers.Configurations;
+global using FluentSync.Comparers.Providers;
+global using FluentSync.Tests.Models;
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using Xunit;

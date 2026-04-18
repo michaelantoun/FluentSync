@@ -1,7 +1,4 @@
-﻿using FluentAssertions;
-using FluentSync.Sync.Providers;
-using System.Collections.Generic;
-using Xunit;
+﻿using FluentSync.Sync.Providers;
 
 namespace FluentSync.Tests.Sync.Providers
 {

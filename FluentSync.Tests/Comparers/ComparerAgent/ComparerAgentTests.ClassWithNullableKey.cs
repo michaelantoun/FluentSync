@@ -1,15 +1,4 @@
-﻿using FluentAssertions;
-using FluentSync.Comparers;
-using FluentSync.Comparers.Configurations;
-using FluentSync.Tests.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace FluentSync.Tests.Comparers.ComparerAgent
+﻿namespace FluentSync.Tests.Comparers.ComparerAgent
 {
     // Testing the comparer agent with a class that has a null-able key
     public partial class ComparerAgentTests

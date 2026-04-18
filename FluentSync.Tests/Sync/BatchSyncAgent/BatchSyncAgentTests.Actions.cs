@@ -1,13 +1,5 @@
-﻿using FluentAssertions;
-using FluentSync.Comparers;
-using FluentSync.Sync;
+﻿using FluentSync.Sync;
 using FluentSync.Sync.Configurations;
-using FluentSync.Tests.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace FluentSync.Tests.Sync.BatchSyncAgent
 {

@@ -1,11 +1,5 @@
-﻿using FluentAssertions;
-using FluentSync.Comparers;
-using FluentSync.Sync;
+﻿using FluentSync.Sync;
 using FluentSync.Sync.Configurations;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace FluentSync.Tests.Sync.SyncAgent
 {

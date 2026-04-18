@@ -1,8 +1,4 @@
-﻿using FluentSync.Comparers;
-using FluentSync.Sync;
-using FluentSync.Tests.Models;
-using System;
-using System.Collections.Generic;
+﻿using FluentSync.Sync;
 
 namespace FluentSync.Tests.Sync.BatchSyncAgent.LoadTests
 {

@@ -1,8 +1,4 @@
-﻿using FluentAssertions;
-using FluentSync.Comparers.Configurations;
-using Xunit;
-
-namespace FluentSync.Tests.Comparers.Configurations
+﻿namespace FluentSync.Tests.Comparers.Configurations
 {
     public class ComparerConfigurationsTests
     {

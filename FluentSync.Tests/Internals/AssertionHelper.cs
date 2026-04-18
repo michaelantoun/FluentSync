@@ -1,8 +1,4 @@
-﻿using FluentAssertions;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace FluentSync.Tests.Internals
+﻿namespace FluentSync.Tests.Internals
 {
     internal static class AssertionHelper
     {

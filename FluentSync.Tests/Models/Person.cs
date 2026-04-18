@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FluentSync.Tests.Models
+﻿namespace FluentSync.Tests.Models
 {
     internal class Person
     {

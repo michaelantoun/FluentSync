@@ -1,12 +1,4 @@
-﻿using FluentAssertions;
-using FluentSync.Comparers;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace FluentSync.Tests.Comparers.BatchComparerAgent
+﻿namespace FluentSync.Tests.Comparers.BatchComparerAgent
 {
     public partial class KeyComparerAgentTests
     {

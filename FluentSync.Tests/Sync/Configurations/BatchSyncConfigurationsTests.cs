@@ -1,7 +1,4 @@
-﻿using FluentAssertions;
-using FluentSync.Sync.Configurations;
-using System;
-using Xunit;
+﻿using FluentSync.Sync.Configurations;
 
 namespace FluentSync.Tests.Sync.Configurations
 {

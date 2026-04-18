@@ -1,17 +1,7 @@
-﻿using FluentAssertions;
-using FluentSync.Comparers;
-using FluentSync.Comparers.Configurations;
-using FluentSync.Sync;
+﻿using FluentSync.Sync;
 using FluentSync.Sync.Configurations;
 using FluentSync.Sync.Providers;
 using FluentSync.Tests.Internals;
-using FluentSync.Tests.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace FluentSync.Tests.Sync.SyncAgent
 {

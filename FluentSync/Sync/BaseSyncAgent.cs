@@ -12,7 +12,7 @@ namespace FluentSync.Sync
     /// <summary>
     /// The base sync agent which has the common logic for the sync agent and batch sync agent.
     /// </summary>
-    /// <typeparam name="TItem"></typeparam>
+    /// <typeparam name="TItem">The type of the item.</typeparam>
     public abstract class BaseSyncAgent<TItem> : IBaseSyncAgent<TItem>
     {
         /// <summary>

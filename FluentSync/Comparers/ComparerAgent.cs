@@ -72,9 +72,9 @@ namespace FluentSync.Comparers
         /// <summary>
         /// Adds items that have null-able keys to the list and the others to the dictionary.
         /// </summary>
-        /// <param name="dic"></param>
-        /// <param name="nullableKeysItems"></param>
-        /// <param name="items"></param>
+        /// <param name="dic">The dictionary that collects the items grouped by their non null-able keys.</param>
+        /// <param name="nullableKeysItems">The list that collects the items whose key is null.</param>
+        /// <param name="items">The items to be added.</param>
         private void AddItemsToDictionary(Dictionary<TKey, List<TItem>> dic, List<TItem> nullableKeysItems, IEnumerable<TItem> items)
         {
             if (items == null)
@@ -203,7 +203,7 @@ namespace FluentSync.Comparers
         {
             int count;
 
-            // Check for duplicated items using the item comparer
+            // Check for duplicated keys using the key selector
             if ((Configurations.AllowDuplicateKeys & RuleAllowanceType.Source) != RuleAllowanceType.Source)
             {
                 count = dicSrc.Where(x => x.Value.Count > 1).Select(x => x.Value.Count - 1).Count();

@@ -13,10 +13,10 @@ namespace FluentSync
         /// <typeparam name="T">The type of the x and y objects.</typeparam>
         /// <param name="x">The x object.</param>
         /// <param name="y">The y object.</param>
-        /// <returns>A value that indicates the relative order of the objects being compared.
-        /// The return value has these meanings: Value Meaning Less than zero This instance precedes other in the sort order.
-        /// Zero This instance occurs in the same position in the sort order as other.
-        /// Greater than zero This instance follows other in the sort order.</returns>
+        /// <returns>A value that indicates the relative order of the objects being compared:
+        /// less than zero when <paramref name="x"/> precedes <paramref name="y"/> in the sort order,
+        /// zero when they occur in the same position, and greater than zero when <paramref name="x"/> follows
+        /// <paramref name="y"/>. A null object precedes a non-null one, and two nulls are equal.</returns>
         public static int CompareTo<T>(this T? x, T? y) where T : struct, IComparable<T>
         {
             if (x == null)

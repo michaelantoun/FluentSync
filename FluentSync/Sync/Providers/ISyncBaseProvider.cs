@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 namespace FluentSync.Sync.Providers
 {
     /// <summary>
-    /// The base sync provider which used by the sync agent to add and update items.
+    /// The base sync provider which is used by the sync agent to add and update items.
     /// </summary>
-    /// <typeparam name="TItem"></typeparam>
+    /// <typeparam name="TItem">The type of the item.</typeparam>
     public interface ISyncBaseProvider<TItem>
     {
         /// <summary>

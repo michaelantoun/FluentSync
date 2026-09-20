@@ -6,12 +6,12 @@
     public class ComparerConfigurations
     {
         /// <summary>
-        /// Allow duplicate items in source/destination providers.
+        /// Allow duplicate keys in source/destination providers.
         /// </summary>
         public RuleAllowanceType AllowDuplicateKeys { get; set; } = RuleAllowanceType.Both;
 
         /// <summary>
-        /// Allow duplicate keys in source/destination providers.
+        /// Allow duplicate items in source/destination providers.
         /// </summary>
         public RuleAllowanceType AllowDuplicateItems { get; set; } = RuleAllowanceType.Both;
 

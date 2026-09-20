@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace FluentSync.Sync.Providers
 {
     /// <summary>
-    /// The batch sync provider which used by the batch sync agent to add, update, and delete items.
+    /// The batch sync provider which is used by the batch sync agent to add, update, and delete items.
     /// </summary>
     /// <typeparam name="TKey">The type of the key.</typeparam>
     /// <typeparam name="TItem">The type of the item.</typeparam>

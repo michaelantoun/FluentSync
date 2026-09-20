@@ -5,7 +5,7 @@ namespace FluentSync.Comparers
     /// <summary>
     /// The comparison result of the source and destination keys.
     /// </summary>
-    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TKey">The type of the item key.</typeparam>
     public class KeysComparisonResult<TKey>
     {
         /// <summary>

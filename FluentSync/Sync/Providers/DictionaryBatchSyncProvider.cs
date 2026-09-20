@@ -59,11 +59,12 @@ namespace FluentSync.Sync.Providers
         }
 
         /// <summary>
-        /// Gets the items by keys from the dictionary.
+        /// Gets the items by keys from the dictionary. Keys that are not in the dictionary are skipped,
+        /// so the result may contain fewer items than the keys requested.
         /// </summary>
         /// <param name="keys">The keys of the items.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>The items whose keys were found in the dictionary.</returns>
         public Task<IEnumerable<TItem>> GetAsync(IEnumerable<TKey> keys, CancellationToken cancellationToken)
         {
             Validate();

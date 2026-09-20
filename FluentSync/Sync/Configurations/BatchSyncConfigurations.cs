@@ -10,8 +10,9 @@ namespace FluentSync.Sync.Configurations
         private int batchSize = 100;
 
         /// <summary>
-        /// The batch size.
+        /// The number of items to be synchronized per batch. The default is 100.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the value is less than 1.</exception>
         public int BatchSize
         {
             get => batchSize;

@@ -76,7 +76,8 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="sourceProvider">The source comparer and sync providers.</param>
-        /// <returns></returns>
+        /// <exception cref="NullReferenceException">Thrown when the ComparerAgent has not been set yet. Call SetComparerAgent before this method.</exception>
+        /// <returns>The sync agent.</returns>
         public static ISyncAgent<TKey, TItem> SetSourceProvider<TKey, TItem>(this ISyncAgent<TKey, TItem> syncAgent, IComparerSyncProvider<TItem> sourceProvider)
         {
             if (syncAgent.ComparerAgent == null)
@@ -95,7 +96,8 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="destinationProvider">The destination comparer and sync providers.</param>
-        /// <returns></returns>
+        /// <exception cref="NullReferenceException">Thrown when the ComparerAgent has not been set yet. Call SetComparerAgent before this method.</exception>
+        /// <returns>The sync agent.</returns>
         public static ISyncAgent<TKey, TItem> SetDestinationProvider<TKey, TItem>(this ISyncAgent<TKey, TItem> syncAgent, IComparerSyncProvider<TItem> destinationProvider)
         {
             if (syncAgent.ComparerAgent == null)
@@ -114,7 +116,9 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="items">The source items.</param>
-        /// <returns></returns>
+        /// <exception cref="NullReferenceException">Thrown when <paramref name="items"/> is null.</exception>
+        /// <exception cref="NullReferenceException">Thrown when the ComparerAgent has not been set yet. Call SetComparerAgent before this method.</exception>
+        /// <returns>The sync agent.</returns>
         public static ISyncAgent<TKey, TItem> SetSourceProvider<TKey, TItem>(this ISyncAgent<TKey, TItem> syncAgent, IList<TItem> items)
         {
             if (items == null)
@@ -135,7 +139,9 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="items">The destination items.</param>
-        /// <returns></returns>
+        /// <exception cref="NullReferenceException">Thrown when <paramref name="items"/> is null.</exception>
+        /// <exception cref="NullReferenceException">Thrown when the ComparerAgent has not been set yet. Call SetComparerAgent before this method.</exception>
+        /// <returns>The sync agent.</returns>
         public static ISyncAgent<TKey, TItem> SetDestinationProvider<TKey, TItem>(this ISyncAgent<TKey, TItem> syncAgent, IList<TItem> items)
         {
             if (items == null)
@@ -156,7 +162,9 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="items">The source items.</param>
-        /// <returns></returns>
+        /// <exception cref="NullReferenceException">Thrown when <paramref name="items"/> is null.</exception>
+        /// <exception cref="NullReferenceException">Thrown when the ComparerAgent has not been set yet. Call SetComparerAgent before this method.</exception>
+        /// <returns>The sync agent.</returns>
         public static ISyncAgent<TKey, TItem> SetSourceProvider<TKey, TItem>(this ISyncAgent<TKey, TItem> syncAgent, SortedSet<TItem> items)
         {
             if (items == null)
@@ -177,7 +185,9 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="items">The destination items.</param>
-        /// <returns></returns>
+        /// <exception cref="NullReferenceException">Thrown when <paramref name="items"/> is null.</exception>
+        /// <exception cref="NullReferenceException">Thrown when the ComparerAgent has not been set yet. Call SetComparerAgent before this method.</exception>
+        /// <returns>The sync agent.</returns>
         public static ISyncAgent<TKey, TItem> SetDestinationProvider<TKey, TItem>(this ISyncAgent<TKey, TItem> syncAgent, SortedSet<TItem> items)
         {
             if (items == null)

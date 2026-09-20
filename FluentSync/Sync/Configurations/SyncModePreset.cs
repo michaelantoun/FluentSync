@@ -30,7 +30,10 @@
         /// </summary>
         UpdateSource,
         /// <summary>
-        /// Custom sync mode that is not similar to any other presets.
+        /// Custom sync mode that is not similar to any other presets. This value is returned by
+        /// <see cref="SyncMode.SyncModePreset"/> when the sync mode's operations match no other preset.
+        /// Assigning it resets every operation to "do nothing", exactly like <see cref="None"/>, so assign it
+        /// before customizing the individual <see cref="SyncMode"/> properties rather than after.
         /// </summary>
         Custom
     }

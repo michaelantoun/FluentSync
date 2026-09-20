@@ -11,6 +11,11 @@ namespace FluentSync.Sync.Configurations
 
         /// <summary>
         /// Presets for the sync mode to facilitate updating source/destination items.
+        /// Getting this property inspects the five operation properties and returns the preset they correspond to,
+        /// or <see cref="SyncModePreset.Custom"/> when they match no preset.
+        /// Setting it overwrites all five operation properties; setting it to <see cref="SyncModePreset.Custom"/>
+        /// (or <see cref="SyncModePreset.None"/>) resets them all to "do nothing", so assign the preset first and
+        /// then customize the individual properties.
         /// </summary>
         public SyncModePreset SyncModePreset
         {
@@ -121,7 +126,10 @@ namespace FluentSync.Sync.Configurations
 
         /// <summary>
         /// Items that have matches in the other list but could not determine which one is newer.
+        /// Because neither side is known to be newer, the "update the old one" operations are meaningless here and are rejected.
         /// </summary>
+        /// <exception cref="Exception">Thrown when the value is <see cref="SyncMatchOperation.UpdateOldItem"/>,
+        /// <see cref="SyncMatchOperation.UpdateOldSource"/>, or <see cref="SyncMatchOperation.UpdateOldDestination"/>.</exception>
         public SyncMatchOperation ConflictMatches
         {
             get => conflictMatches;

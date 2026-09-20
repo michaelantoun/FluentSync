@@ -2,6 +2,9 @@
 {
     /// <summary>
     /// The comparison result of the source and destination items.
+    /// The numeric order of these values is significant: when several destination items share a key, the comparer agent
+    /// keeps the match with the lowest value, so it prefers Same over a newer item, and a newer item over a conflict.
+    /// Reordering the values changes which item is matched.
     /// </summary>
     public enum MatchComparisonResultType : int
     {

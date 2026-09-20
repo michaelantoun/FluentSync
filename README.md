@@ -194,3 +194,21 @@ await BatchSyncAgent<int, Person>.Create()
 
 #### More Examples
 For more examples you can look at the unit tests project **FluentSync.Tests**.
+
+### Running Benchmarks
+Performance benchmarks live in the **FluentSync.Benchmarks** project and use [BenchmarkDotNet](https://benchmarkdotnet.org/). They cover `ComparerAgent`, `KeyComparerAgent`, `SyncAgent`, and `BatchSyncAgent` at 1k / 10k / 100k input sizes and report mean time plus allocations.
+
+Benchmarks must be run in Release configuration — BenchmarkDotNet refuses to run a debug build.
+
+```
+# Run everything
+dotnet run -c Release --project FluentSync.Benchmarks -- --filter *
+
+# Run a single agent's benchmarks
+dotnet run -c Release --project FluentSync.Benchmarks -- --filter *ComparerAgentBenchmarks*
+
+# Quick smoke run (one warmup and one iteration per case; checks that everything runs, timings are not meaningful)
+dotnet run -c Release --project FluentSync.Benchmarks -- --filter * --job Dry
+```
+
+Results are written to `BenchmarkDotNet.Artifacts/` in the directory you run the command from (the repository root for the commands above). To capture a baseline before optimizing, save a copy of that folder and diff against a re-run after your changes.

@@ -29,7 +29,7 @@ namespace FluentSync.Sync.Configurations
         /// <summary>
         /// Returns a string that represents the configurations of the sync agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string that represents the configurations of the sync agent.</returns>
         public override string ToString()
         {
             return $"{nameof(SyncMode)}: {{{SyncMode}}}, {nameof(SyncOperationsOrder)}: {{{SyncOperationsOrder}}}";

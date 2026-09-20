@@ -41,7 +41,7 @@ namespace FluentSync.Sync
         /// <summary>
         /// Returns a string that represents the SyncContext.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string that represents the SyncContext.</returns>
         public override string ToString()
         {
             return $"{nameof(ItemsToBeInsertedInSource)}: {ItemsToBeInsertedInSource.Count}, {nameof(ItemsToBeDeletedFromSource)}: {ItemsToBeDeletedFromSource.Count}, {nameof(ItemsToBeUpdatedInSource)}: {ItemsToBeUpdatedInSource.Count}"

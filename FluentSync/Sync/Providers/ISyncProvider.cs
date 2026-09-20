@@ -15,7 +15,7 @@ namespace FluentSync.Sync.Providers
         /// </summary>
         /// <param name="items">The items to be deleted.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         Task DeleteAsync(List<TItem> items, CancellationToken cancellationToken);
     }
 }

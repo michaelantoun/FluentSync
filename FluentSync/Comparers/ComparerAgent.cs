@@ -48,7 +48,7 @@ namespace FluentSync.Comparers
         /// <summary>
         /// Creates a new instance of the comparer agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A new instance of the comparer agent.</returns>
         public static ComparerAgent<TKey, TItem> Create() => new ComparerAgent<TKey, TItem>();
 
         /// <summary>
@@ -287,7 +287,7 @@ namespace FluentSync.Comparers
         /// <summary>
         /// Returns a string that represents the comparer agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string that represents the comparer agent.</returns>
         public override string ToString()
         {
             return $"{nameof(Configurations)}: {{{Configurations}}}";

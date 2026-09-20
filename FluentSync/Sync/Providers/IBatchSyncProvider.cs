@@ -16,7 +16,7 @@ namespace FluentSync.Sync.Providers
         /// </summary>
         /// <param name="keys">The keys of the items.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>The items that were found for the given keys.</returns>
         Task<IEnumerable<TItem>> GetAsync(IEnumerable<TKey> keys, CancellationToken cancellationToken);
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace FluentSync.Sync.Providers
         /// </summary>
         /// <param name="keys">The keys of the items.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         Task DeleteAsync(List<TKey> keys, CancellationToken cancellationToken);
     }
 }

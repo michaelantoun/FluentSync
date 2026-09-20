@@ -25,7 +25,7 @@ namespace FluentSync.Comparers
         /// <summary>
         /// Creates a new instance of the key comparer agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A new instance of the key comparer agent.</returns>
         public static KeyComparerAgent<TKey> Create() => new KeyComparerAgent<TKey>();
 
         /// <summary>

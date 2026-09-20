@@ -65,7 +65,7 @@ namespace FluentSync.Sync
         /// <summary>
         /// Creates a new instance of the batch sync agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A new instance of the batch sync agent.</returns>
         public static BatchSyncAgent<TKey, TItem> Create() => new BatchSyncAgent<TKey, TItem>();
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace FluentSync.Sync
         /// Synchronizes the source and destination items.
         /// </summary>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public async Task SyncAsync(CancellationToken cancellationToken)
         {
             // Validate batch comparer agent too
@@ -111,7 +111,7 @@ namespace FluentSync.Sync
         /// </summary>
         /// <param name="keysComparisonResult">The comparison result of the source and destination keys.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public async Task SyncAsync(KeysComparisonResult<TKey> keysComparisonResult, CancellationToken cancellationToken)
         {
             Validate();
@@ -146,7 +146,7 @@ namespace FluentSync.Sync
         /// <param name="keys">The list of the keys.</param>
         /// <param name="syncItemsBatchFunc">A method to be called to synchronize a batch.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         private static async Task SyncBatchesAsync(int batchSize, IEnumerable<TKey> keys, Func<List<TKey>, CancellationToken, Task> syncItemsBatchFunc, CancellationToken cancellationToken)
         {
             List<TKey> batchKeys = new List<TKey>();
@@ -173,7 +173,7 @@ namespace FluentSync.Sync
         /// </summary>
         /// <param name="batchKeys">The keys of the items.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         private async Task SyncItemsInSourceOnlyBatchAsync(List<TKey> batchKeys, CancellationToken cancellationToken)
         {
             if (!batchKeys.Any())
@@ -202,7 +202,7 @@ namespace FluentSync.Sync
         /// </summary>
         /// <param name="batchKeys">The keys of the items.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         private async Task SyncItemsInDestinationOnlyBatchAsync(List<TKey> batchKeys, CancellationToken cancellationToken)
         {
             if (!batchKeys.Any())
@@ -231,7 +231,7 @@ namespace FluentSync.Sync
         /// </summary>
         /// <param name="batchKeys">The keys of the items.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         private async Task SyncMatchesBatchAsync(List<TKey> batchKeys, CancellationToken cancellationToken)
         {
             var srcTask = SourceProvider.GetAsync(batchKeys, cancellationToken);
@@ -260,7 +260,7 @@ namespace FluentSync.Sync
         /// <summary>
         /// Returns a string that represents the batch sync agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string that represents the batch sync agent.</returns>
         public override string ToString()
         {
             return $"{nameof(Configurations)}: {{{Configurations}}}";
@@ -271,19 +271,19 @@ namespace FluentSync.Sync
         /// <summary>
         /// Gets the sync configurations of the sync agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The sync configurations of the sync agent.</returns>
         protected override ISyncConfigurations GetSyncConfigurations() => Configurations;
 
         /// <summary>
         /// Gets the sync provider of the source.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The sync provider of the source.</returns>
         protected override ISyncBaseProvider<TItem> GetSourceSyncProvider() => SourceProvider;
 
         /// <summary>
         /// Gets the sync provider of the destination.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The sync provider of the destination.</returns>
         protected override ISyncBaseProvider<TItem> GetDestinationSyncProvider() => DestinationProvider;
 
         /// <summary>
@@ -291,7 +291,7 @@ namespace FluentSync.Sync
         /// </summary>
         /// <param name="items">The items to be deleted.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         protected override async Task DeleteFromSourceAsync(List<TItem> items, CancellationToken cancellationToken)
         {
             if (items == null || !items.Any())
@@ -305,7 +305,7 @@ namespace FluentSync.Sync
         /// </summary>
         /// <param name="items">The items to be deleted.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         protected override async Task DeleteFromDestinationAsync(List<TItem> items, CancellationToken cancellationToken)
         {
             if (items == null || !items.Any())

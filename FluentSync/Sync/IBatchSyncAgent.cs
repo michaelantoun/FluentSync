@@ -64,7 +64,7 @@ namespace FluentSync.Sync
         /// Synchronizes the source and destination items.
         /// </summary>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         Task SyncAsync(CancellationToken cancellationToken);
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace FluentSync.Sync
         /// </summary>
         /// <param name="keysComparisonResult">The comparison result of the source and destination keys.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         Task SyncAsync(KeysComparisonResult<TKey> keysComparisonResult, CancellationToken cancellationToken);
     }
 }

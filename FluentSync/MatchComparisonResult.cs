@@ -26,7 +26,7 @@ namespace FluentSync
         /// <summary>
         /// Returns a string that represents the MatchComparisonResult.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string that represents the MatchComparisonResult.</returns>
         public override string ToString()
         {
             return $"{nameof(ComparisonResult)}: {ComparisonResult}";

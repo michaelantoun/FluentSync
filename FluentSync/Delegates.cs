@@ -9,7 +9,7 @@ namespace FluentSync
     /// <typeparam name="TItem">The type of the item.</typeparam>
     /// <param name="source">The source item.</param>
     /// <param name="destination">The destination item.</param>
-    /// <returns></returns>
+    /// <returns>The comparison result of the two items.</returns>
     public delegate MatchComparisonResultType CompareItemFunc<TItem>(TItem source, TItem destination);
 
     /// <summary>

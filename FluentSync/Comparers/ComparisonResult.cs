@@ -26,7 +26,7 @@ namespace FluentSync.Comparers
         /// <summary>
         /// Returns a string that represents the comparison result of the source and destination items.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string that represents the comparison result of the source and destination items.</returns>
         public override string ToString()
         {
             return $"{nameof(ItemsInSourceOnly)}: {ItemsInSourceOnly.Count}, {nameof(ItemsInDestinationOnly)}: {ItemsInDestinationOnly.Count}, {nameof(Matches)}: {Matches.Count}";

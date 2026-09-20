@@ -38,7 +38,7 @@ namespace FluentSync.Sync
         /// <summary>
         /// Creates a new instance of the sync agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A new instance of the sync agent.</returns>
         public static SyncAgent<TKey, TItem> Create() => new SyncAgent<TKey, TItem>();
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace FluentSync.Sync
         /// Synchronizes the source and destination items.
         /// </summary>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public async Task SyncAsync(CancellationToken cancellationToken)
         {
             // Validate comparer agent too
@@ -76,7 +76,7 @@ namespace FluentSync.Sync
         /// <summary>
         /// Returns a string that represents the sync agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string that represents the sync agent.</returns>
         public override string ToString()
         {
             return $"{nameof(Configurations)}: {{{Configurations}}}";
@@ -87,19 +87,19 @@ namespace FluentSync.Sync
         /// <summary>
         /// Gets the sync configurations of the sync agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The sync configurations of the sync agent.</returns>
         protected override ISyncConfigurations GetSyncConfigurations() => Configurations;
 
         /// <summary>
         /// Gets the sync provider of the source.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The sync provider of the source.</returns>
         protected override ISyncBaseProvider<TItem> GetSourceSyncProvider() => SourceProvider;
 
         /// <summary>
         /// Gets the sync provider of the destination.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The sync provider of the destination.</returns>
         protected override ISyncBaseProvider<TItem> GetDestinationSyncProvider() => DestinationProvider;
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace FluentSync.Sync
         /// </summary>
         /// <param name="items">The items to be deleted.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         protected override Task DeleteFromSourceAsync(List<TItem> items, CancellationToken cancellationToken) => SourceProvider.DeleteAsync(items, cancellationToken);
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace FluentSync.Sync
         /// </summary>
         /// <param name="items">The items to be deleted.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         protected override Task DeleteFromDestinationAsync(List<TItem> items, CancellationToken cancellationToken) => DestinationProvider.DeleteAsync(items, cancellationToken);
 
         #endregion

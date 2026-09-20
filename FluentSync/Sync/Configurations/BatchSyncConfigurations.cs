@@ -44,7 +44,7 @@ namespace FluentSync.Sync.Configurations
         /// <summary>
         /// Returns a string that represents the configurations of the batch sync agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string that represents the configurations of the batch sync agent.</returns>
         public override string ToString()
         {
             return base.ToString() + $", {nameof(BatchSyncListsOrder)}: {{{BatchSyncListsOrder}}}, {nameof(BatchSize)}: {BatchSize}";

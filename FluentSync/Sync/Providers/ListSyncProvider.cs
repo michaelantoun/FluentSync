@@ -21,7 +21,7 @@ namespace FluentSync.Sync.Providers
         /// </summary>
         /// <param name="items">The items to be added.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public Task AddAsync(List<TItem> items, CancellationToken cancellationToken)
         {
             return Task.Run(() => items?.ForEach(x => Items.Add(x)), cancellationToken);
@@ -32,7 +32,7 @@ namespace FluentSync.Sync.Providers
         /// </summary>
         /// <param name="items">The items to be deleted.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public Task DeleteAsync(List<TItem> items, CancellationToken cancellationToken)
         {
             return Task.Run(() => items?.ForEach(x => Items.Remove(x)), cancellationToken);
@@ -43,7 +43,7 @@ namespace FluentSync.Sync.Providers
         /// </summary>
         /// <param name="pairs">The pairs of the old items and new items to be updated.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public Task UpdateAsync(List<MatchValuePair<TItem>> pairs, CancellationToken cancellationToken)
         {
             return Task.Run(() => pairs?.ForEach(x =>
@@ -57,7 +57,7 @@ namespace FluentSync.Sync.Providers
         /// Gets all the items of the list.
         /// </summary>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>All the items of the list.</returns>
         public Task<IEnumerable<TItem>> GetAsync(CancellationToken cancellationToken)
         {
             return Task.FromResult(Items.AsEnumerable());
@@ -66,7 +66,7 @@ namespace FluentSync.Sync.Providers
         /// <summary>
         /// Returns a string that represents the sync provider of the list.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string that represents the sync provider of the list.</returns>
         public override string ToString()
         {
             return Items?.ToString() ?? base.ToString();

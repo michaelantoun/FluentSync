@@ -23,7 +23,7 @@
         /// <summary>
         /// Returns a string that represents the configurations of the comparer agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string that represents the configurations of the comparer agent.</returns>
         public override string ToString()
         {
             return $"{nameof(AllowDuplicateKeys)}: {AllowDuplicateKeys}, {nameof(AllowDuplicateItems)}: {AllowDuplicateItems}, {nameof(AllowNullableItems)}: {AllowNullableItems}";

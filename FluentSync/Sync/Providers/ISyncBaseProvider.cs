@@ -15,7 +15,7 @@ namespace FluentSync.Sync.Providers
         /// </summary>
         /// <param name="items">The items to be added.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         Task AddAsync(List<TItem> items, CancellationToken cancellationToken);
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace FluentSync.Sync.Providers
         /// </summary>
         /// <param name="pairs">The pairs of the old items and new items to be updated.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         Task UpdateAsync(List<MatchValuePair<TItem>> pairs, CancellationToken cancellationToken);
     }
 }

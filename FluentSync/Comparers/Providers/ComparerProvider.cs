@@ -19,7 +19,7 @@ namespace FluentSync.Comparers.Providers
         /// Get all the items.
         /// </summary>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>All the items.</returns>
         public Task<IEnumerable<T>> GetAsync(CancellationToken cancellationToken)
         {
             return Task.FromResult(Items);

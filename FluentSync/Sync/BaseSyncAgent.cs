@@ -18,7 +18,7 @@ namespace FluentSync.Sync
         /// <summary>
         /// Gets the sync configurations of the sync agent.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The sync configurations of the sync agent.</returns>
         protected abstract ISyncConfigurations GetSyncConfigurations();
 
         /// <summary>
@@ -29,13 +29,13 @@ namespace FluentSync.Sync
         /// <summary>
         /// Gets the sync provider of the source.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The sync provider of the source.</returns>
         protected abstract ISyncBaseProvider<TItem> GetSourceSyncProvider();
 
         /// <summary>
         /// Gets the sync provider of the destination.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The sync provider of the destination.</returns>
         protected abstract ISyncBaseProvider<TItem> GetDestinationSyncProvider();
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace FluentSync.Sync
         /// </summary>
         /// <param name="items">The items to be deleted.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         protected abstract Task DeleteFromSourceAsync(List<TItem> items, CancellationToken cancellationToken);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace FluentSync.Sync
         /// </summary>
         /// <param name="items">The items to be deleted.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         protected abstract Task DeleteFromDestinationAsync(List<TItem> items, CancellationToken cancellationToken);
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace FluentSync.Sync
         /// </summary>
         /// <param name="comparisonResult">The comparison result of the source and destination items which is generated from the comparer agent.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public async Task SyncAsync(ComparisonResult<TItem> comparisonResult, CancellationToken cancellationToken)
         {
             Validate();

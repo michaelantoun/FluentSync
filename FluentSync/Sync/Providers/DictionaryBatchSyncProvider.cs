@@ -39,7 +39,7 @@ namespace FluentSync.Sync.Providers
         /// </summary>
         /// <param name="items">The list of items to be added.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public Task AddAsync(List<TItem> items, CancellationToken cancellationToken)
         {
             Validate();
@@ -51,7 +51,7 @@ namespace FluentSync.Sync.Providers
         /// </summary>
         /// <param name="keys">The keys of the items.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public Task DeleteAsync(List<TKey> keys, CancellationToken cancellationToken)
         {
             Validate();
@@ -74,7 +74,7 @@ namespace FluentSync.Sync.Providers
         /// Gets all the keys from the dictionary.
         /// </summary>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>All the keys from the dictionary.</returns>
         public Task<IEnumerable<TKey>> GetAsync(CancellationToken cancellationToken)
         {
             Validate();
@@ -86,7 +86,7 @@ namespace FluentSync.Sync.Providers
         /// </summary>
         /// <param name="items">The items to be updated.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
-        /// <returns></returns>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public Task UpdateAsync(List<MatchValuePair<TItem>> items, CancellationToken cancellationToken)
         {
             Validate();
@@ -101,7 +101,7 @@ namespace FluentSync.Sync.Providers
         /// <summary>
         /// Returns a string that represents the batch sync provider of the dictionary.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string that represents the batch sync provider of the dictionary.</returns>
         public override string ToString()
         {
             return Items?.ToString() ?? base.ToString();

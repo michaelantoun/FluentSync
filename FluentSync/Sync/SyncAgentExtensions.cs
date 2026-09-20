@@ -18,7 +18,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="configure">The configure action.</param>
-        /// <returns></returns>
+        /// <returns>The sync agent.</returns>
         public static ISyncAgent<TKey, TItem> Configure<TKey, TItem>(this ISyncAgent<TKey, TItem> syncAgent, Action<ISyncConfigurations> configure)
         {
             configure?.Invoke(syncAgent.Configurations);
@@ -32,7 +32,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="comparerAgent">The comparer agent.</param>
-        /// <returns></returns>
+        /// <returns>The sync agent.</returns>
         public static ISyncAgent<TKey, TItem> SetComparerAgent<TKey, TItem>(this ISyncAgent<TKey, TItem> syncAgent, IComparerAgent<TKey, TItem> comparerAgent)
         {
             syncAgent.ComparerAgent = comparerAgent;
@@ -46,7 +46,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="syncProvider">The source sync provider of the sync agent.</param>
-        /// <returns></returns>
+        /// <returns>The sync agent.</returns>
         public static ISyncAgent<TKey, TItem> SetSourceProvider<TKey, TItem>(this ISyncAgent<TKey, TItem> syncAgent, ISyncProvider<TItem> syncProvider)
         {
             syncAgent.SourceProvider = syncProvider;
@@ -61,7 +61,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="syncProvider">The destination sync provider of the sync agent.</param>
-        /// <returns></returns>
+        /// <returns>The sync agent.</returns>
         public static ISyncAgent<TKey, TItem> SetDestinationProvider<TKey, TItem>(this ISyncAgent<TKey, TItem> syncAgent, ISyncProvider<TItem> syncProvider)
         {
             syncAgent.DestinationProvider = syncProvider;
@@ -198,7 +198,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="beforeSyncingAction">An action to be called before syncing the items.</param>
-        /// <returns></returns>
+        /// <returns>The sync agent.</returns>
         public static ISyncAgent<TKey, TItem> SetBeforeSyncingAction<TKey, TItem>(this ISyncAgent<TKey, TItem> syncAgent, Action<ComparisonResult<TItem>> beforeSyncingAction)
         {
             syncAgent.BeforeSyncingAction = beforeSyncingAction;

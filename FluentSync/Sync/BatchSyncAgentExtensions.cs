@@ -18,7 +18,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="configure">The configure action.</param>
-        /// <returns></returns>
+        /// <returns>The batch sync agent.</returns>
         public static IBatchSyncAgent<TKey, TItem> Configure<TKey, TItem>(this IBatchSyncAgent<TKey, TItem> syncAgent, Action<BatchSyncConfigurations> configure)
         {
             configure?.Invoke(syncAgent.Configurations);
@@ -32,7 +32,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="comparerAgent">The comparer agent.</param>
-        /// <returns></returns>
+        /// <returns>The batch sync agent.</returns>
         public static IBatchSyncAgent<TKey, TItem> SetComparerAgent<TKey, TItem>(this IBatchSyncAgent<TKey, TItem> syncAgent, IKeyComparerAgent<TKey> comparerAgent)
         {
             syncAgent.ComparerAgent = comparerAgent;
@@ -46,7 +46,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="keySelector">The key selector is a function that is executed against the item to return the key.</param>
-        /// <returns></returns>
+        /// <returns>The batch sync agent.</returns>
         public static IBatchSyncAgent<TKey, TItem> SetKeySelector<TKey, TItem>(this IBatchSyncAgent<TKey, TItem> syncAgent, Func<TItem, TKey> keySelector)
         {
             syncAgent.KeySelector = keySelector;
@@ -60,7 +60,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="compareItemFunc">The compare item function compares two items and determines if they are the same, one of them is newer, or there is a conflict.</param>
-        /// <returns></returns>
+        /// <returns>The batch sync agent.</returns>
         public static IBatchSyncAgent<TKey, TItem> SetCompareItemFunc<TKey, TItem>(this IBatchSyncAgent<TKey, TItem> syncAgent, CompareItemFunc<TItem> compareItemFunc)
         {
             syncAgent.CompareItemFunc = compareItemFunc;
@@ -74,7 +74,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="beforeSyncingAction">An action to be called before syncing the items.</param>
-        /// <returns></returns>
+        /// <returns>The batch sync agent.</returns>
         public static IBatchSyncAgent<TKey, TItem> SetBeforeSyncingAction<TKey, TItem>(this IBatchSyncAgent<TKey, TItem> syncAgent, Action<ComparisonResult<TItem>> beforeSyncingAction)
         {
             syncAgent.BeforeSyncingAction = beforeSyncingAction;
@@ -88,7 +88,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="beforeSyncingKeysAction">An action to be called after comparing the source and destination items by keys and before syncing. This action is called one time before syncing batches.</param>
-        /// <returns></returns>
+        /// <returns>The batch sync agent.</returns>
         public static IBatchSyncAgent<TKey, TItem> SetBeforeSyncingKeysAction<TKey, TItem>(this IBatchSyncAgent<TKey, TItem> syncAgent, Action<KeysComparisonResult<TKey>> beforeSyncingKeysAction)
         {
             syncAgent.BeforeSyncingKeysAction = beforeSyncingKeysAction;
@@ -102,7 +102,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="beforeDeletingItemsFromDestinationAction">An action to be called before deleting a set of items by keys from the destination.</param>
-        /// <returns></returns>
+        /// <returns>The batch sync agent.</returns>
         public static IBatchSyncAgent<TKey, TItem> SetBeforeDeletingItemsFromDestinationAction<TKey, TItem>(this IBatchSyncAgent<TKey, TItem> syncAgent, Action<List<TKey>> beforeDeletingItemsFromDestinationAction)
         {
             syncAgent.BeforeDeletingItemsFromDestinationAction = beforeDeletingItemsFromDestinationAction;
@@ -116,7 +116,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="beforeDeletingItemsFromSourceAction">An action to be called before deleting a set of items by keys from the source.</param>
-        /// <returns></returns>
+        /// <returns>The batch sync agent.</returns>
         public static IBatchSyncAgent<TKey, TItem> SetBeforeDeletingItemsFromSourceAction<TKey, TItem>(this IBatchSyncAgent<TKey, TItem> syncAgent, Action<List<TKey>> beforeDeletingItemsFromSourceAction)
         {
             syncAgent.BeforeDeletingItemsFromSourceAction = beforeDeletingItemsFromSourceAction;
@@ -130,7 +130,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="syncProvider">The source sync provider which is used for adding, updating, and deleting items.</param>
-        /// <returns></returns>
+        /// <returns>The batch sync agent.</returns>
         public static IBatchSyncAgent<TKey, TItem> SetSourceProvider<TKey, TItem>(this IBatchSyncAgent<TKey, TItem> syncAgent, IBatchSyncProvider<TKey, TItem> syncProvider)
         {
             syncAgent.SourceProvider = syncProvider;
@@ -145,7 +145,7 @@ namespace FluentSync.Sync
         /// <typeparam name="TItem">The type of the item.</typeparam>
         /// <param name="syncAgent">The sync agent.</param>
         /// <param name="syncProvider">The destination sync provider which is used for adding, updating, and deleting items.</param>
-        /// <returns></returns>
+        /// <returns>The batch sync agent.</returns>
         public static IBatchSyncAgent<TKey, TItem> SetDestinationProvider<TKey, TItem>(this IBatchSyncAgent<TKey, TItem> syncAgent, IBatchSyncProvider<TKey, TItem> syncProvider)
         {
             syncAgent.DestinationProvider = syncProvider;

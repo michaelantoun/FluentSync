@@ -96,7 +96,7 @@
         }
 
         [Fact]
-        public void Compare_Int_PreventNullableItemsInSource()
+        public async Task Compare_Int_PreventNullableItemsInSource()
         {
             List<int?> source = new List<int?> { 10, null }
                 , destination = new List<int?> { 20, null };
@@ -107,11 +107,11 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<ArgumentException>().WithMessage("Null-able items are not allowed in the source list, 1 item was found.");
+            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Null-able items are not allowed in the source list, 1 item was found.");
         }
 
         [Fact]
-        public void Compare_Int_PreventNullableItemsInDestination()
+        public async Task Compare_Int_PreventNullableItemsInDestination()
         {
             List<int?> source = new List<int?> { 10, null }
                 , destination = new List<int?> { 20, null };
@@ -122,7 +122,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<ArgumentException>().WithMessage("Null-able items are not allowed in the destination list, 1 item was found.");
+            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Null-able items are not allowed in the destination list, 1 item was found.");
         }
     }
 }

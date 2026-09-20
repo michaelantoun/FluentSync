@@ -7,18 +7,18 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
     public partial class BatchSyncAgentTests
     {
         [Fact]
-        public void Sync_Class_NullableKeySelector()
+        public async Task Sync_Class_NullableKeySelector()
         {
             Func<Task> act = async () => await BatchSyncAgent<int?, Event>.Create()
                 .SetComparerAgent(KeyComparerAgent<int?>.Create())
                 .SetCompareItemFunc((s, d) => MatchComparisonResultType.Conflict)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.KeySelector)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.KeySelector)} cannot be null.");
         }
 
         [Fact]
-        public void Sync_Class_NullableCompareItemFunc()
+        public async Task Sync_Class_NullableCompareItemFunc()
         {
             Func<Task> act = async () => await BatchSyncAgent<int?, Event>.Create()
                 .SetComparerAgent(KeyComparerAgent<int?>.Create())
@@ -27,11 +27,11 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetDestinationProvider(CreateDestinationEventDictionary())
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.CompareItemFunc)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.CompareItemFunc)} cannot be null.");
         }
 
         [Fact]
-        public void Sync_Class_SourceProviderIsNotSet()
+        public async Task Sync_Class_SourceProviderIsNotSet()
         {
             Func<Task> act = async () => await BatchSyncAgent<int?, Event>.Create()
                 .SetComparerAgent(KeyComparerAgent<int?>.Create())
@@ -40,11 +40,11 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetDestinationProvider(CreateDestinationEventDictionary())
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.SourceProvider)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.SourceProvider)} cannot be null.");
         }
 
         [Fact]
-        public void Sync_Class_DestinationProviderIsNotSet()
+        public async Task Sync_Class_DestinationProviderIsNotSet()
         {
             Func<Task> act = async () => await BatchSyncAgent<int?, Event>.Create()
                 .SetComparerAgent(KeyComparerAgent<int?>.Create())
@@ -53,11 +53,11 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetSourceProvider(CreateSourceEventDictionary())
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.DestinationProvider)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.DestinationProvider)} cannot be null.");
         }
 
         [Fact]
-        public void Sync_Class_SourceProviderIsSetBeforeKeySelector()
+        public async Task Sync_Class_SourceProviderIsSetBeforeKeySelector()
         {
             Func<Task> act = async () => await BatchSyncAgent<int?, Event>.Create()
                 .SetComparerAgent(KeyComparerAgent<int?>.Create())
@@ -67,11 +67,11 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetDestinationProvider(CreateDestinationEventDictionary())
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.KeySelector)} must be set first.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.KeySelector)} must be set first.");
         }
 
         [Fact]
-        public void Sync_Class_SourceProviderIsSetBeforeComparerAgent()
+        public async Task Sync_Class_SourceProviderIsSetBeforeComparerAgent()
         {
             Func<Task> act = async () => await BatchSyncAgent<int?, Event>.Create()
                 .SetKeySelector(x => x.Id)
@@ -81,11 +81,11 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetDestinationProvider(CreateDestinationEventDictionary())
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.ComparerAgent)} must be set first.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.ComparerAgent)} must be set first.");
         }
 
         [Fact]
-        public void Sync_Class_DestinationProviderIsSetBeforeKeySelector()
+        public async Task Sync_Class_DestinationProviderIsSetBeforeKeySelector()
         {
             Func<Task> act = async () => await BatchSyncAgent<int?, Event>.Create()
                 .SetComparerAgent(KeyComparerAgent<int?>.Create())
@@ -95,11 +95,11 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetSourceProvider(CreateSourceEventDictionary())
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.KeySelector)} must be set first.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.KeySelector)} must be set first.");
         }
 
         [Fact]
-        public void Sync_Class_DestinationProviderIsSetBeforeComparerAgent()
+        public async Task Sync_Class_DestinationProviderIsSetBeforeComparerAgent()
         {
             Func<Task> act = async () => await BatchSyncAgent<int?, Event>.Create()
                 .SetKeySelector(x => x.Id)
@@ -109,11 +109,11 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetSourceProvider(CreateSourceEventDictionary())
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.ComparerAgent)} must be set first.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.ComparerAgent)} must be set first.");
         }
 
         [Fact]
-        public void Sync_Class_SourceProviderIsSetToNull()
+        public async Task Sync_Class_SourceProviderIsSetToNull()
         {
             Func<Task> act = async () => await BatchSyncAgent<int?, Event>.Create()
                 .SetComparerAgent(KeyComparerAgent<int?>.Create())
@@ -123,11 +123,11 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetDestinationProvider(CreateDestinationEventDictionary())
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage("The source items cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage("The source items cannot be null.");
         }
 
         [Fact]
-        public void Sync_Class_DestinationProviderIsSetToNull()
+        public async Task Sync_Class_DestinationProviderIsSetToNull()
         {
             Func<Task> act = async () => await BatchSyncAgent<int?, Event>.Create()
                 .SetComparerAgent(KeyComparerAgent<int?>.Create())
@@ -137,20 +137,20 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetDestinationProvider((IDictionary<int?, Event>)null)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage("The destination items cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage("The destination items cannot be null.");
         }
 
         [Fact]
-        public void Sync_Class_NullableComparerAgent()
+        public async Task Sync_Class_NullableComparerAgent()
         {
             Func<Task> act = async () => await BatchSyncAgent<int?, Event>.Create()
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.ComparerAgent)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.ComparerAgent)} cannot be null.");
         }
 
         [Fact]
-        public void Sync_Class_SourceComparerBatchSyncProviderIsSetWithoutSettingComparerAgent()
+        public async Task Sync_Class_SourceComparerBatchSyncProviderIsSetWithoutSettingComparerAgent()
         {
             var syncAgent = CreateSyncAgent();
             DictionaryBatchSyncProvider<int?, Event> source = new DictionaryBatchSyncProvider<int?, Event> { Items = CreateSourceEventDictionary(), KeySelector = syncAgent.KeySelector }
@@ -163,11 +163,11 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetDestinationProvider(destination)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.ComparerAgent)} must be set first.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.ComparerAgent)} must be set first.");
         }
 
         [Fact]
-        public void Sync_Class_DestinationComparerBatchSyncProviderIsSetWithoutSettingComparerAgent()
+        public async Task Sync_Class_DestinationComparerBatchSyncProviderIsSetWithoutSettingComparerAgent()
         {
             var syncAgent = CreateSyncAgent();
             DictionaryBatchSyncProvider<int?, Event> source = new DictionaryBatchSyncProvider<int?, Event> { Items = CreateSourceEventDictionary(), KeySelector = syncAgent.KeySelector }
@@ -180,7 +180,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetSourceProvider(source)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.ComparerAgent)} must be set first.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(BatchSyncAgent<int?, Event>.ComparerAgent)} must be set first.");
         }
     }
 }

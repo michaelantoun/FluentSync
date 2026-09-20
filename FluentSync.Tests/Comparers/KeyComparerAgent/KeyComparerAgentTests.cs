@@ -5,7 +5,7 @@
         #region Missing configurations
 
         [Fact]
-        public void Compare_Int_NoSourceProvider()
+        public async Task Compare_Int_NoSourceProvider()
         {
             List<int> destination = new List<int>();
 
@@ -13,11 +13,11 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.SourceProvider)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.SourceProvider)} cannot be null.");
         }
 
         [Fact]
-        public void Compare_Int_NoDestinationProvider()
+        public async Task Compare_Int_NoDestinationProvider()
         {
             List<int> source = new List<int>();
 
@@ -25,7 +25,7 @@
                 .SetSourceProvider(source)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.DestinationProvider)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.DestinationProvider)} cannot be null.");
         }
 
         #endregion
@@ -117,7 +117,7 @@
         #region No duplicates or null-able keys
 
         [Fact]
-        public void Compare_Int_NullableKeyInSource()
+        public async Task Compare_Int_NullableKeyInSource()
         {
             List<int?> source = new List<int?> { 1, null }
                 , destination = new List<int?>();
@@ -127,11 +127,11 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage("Null-able keys found in the source list.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage("Null-able keys found in the source list.");
         }
 
         [Fact]
-        public void Compare_Int_NullableKeyInDestination()
+        public async Task Compare_Int_NullableKeyInDestination()
         {
             List<int?> source = new List<int?>()
                 , destination = new List<int?> { null, 1 };
@@ -141,11 +141,11 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage("Null-able keys found in the destination list.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage("Null-able keys found in the destination list.");
         }
 
         [Fact]
-        public void Compare_Int_DuplicatedKeyInSource()
+        public async Task Compare_Int_DuplicatedKeyInSource()
         {
             List<int?> source = new List<int?> { 1, 1 }
                 , destination = new List<int?> { 2, 3 };
@@ -155,11 +155,11 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<ArgumentException>().WithMessage("Key '1' already exists in the source list.");
+            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Key '1' already exists in the source list.");
         }
 
         [Fact]
-        public void Compare_Int_DuplicatedKeyInDestination()
+        public async Task Compare_Int_DuplicatedKeyInDestination()
         {
             List<int?> source = new List<int?> { 1 }
                 , destination = new List<int?> { 3, 2, 2 };
@@ -169,7 +169,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<ArgumentException>().WithMessage("Key '2' already exists in the destination list.");
+            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Key '2' already exists in the destination list.");
         }
 
         #endregion

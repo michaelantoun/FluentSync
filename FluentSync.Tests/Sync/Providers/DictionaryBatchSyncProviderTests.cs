@@ -24,21 +24,21 @@ namespace FluentSync.Tests.Sync.Providers
         }
 
         [Fact]
-        public void DictionaryWithNullableItemsShouldThrowExpression()
+        public async Task DictionaryWithNullableItemsShouldThrowExpression()
         {
             var provider = new DictionaryBatchSyncProvider<int, int>();
             Func<Task> act = async () => await provider.AddAsync(new List<int> { }, CancellationToken.None);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(provider.Items)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(provider.Items)} cannot be null.");
         }
 
         [Fact]
-        public void DictionaryWithNullableKeySelectorShouldThrowExpression()
+        public async Task DictionaryWithNullableKeySelectorShouldThrowExpression()
         {
             var provider = new DictionaryBatchSyncProvider<int, int> { Items = new Dictionary<int, int>() };
             Func<Task> act = async () => await provider.AddAsync(new List<int> { }, CancellationToken.None);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(provider.KeySelector)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(provider.KeySelector)} cannot be null.");
         }
     }
 }

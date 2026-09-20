@@ -239,7 +239,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
         }
 
         [Fact]
-        public void Sync_Custom_ConflictMatches_UpdateOldDestination_Class_NonEmptyLists()
+        public async Task Sync_Custom_ConflictMatches_UpdateOldDestination_Class_NonEmptyLists()
         {
             List<Event> source = CreateSourceEventList(), destination = CreateDestinationEventList();
 
@@ -247,11 +247,11 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.UpdateOldDestination)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<Exception>().WithMessage($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldDestination.ToString()}.");
+            await act.Should().ThrowAsync<Exception>().WithMessage($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldDestination.ToString()}.");
         }
 
         [Fact]
-        public void Sync_Custom_ConflictMatches_UpdateOldItem_Class_NonEmptyLists()
+        public async Task Sync_Custom_ConflictMatches_UpdateOldItem_Class_NonEmptyLists()
         {
             List<Event> source = CreateSourceEventList(), destination = CreateDestinationEventList();
 
@@ -259,7 +259,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.UpdateOldItem)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<Exception>().WithMessage($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldItem.ToString()}.");
+            await act.Should().ThrowAsync<Exception>().WithMessage($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldItem.ToString()}.");
         }
 
         [Fact]
@@ -278,7 +278,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
         }
 
         [Fact]
-        public void Sync_Custom_ConflictMatches_UpdateSourceIfOld_Class_NonEmptyLists()
+        public async Task Sync_Custom_ConflictMatches_UpdateSourceIfOld_Class_NonEmptyLists()
         {
             List<Event> source = CreateSourceEventList(), destination = CreateDestinationEventList();
 
@@ -286,7 +286,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.UpdateOldSource)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<Exception>().WithMessage($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldSource.ToString()}.");
+            await act.Should().ThrowAsync<Exception>().WithMessage($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldSource.ToString()}.");
         }
 
         #endregion

@@ -132,7 +132,7 @@
         }
 
         [Fact]
-        public void Compare_ClassWithNullableKey_PreventDuplicatesInSourceUsingItemEqualityComparer()
+        public async Task Compare_ClassWithNullableKey_PreventDuplicatesInSourceUsingItemEqualityComparer()
         {
             List<Person> source = new List<Person> {
                 new Person{Id = 1, FirstName ="Tom", LastName = "Smith", DOB = new DateTime(2000,1, 1)},
@@ -160,11 +160,11 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 6 items were found.");
+            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 6 items were found.");
         }
 
         [Fact]
-        public void Compare_ClassWithNullableKey_PreventDuplicatesInDestinationUsingItemEqualityComparer()
+        public async Task Compare_ClassWithNullableKey_PreventDuplicatesInDestinationUsingItemEqualityComparer()
         {
             List<Person> source = new List<Person> {
                 new Person{Id = 3, FirstName ="Joe", LastName = "Jim", DOB = null },
@@ -191,11 +191,11 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the destination list, 5 items were found.");
+            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the destination list, 5 items were found.");
         }
 
         [Fact]
-        public void Compare_ClassWithNullableKey_PreventNegativeIdsInSource()
+        public async Task Compare_ClassWithNullableKey_PreventNegativeIdsInSource()
         {
             List<Person> source = new List<Person> {
                 new Person{Id = 3, FirstName ="Joe", LastName = "Jim", DOB = null },
@@ -226,11 +226,11 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<ArgumentException>().WithMessage("Negative Ids are invalid in the source list, 1 item was found.");
+            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Negative Ids are invalid in the source list, 1 item was found.");
         }
 
         [Fact]
-        public void Compare_ClassWithNullableKey_PreventNegativeIdsInDestination()
+        public async Task Compare_ClassWithNullableKey_PreventNegativeIdsInDestination()
         {
             List<Person> source = new List<Person> {
                 new Person{Id = 3, FirstName ="Joe", LastName = "Jim", DOB = null },
@@ -261,7 +261,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<ArgumentException>().WithMessage("Negative Ids are invalid in the destination list, 2 items were found.");
+            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Negative Ids are invalid in the destination list, 2 items were found.");
         }
     }
 }

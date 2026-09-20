@@ -5,7 +5,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
         #region Missing configurations
 
         [Fact]
-        public void Compare_Int_NoSourceProvider()
+        public async Task Compare_Int_NoSourceProvider()
         {
             List<int> destination = new List<int>();
 
@@ -13,11 +13,11 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.SourceProvider)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.SourceProvider)} cannot be null.");
         }
 
         [Fact]
-        public void Compare_Int_NoDestinationProvider()
+        public async Task Compare_Int_NoDestinationProvider()
         {
             List<int> source = new List<int>();
 
@@ -25,11 +25,11 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetSourceProvider(source)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.DestinationProvider)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.DestinationProvider)} cannot be null.");
         }
 
         [Fact]
-        public void Compare_Int_NullableKeySelector()
+        public async Task Compare_Int_NullableKeySelector()
         {
             List<int> source = new List<int>()
                 , destination = new List<int>();
@@ -42,11 +42,11 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
             Func<Task> act = async () => await comparerAgent
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.KeySelector)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.KeySelector)} cannot be null.");
         }
 
         [Fact]
-        public void Compare_Int_NullableCompareItemFunc()
+        public async Task Compare_Int_NullableCompareItemFunc()
         {
             List<int> source = new List<int>()
                 , destination = new List<int>();
@@ -59,7 +59,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
             Func<Task> act = async () => await comparerAgent
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.CompareItemFunc)} cannot be null.");
+            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.CompareItemFunc)} cannot be null.");
         }
 
         #endregion

@@ -20,8 +20,10 @@
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\Projects\Global Git\FluentSync\FluentSync\FluentSync.xml</DocumentationFile>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <!-- Generates bin\Release\$(TargetFramework)\FluentSync.xml, so each target framework
+         writes its own file and the NuGet package picks it up next to the assembly. -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

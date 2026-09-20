@@ -1,38 +1,43 @@
 <img src="https://github.com/michaelantoun/FluentSync/blob/master/Icon512x512.png" alt="FluentSync" width="128px" />
-A .Net library with fluent interface for comparing and synchronizing entities/records.
 
+A .Net library with a fluent interface for comparing and synchronizing entities/records.
+
+[![NuGet](https://img.shields.io/nuget/v/FluentSync.svg)](https://www.nuget.org/packages/FluentSync/)
 
 ### Overview
-Have you ever wanted to synchronize data between multiple databases, systems, database and an API, etc.? Have you ever wanted to resync data between multiple systems because something went wrong and some data is not up-to-date? If the answer is **Yes** then this library is for you.
+Have you ever wanted to synchronize data between multiple databases, systems, a database and an API, etc.? Have you ever wanted to resync data between multiple systems because something went wrong and some data is no longer up-to-date? If the answer is **Yes** then this library is for you.
 
 ### Get Started
-FluentSync can be installed using the Nuget package manager or the `dotnet` CLI.
+FluentSync can be installed using the NuGet package manager or the `dotnet` CLI.
 
 ```
 Install-Package FluentSync
 ```
 
+```
+dotnet add package FluentSync
+```
+
 ### Why FluentSync
-* The library is developed with .Net Standard
+* Targets .Net Standard 2.1 and .Net Framework 4.6.2
 * Fluent interface
 * No dependencies on other libraries
-* More than 220+ tests
-* 99% Code coverage
+* 225 tests
+* ~98% line coverage
 
 ### Usage
 The FluentSync library has Comparer agents and Sync agents. The Comparer agent compares the source and destination items/entities. Then the Sync agent uses this comparison result to determine which items/entities will be inserted/updated/deleted in the source and destination according to the sync configurations.
 
-
 **Sync modes**:
 * **TwoWay**: updates the source and the destination to have the same items.
-* **MirrorToDestination**: updates the destination only to have the same items as in the source and deletes any item in destination that does have a match.
-* **MirrorToSource**: updates the source only to have the same items as in the destination and deletes any item in source that does have a match.
+* **MirrorToDestination**: updates the destination only to have the same items as in the source, and deletes any item in the destination that does not have a match.
+* **MirrorToSource**: updates the source only to have the same items as in the destination, and deletes any item in the source that does not have a match.
 * **UpdateDestination**: updates the destination items only to have the same items as in the source. It does not delete any item from the destination and it does not update conflicts.
 * **UpdateSource**: updates the source items only to have the same items as in the destination. It does not delete any item from the source and it does not update conflicts.
 * **Custom**: you can have your own custom sync mode by customizing the properties of the SyncMode class.
 
 #### ComparerAgent Usage
-Basically, you can you compare two lists of any type such as a string with the following code:
+Basically, you can compare two lists of any type such as a string with the following code:
 ```csharp
 List<string> source = new List<string> { "Tom", "Tim", "bob", "Zoo" }
 	, destination = new List<string> { "Bob", "Sam", "Tim" };
@@ -42,7 +47,7 @@ var comparisonResult = await ComparerAgent<string>.Create()
 	.SetDestinationProvider(destination)
 	.CompareAsync(CancellationToken.None).ConfigureAwait(false);
     
-// This is the comparison result which is verified by the FluentAssertion library
+// This is the comparison result which is verified by the FluentAssertions library
 comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { "Tom", "bob", "Zoo" });
 comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Bob", "Sam" });
 
@@ -74,7 +79,7 @@ comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<
 });
 ```
 
-Let's compare entities and determine which entities are newer if they exist in the source and destination. The Source/Destination provider for the comparer agent is a provider that implements IComparerAgent<TItem> interface which gets the items/entities.
+Let's compare entities and determine which entities are newer if they exist in the source and destination. The source/destination provider for the comparer agent is a provider that implements the `IComparerProvider<TItem>` interface which gets the items/entities; passing an `IEnumerable<TItem>` directly, as in the examples above, wraps it in one for you.
 ```csharp
 var comparisonResult = await ComparerAgent<int?, Event>.Create()
 	.SetKeySelector(e => e.Id)
@@ -102,6 +107,24 @@ var comparisonResult = await ComparerAgent<Tuple<int?, int?>, PersonHobby>.Creat
 	.SetSourceProvider(source)
 	.SetDestinationProvider(destination)
 	.CompareAsync(CancellationToken.None).ConfigureAwait(false);
+```
+
+If you only need to know which keys exist on each side, use the **KeyComparerAgent**. It compares keys instead of whole entities and returns a `KeysComparisonResult<TKey>` with `KeysInSourceOnly`, `KeysInDestinationOnly`, and `Matches`. This is the agent the BatchSyncAgent uses internally.
+```csharp
+var keysComparisonResult = await KeyComparerAgent<int>.Create()
+	.SetSourceProvider(new List<int> { 5, 4, 9 })
+	.SetDestinationProvider(new List<int> { 6, 10, 5 })
+	.CompareAsync(CancellationToken.None).ConfigureAwait(false);
+```
+
+By default the comparer agents accept duplicate keys, duplicate items, and null items on both sides. You can tighten that through the agent's configurations, which throw when the rule is violated.
+```csharp
+var comparerAgent = ComparerAgent<string>.Create()
+	.Configure((c) =>
+	{
+		c.AllowDuplicateKeys = RuleAllowanceType.None;
+		c.AllowNullableItems = RuleAllowanceType.Destination; // Source items must not be null
+	});
 ```
 
 #### SyncAgent Usage
@@ -134,7 +157,7 @@ await SyncAgent<string>.Create()
     .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 ```
 
-You can also compare and sync entities. The Source/Destination provider for the sync agent is a provider that implements IComparerSyncProvider<TItem> interface which does the CRUD operations for the items/entities.
+You can also compare and sync entities. The source/destination provider for the sync agent is a provider that implements the `IComparerSyncProvider<TItem>` interface, which both gets the items/entities and does the CRUD operations for them. Passing an `IList<TItem>` or a `SortedSet<TItem>` directly, as in the examples above, wraps it in a built-in `ListSyncProvider<TItem>` or `SortedSetSyncProvider<TItem>`.
 ```csharp
 await SyncAgent<int?, Event>.Create()
 	.Configure((c) => c.SyncMode.ItemsInSourceOnly = SyncItemOperation.Add) // Custom SyncMode
@@ -158,7 +181,7 @@ await SyncAgent<int?, Event>.Create()
 **Important note:** the SyncAgent loads all the entities in memory in one call, then compares them, and finally synchronizes the entities. It is not recommended to use this agent if you have thousands of entities, use BatchSyncAgent instead.
 
 #### BatchSyncAgent Usage
-It is **highly recommended** to use the **BatchSyncAgent** to synchronize the entities if you have thousands of entities; it synchronizes them in batches. The Source/Destination provider for the batch sync agent is a provider that implements IComparerBatchSyncProvider<TKey, TItem> interface which does the CRUD operations for the items/entities.
+It is **highly recommended** to use the **BatchSyncAgent** to synchronize the entities if you have thousands of entities; it synchronizes them in batches. The source/destination provider for the batch sync agent is a provider that implements the `IComparerBatchSyncProvider<TKey, TItem>` interface, which gets the keys, gets the entities by their keys, and does the CRUD operations for them. Passing an `IDictionary<TKey, TItem>` directly wraps it in the built-in `DictionaryBatchSyncProvider<TKey, TItem>`. The default batch size is 100.
 ```csharp
 await BatchSyncAgent<int, Person>.Create()
 	.Configure((c) =>
@@ -195,6 +218,14 @@ await BatchSyncAgent<int, Person>.Create()
 #### More Examples
 For more examples you can look at the unit tests project **FluentSync.Tests**.
 
+### Building and Testing
+The library targets .Net Standard 2.1 and .Net Framework 4.6.2; the test and benchmark projects target .Net 10, so building the solution needs the .Net 10 SDK.
+
+```
+dotnet build -c Release
+dotnet test
+```
+
 ### Running Benchmarks
 Performance benchmarks live in the **FluentSync.Benchmarks** project and use [BenchmarkDotNet](https://benchmarkdotnet.org/). They cover `ComparerAgent`, `KeyComparerAgent`, `SyncAgent`, and `BatchSyncAgent` at 1k / 10k / 100k input sizes and report mean time plus allocations.
 
@@ -212,3 +243,6 @@ dotnet run -c Release --project FluentSync.Benchmarks -- --filter * --job Dry
 ```
 
 Results are written to `BenchmarkDotNet.Artifacts/` in the directory you run the command from (the repository root for the commands above). To capture a baseline before optimizing, save a copy of that folder and diff against a re-run after your changes.
+
+### License
+FluentSync is licensed under the [Apache License 2.0](LICENSE.txt).

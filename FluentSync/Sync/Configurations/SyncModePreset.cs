@@ -14,11 +14,11 @@
         /// </summary>
         TwoWay,
         /// <summary>
-        /// Updates the destination only to have the same items as in the source and deletes any item in destination that does have a match.
+        /// Updates the destination only to have the same items as in the source and deletes any item in destination that does not have a match.
         /// </summary>
         MirrorToDestination,
         /// <summary>
-        /// Updates the source only to have the same items as in the destination and deletes any item in source that does have a match.
+        /// Updates the source only to have the same items as in the destination and deletes any item in source that does not have a match.
         /// </summary>
         MirrorToSource,
         /// <summary>

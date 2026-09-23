@@ -22,7 +22,7 @@ dotnet add package FluentSync
 * Targets .Net Standard 2.1 and .Net Framework 4.6.2
 * Fluent interface
 * No dependencies on other libraries
-* 225 tests
+* 236 tests
 * ~98% line coverage
 
 ### Usage
@@ -109,7 +109,7 @@ var comparisonResult = await ComparerAgent<Tuple<int?, int?>, PersonHobby>.Creat
 	.CompareAsync(CancellationToken.None).ConfigureAwait(false);
 ```
 
-If you only need to know which keys exist on each side, use the **KeyComparerAgent**. It compares keys instead of whole entities and returns a `KeysComparisonResult<TKey>` with `KeysInSourceOnly`, `KeysInDestinationOnly`, and `Matches`. This is the agent the BatchSyncAgent uses internally.
+If you only need to know which keys exist on each side, use the **KeyComparerAgent**. It compares keys instead of whole entities and returns a `KeysComparisonResult<TKey>` with `KeysInSourceOnly`, `KeysInDestinationOnly`, and `Matches`. This is the agent the BatchSyncAgent uses internally. Unlike the ComparerAgent it has no configurations: a null key or a repeated key on either side always throws.
 ```csharp
 var keysComparisonResult = await KeyComparerAgent<int>.Create()
 	.SetSourceProvider(new List<int> { 5, 4, 9 })
@@ -117,13 +117,24 @@ var keysComparisonResult = await KeyComparerAgent<int>.Create()
 	.CompareAsync(CancellationToken.None).ConfigureAwait(false);
 ```
 
-By default the comparer agents accept duplicate keys, duplicate items, and null items on both sides. You can tighten that through the agent's configurations, which throw when the rule is violated.
+By default the **ComparerAgent** accepts duplicate keys, duplicate items, and null items on both sides. You can tighten that through the agent's configurations, which throw when the rule is violated. Each rule is set per side with `RuleAllowanceType`: `Both` (the default), `Source`, `Destination`, or `None`, where the value names the side the rule is *allowed* on.
 ```csharp
 var comparerAgent = ComparerAgent<string>.Create()
 	.Configure((c) =>
 	{
 		c.AllowDuplicateKeys = RuleAllowanceType.None;
 		c.AllowNullableItems = RuleAllowanceType.Destination; // Source items must not be null
+	});
+```
+
+For validation the built-in rules don't cover, `SetValidateItemsAction` runs your own check against both sides after the items are loaded and before they are compared. Throw from it to abort the comparison.
+```csharp
+var comparerAgent = ComparerAgent<int?, Person>.Create()
+	.SetKeySelector(x => x.Id)
+	.SetValidateItemsAction((source, destination) =>
+	{
+		if (source.Any(x => x.Id < 0))
+			throw new ArgumentException("Negative Ids are invalid in the source list.");
 	});
 ```
 
@@ -156,6 +167,8 @@ await SyncAgent<string>.Create()
 	.SetDestinationProvider(destinationItems)
     .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 ```
+
+**Call order matters:** `SetSourceProvider` and `SetDestinationProvider` also wire the provider into the comparer agent, so `SetComparerAgent` has to come first. Calling them the other way round throws a `NullReferenceException` telling you the ComparerAgent must be set first. The same applies to the BatchSyncAgent, where the dictionary overloads additionally need `SetKeySelector` to have been called.
 
 You can also compare and sync entities. The source/destination provider for the sync agent is a provider that implements the `IComparerSyncProvider<TItem>` interface, which both gets the items/entities and does the CRUD operations for them. Passing an `IList<TItem>` or a `SortedSet<TItem>` directly, as in the examples above, wraps it in a built-in `ListSyncProvider<TItem>` or `SortedSetSyncProvider<TItem>`.
 ```csharp
@@ -214,6 +227,55 @@ await BatchSyncAgent<int, Person>.Create()
 	.SyncAsync(cancellationToken);
 ```
 **Important note:** the BatchSyncAgent loads all the keys in memory in one call at the beginning, which consumes less memory than loading all entities, then compares the keys only. After that it loads the batch entities by the keys and compares them, and finally syncs the entities.
+
+#### Customizing the Sync Mode
+Each preset is shorthand for five properties on the `SyncMode` class, which you can also set individually for a **Custom** sync mode. Items without a match are governed by a `SyncItemOperation` (`None`, `Add`, or `Delete`), and matched pairs by a `SyncMatchOperation` (`None`, `UpdateSource`, `UpdateDestination`, `UpdateOldItem`, `UpdateOldDestination`, or `UpdateOldSource`).
+
+| Property | Applies to | Type |
+| --- | --- | --- |
+| `ItemsInSourceOnly` | items with no match in the destination | `SyncItemOperation` |
+| `ItemsInDestinationOnly` | items with no match in the source | `SyncItemOperation` |
+| `SameMatches` | pairs the compare function called `Same` | `SyncMatchOperation` |
+| `NewerMatches` | pairs where one side is newer | `SyncMatchOperation` |
+| `ConflictMatches` | pairs where neither side is known to be newer | `SyncMatchOperation` |
+
+Two things to know before mixing these with a preset:
+
+* Assigning `SyncModePreset` overwrites all five properties, and assigning `Custom` (like `None`) resets them all to "do nothing". Set the preset **first**, then customize, as in the SyncAgent example above.
+* `ConflictMatches` rejects `UpdateOldItem`, `UpdateOldDestination`, and `UpdateOldSource` — with neither side known to be newer there is no "old" item to update — and throws if you assign one.
+
+```csharp
+await SyncAgent<int>.Create()
+	.Configure((c) =>
+	{
+		c.SyncMode.SyncModePreset = SyncModePreset.TwoWay; // Start from a preset
+		c.SyncMode.ItemsInDestinationOnly = SyncItemOperation.Delete; // Then adjust
+	})
+	.SetComparerAgent(ComparerAgent<int>.Create())
+	.SetSourceProvider(source)
+	.SetDestinationProvider(destination)
+	.SyncAsync(CancellationToken.None).ConfigureAwait(false);
+```
+
+The order of the operations is configurable too. `SyncOperationsOrder.Order` controls whether inserts, updates, or deletes are applied first and defaults to Delete, Update, Insert. For the BatchSyncAgent, `BatchSyncListsOrder.Order` additionally controls which of the three lists is synced first and defaults to ItemsInSourceOnly, ItemsInDestinationOnly, Matches. Neither array may contain duplicates; the agent validates this and throws before syncing.
+
+```csharp
+await BatchSyncAgent<int, Person>.Create()
+	.Configure((c) =>
+	{
+		c.SyncMode.SyncModePreset = SyncModePreset.MirrorToDestination;
+		c.SyncOperationsOrder.Order[0] = SyncOperationType.Insert; // Insert before deleting
+		c.SyncOperationsOrder.Order[2] = SyncOperationType.Delete;
+		c.BatchSyncListsOrder.Order[0] = BatchSyncListType.Matches; // Sync the matches first
+		c.BatchSyncListsOrder.Order[2] = BatchSyncListType.ItemsInSourceOnly;
+	})
+	.SetComparerAgent(KeyComparerAgent<int>.Create())
+	.SetKeySelector(x => x.BusinessEntityID)
+	.SetCompareItemFunc((s, d) => s.ModifiedDate == d.ModifiedDate ? MatchComparisonResultType.Same : MatchComparisonResultType.Conflict)
+	.SetSourceProvider(sourceProvider)
+	.SetDestinationProvider(destinationProvider)
+	.SyncAsync(cancellationToken);
+```
 
 #### More Examples
 For more examples you can look at the unit tests project **FluentSync.Tests**.

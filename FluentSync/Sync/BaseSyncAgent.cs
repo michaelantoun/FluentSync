@@ -153,7 +153,7 @@ namespace FluentSync.Sync
                         syncContext.ItemsToBeDeletedFromDestination.AddRange(comparisonResult.ItemsInDestinationOnly);
                         break;
                     default:
-                        throw new NotSupportedException($"Not supported destination {nameof(SyncItemOperation)} '{GetSyncConfigurations().SyncMode.ItemsInSourceOnly.ToString()}'.");
+                        throw new NotSupportedException($"Not supported destination {nameof(SyncItemOperation)} '{GetSyncConfigurations().SyncMode.ItemsInDestinationOnly.ToString()}'.");
                 }
             }
         }
@@ -213,7 +213,7 @@ namespace FluentSync.Sync
                     case SyncMatchOperation.UpdateOldSource:
                         throw new Exception($"Conflict matches operation cannot be {GetSyncConfigurations().SyncMode.ConflictMatches.ToString()}.");
                     default:
-                        throw new NotSupportedException($"Not supported {nameof(SyncMatchOperation)} '{GetSyncConfigurations().SyncMode.SameMatches.ToString()}' for {MatchComparisonResultType.Same.ToString()} matches.");
+                        throw new NotSupportedException($"Not supported {nameof(SyncMatchOperation)} '{GetSyncConfigurations().SyncMode.ConflictMatches.ToString()}' for {MatchComparisonResultType.Conflict.ToString()} matches.");
                 }
             }
         }
@@ -255,7 +255,7 @@ namespace FluentSync.Sync
                             syncContext.ItemsToBeUpdatedInSource.AddRange(newerDestinationMatches.Select(x => new MatchValuePair<TItem> { NewValue = x.Destination, CurrentValue = x.Source }));
                         break;
                     default:
-                        throw new NotSupportedException($"Not supported {nameof(SyncMatchOperation)} '{GetSyncConfigurations().SyncMode.SameMatches.ToString()}' for {MatchComparisonResultType.Same.ToString()} matches.");
+                        throw new NotSupportedException($"Not supported {nameof(SyncMatchOperation)} '{GetSyncConfigurations().SyncMode.NewerMatches.ToString()}' for newer matches.");
                 }
             }
         }

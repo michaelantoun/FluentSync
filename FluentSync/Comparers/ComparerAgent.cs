@@ -206,21 +206,21 @@ namespace FluentSync.Comparers
             // Check for duplicated keys using the key selector
             if ((Configurations.AllowDuplicateKeys & RuleAllowanceType.Source) != RuleAllowanceType.Source)
             {
-                count = dicSrc.Where(x => x.Value.Count > 1).Select(x => x.Value.Count - 1).Count();
+                count = dicSrc.Where(x => x.Value.Count > 1).Sum(x => x.Value.Count - 1);
                 if (nullableKeysSrcItems.Count > 1)
                     count += nullableKeysSrcItems.Count - 1;
                 if (count > 0)
-                    throw new ArgumentException(string.Format("Duplicated items are not allowed in the source list, {0} item{1} {2} found."
+                    throw new ArgumentException(string.Format("Duplicated keys are not allowed in the source list, {0} key{1} {2} found."
                             , count, count == 1 ? "" : "s", count == 1 ? "was" : "were"));
             }
 
             if ((Configurations.AllowDuplicateKeys & RuleAllowanceType.Destination) != RuleAllowanceType.Destination)
             {
-                count = dicDest.Where(x => x.Value.Count > 1).Select(x => x.Value.Count - 1).Count();
+                count = dicDest.Where(x => x.Value.Count > 1).Sum(x => x.Value.Count - 1);
                 if (nullableKeysDestItems.Count > 1)
                     count += nullableKeysDestItems.Count - 1;
                 if (count > 0)
-                    throw new ArgumentException(string.Format("Duplicated items are not allowed in the destination list, {0} item{1} {2} found."
+                    throw new ArgumentException(string.Format("Duplicated keys are not allowed in the destination list, {0} key{1} {2} found."
                             , count, count == 1 ? "" : "s", count == 1 ? "was" : "were"));
             }
         }

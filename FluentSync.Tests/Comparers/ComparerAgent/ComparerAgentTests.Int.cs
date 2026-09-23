@@ -66,7 +66,7 @@
         }
 
         [Fact]
-        public void Compare_Int_PreventDuplicatesInSource()
+        public async Task Compare_Int_PreventDuplicatesInSource()
         {
             List<int> source = new List<int> { 10, 10 }
                 , destination = new List<int> { 20, 20 };
@@ -77,11 +77,11 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 1 item was found.");
+            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the source list, 1 key was found.");
         }
 
         [Fact]
-        public void Compare_Int_PreventDuplicatesInDestination()
+        public async Task Compare_Int_PreventDuplicatesInDestination()
         {
             List<int> source = new List<int> { 10, 10 }
                 , destination = new List<int> { 20, 20 };
@@ -92,7 +92,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the destination list, 1 item was found.");
+            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the destination list, 1 key was found.");
         }
 
         [Fact]

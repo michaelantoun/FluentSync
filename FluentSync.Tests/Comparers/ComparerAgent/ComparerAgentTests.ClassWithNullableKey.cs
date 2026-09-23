@@ -72,7 +72,7 @@
         }
 
         [Fact]
-        public void Compare_ClassWithNullableKey_PreventDuplicatesInSourceUsingItemComparer()
+        public async Task Compare_ClassWithNullableKey_PreventDuplicatesInSourceUsingItemComparer()
         {
             List<Person> source = new List<Person> {
                 new Person{Id = 1, FirstName ="Tom", LastName = "Smith", DOB = new DateTime(2000,1, 1)},
@@ -98,11 +98,11 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 5 items were found.");
+            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the source list, 5 keys were found.");
         }
 
         [Fact]
-        public void Compare_ClassWithNullableKey_PreventDuplicatesInDestinationUsingItemComparer()
+        public async Task Compare_ClassWithNullableKey_PreventDuplicatesInDestinationUsingItemComparer()
         {
             List<Person> source = new List<Person> {
                 new Person{Id = 3, FirstName ="Joe", LastName = "Jim", DOB = null },
@@ -128,7 +128,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the destination list, 5 items were found.");
+            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the destination list, 5 keys were found.");
         }
 
         [Fact]

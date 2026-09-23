@@ -16,7 +16,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetComparerAgent(ComparerAgent<int>.Create())
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
             destination.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
@@ -33,7 +33,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetComparerAgent(ComparerAgent<int>.Create())
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
             destination.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
@@ -50,7 +50,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetComparerAgent(ComparerAgent<int>.Create())
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEmpty();
             destination.Should().BeEmpty();
@@ -67,7 +67,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetComparerAgent(ComparerAgent<int>.Create())
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEmpty();
             destination.Should().BeEmpty();

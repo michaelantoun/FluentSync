@@ -16,7 +16,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent.LoadTests
 
             await CreateSyncAgent(sourceDictionary, destinationDictionary)
                 .Configure((c) => c.SyncMode.SyncModePreset = SyncModePreset.MirrorToDestination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             AssertionHelper.VerifyDictionariesAreEquivalent(sourceDictionary, expectedSourceDictionary);
             AssertionHelper.VerifyDictionariesAreEquivalent(destinationDictionary, expectedDestinationDictionary);

@@ -13,7 +13,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent.LoadTests
 
             await CreateSyncAgent(sourceDictionary, destinationDictionary)
                 .Configure((c) => c.SyncMode.SyncModePreset = SyncModePreset.TwoWay)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             AssertionHelper.VerifyDictionariesAreEquivalent(sourceDictionary, destinationDictionary);
         }

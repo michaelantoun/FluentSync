@@ -11,7 +11,7 @@
             var comparisonResult = await ComparerAgent<int>.Create()
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<int> { 10, 20 });
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<int> { 15 });
@@ -32,7 +32,7 @@
             var comparisonResult = await ComparerAgent<int>.Create()
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
             comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
@@ -54,7 +54,7 @@
             var comparisonResult = await ComparerAgent<int>.Create()
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
             comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();

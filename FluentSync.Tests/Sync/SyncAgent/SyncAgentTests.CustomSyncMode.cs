@@ -73,7 +73,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.ItemsInSourceOnly = SyncItemOperation.Add)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(CreateSourceEventList());
             destination.Should().BeEquivalentTo(CreateDestinationEventList().Union(CreateSourceEventList().Where(x => !x.Id.HasValue)));
@@ -86,7 +86,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.ItemsInSourceOnly = SyncItemOperation.Delete)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(CreateSourceEventList().Where(x => x.Id.HasValue));
             destination.Should().BeEquivalentTo(CreateDestinationEventList());
@@ -103,7 +103,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.ItemsInDestinationOnly = SyncItemOperation.Add)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             var originalDestinationList = CreateDestinationEventList();
             source.Should().BeEquivalentTo(CreateSourceEventList().Union(new[] { originalDestinationList[2] }));
@@ -117,7 +117,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.ItemsInDestinationOnly = SyncItemOperation.Delete)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(CreateSourceEventList());
             destination.Should().BeEquivalentTo(CreateDestinationEventList().Where(x => x.Id != 3));
@@ -134,7 +134,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.SameMatches = SyncMatchOperation.None)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(CreateSourceEventList());
             destination.Should().BeEquivalentTo(CreateDestinationEventList());
@@ -147,7 +147,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.SameMatches = SyncMatchOperation.UpdateDestination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(CreateSourceEventList());
             destination.Should().BeEquivalentTo(CreateDestinationEventList());
@@ -160,7 +160,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.SameMatches = SyncMatchOperation.UpdateOldDestination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(CreateSourceEventList());
             destination.Should().BeEquivalentTo(CreateDestinationEventList());
@@ -173,7 +173,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.SameMatches = SyncMatchOperation.UpdateOldItem)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(CreateSourceEventList());
             destination.Should().BeEquivalentTo(CreateDestinationEventList());
@@ -186,7 +186,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.SameMatches = SyncMatchOperation.UpdateSource)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(CreateSourceEventList());
             destination.Should().BeEquivalentTo(CreateDestinationEventList());
@@ -199,7 +199,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.SameMatches = SyncMatchOperation.UpdateOldSource)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(CreateSourceEventList());
             destination.Should().BeEquivalentTo(CreateDestinationEventList());
@@ -216,7 +216,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.None)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(CreateSourceEventList());
             destination.Should().BeEquivalentTo(CreateDestinationEventList());
@@ -229,7 +229,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.UpdateDestination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(CreateSourceEventList());
 
@@ -269,7 +269,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.UpdateSource)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             var expectedSourceResult = CreateSourceEventList();
             expectedSourceResult.First(x => x.Id == 5).Title = "Bad";
@@ -300,7 +300,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.NewerMatches = SyncMatchOperation.None)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(CreateSourceEventList());
             destination.Should().BeEquivalentTo(CreateDestinationEventList());
@@ -313,7 +313,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.NewerMatches = SyncMatchOperation.UpdateDestination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             var expectedSourceList = CreateSourceEventList();
             var expectedDestinationList = CreateDestinationEventList();
@@ -334,7 +334,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
                 .Configure((c) => c.SyncMode.NewerMatches = SyncMatchOperation.UpdateDestination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             var expectedSourceList = CreateSourceEventSortedSet();
             var expectedDestinationList = CreateDestinationEventSortedSet();
@@ -355,7 +355,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.NewerMatches = SyncMatchOperation.UpdateOldDestination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             var expectedSourceList = CreateSourceEventList();
             var expectedDestinationList = CreateDestinationEventList();
@@ -374,7 +374,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.NewerMatches = SyncMatchOperation.UpdateOldItem)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             var expectedSourceList = CreateSourceEventList();
             var expectedDestinationList = CreateDestinationEventList();
@@ -396,7 +396,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.NewerMatches = SyncMatchOperation.UpdateSource)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             var expectedSourceList = CreateSourceEventList();
             var expectedDestinationList = CreateDestinationEventList();
@@ -415,7 +415,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await CreateSyncAgent(source, destination)
                 .Configure((c) => c.SyncMode.NewerMatches = SyncMatchOperation.UpdateOldSource)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             var expectedSourceList = CreateSourceEventList();
             var expectedDestinationList = CreateDestinationEventList();
@@ -443,7 +443,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                     if (cr.ItemsInSourceOnly.Any() || cr.ItemsInDestinationOnly.Any() || cr.Matches.Any())
                         actionCalledCount++;
                 })
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             actionCalledCount.Should().Be(1);
         }
@@ -485,7 +485,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetComparerAgent(null)
                 .SetSourceProvider((ISyncProvider<Event>)source)
                 .SetDestinationProvider((ISyncProvider<Event>)destination)
-                .SyncAsync(comparisonResult, CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(comparisonResult, CancellationToken.None);
 
             source.Items.Should().BeEquivalentTo(destination.Items);
         }

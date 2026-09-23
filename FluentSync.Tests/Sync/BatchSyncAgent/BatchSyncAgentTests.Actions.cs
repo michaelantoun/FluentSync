@@ -25,7 +25,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                     if (cr.ItemsInSourceOnly.Any() || cr.ItemsInDestinationOnly.Any() || cr.Matches.Any())
                         actionCalledCount++;
                 })
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             actionCalledCount.Should().Be(expectedActionCalledCount);
         }
@@ -50,7 +50,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                     if (cr.KeysInSourceOnly.Any() || cr.KeysInDestinationOnly.Any() || cr.Matches.Any())
                         actionCalledCount++;
                 })
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             actionCalledCount.Should().Be(expectedActionCalledCount);
         }
@@ -74,7 +74,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                     if (items.Any())
                         actionCalledCount++;
                 })
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             actionCalledCount.Should().Be(expectedActionCalledCount);
         }
@@ -99,7 +99,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                     if (items.Any())
                         actionCalledCount++;
                 })
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             actionCalledCount.Should().Be(expectedActionCalledCount);
         }

@@ -13,7 +13,7 @@ namespace FluentSync.Tests.Sync.SyncAgent.LoadTests
 
             await CreateSyncAgent(sourceItems, destinationItems)
                 .Configure((c) => c.SyncMode.SyncModePreset = SyncModePreset.TwoWay)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             AssertionHelper.VerifySortedSetsAreEquivalent(sourceItems, destinationItems);
         }

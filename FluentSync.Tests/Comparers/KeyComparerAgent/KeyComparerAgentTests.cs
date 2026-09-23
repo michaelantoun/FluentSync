@@ -41,7 +41,7 @@
             var comparisonResult = await KeyComparerAgent<int>.Create()
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.KeysInSourceOnly.Should().BeEmpty();
             comparisonResult.KeysInDestinationOnly.Should().BeEmpty();
@@ -57,7 +57,7 @@
             var comparisonResult = await KeyComparerAgent<int>.Create()
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.KeysInSourceOnly.Should().BeEmpty();
             comparisonResult.KeysInDestinationOnly.Should().BeEquivalentTo(new List<int> { 1 });
@@ -73,7 +73,7 @@
             var comparisonResult = await KeyComparerAgent<int>.Create()
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.KeysInSourceOnly.Should().BeEquivalentTo(new List<int> { 1 });
             comparisonResult.KeysInDestinationOnly.Should().BeEmpty();
@@ -89,7 +89,7 @@
             var comparisonResult = await KeyComparerAgent<int>.Create()
                     .SetSourceProvider(source)
                     .SetDestinationProvider(destination)
-                    .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                    .CompareAsync(CancellationToken.None);
 
             comparisonResult.KeysInSourceOnly.Should().BeEmpty();
             comparisonResult.KeysInDestinationOnly.Should().BeEmpty();
@@ -105,7 +105,7 @@
             var comparisonResult = await KeyComparerAgent<int>.Create()
                     .SetSourceProvider(source)
                     .SetDestinationProvider(destination)
-                    .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                    .CompareAsync(CancellationToken.None);
 
             comparisonResult.KeysInSourceOnly.Should().BeEmpty();
             comparisonResult.KeysInDestinationOnly.Should().BeEmpty();

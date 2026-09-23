@@ -72,7 +72,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                     c.SyncMode.SyncModePreset = SyncModePreset.None;
                     c.BatchSize = batchSize;
                 })
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             IDictionary<int?, Event> expectedSource = CreateSourceEventDictionary()
                 , expectedDestination = CreateDestinationEventDictionary();
@@ -97,7 +97,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                     c.SyncMode.SyncModePreset = SyncModePreset.UpdateDestination;
                     c.BatchSize = batchSize;
                 })
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             IDictionary<int?, Event> expectedSource = CreateSourceEventDictionary()
                 , expectedDestination = CreateDestinationEventDictionary();
@@ -125,7 +125,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                     c.SyncMode.SyncModePreset = SyncModePreset.MirrorToDestination;
                     c.BatchSize = batchSize;
                 })
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             IDictionary<int?, Event> expectedSource = CreateSourceEventDictionary()
                 , expectedDestination = CreateDestinationEventDictionary();
@@ -158,7 +158,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                     c.SyncMode.SyncModePreset = SyncModePreset.TwoWay;
                     c.BatchSize = batchSize;
                 })
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             IDictionary<int?, Event> expectedSource = CreateSourceEventDictionary()
                 , expectedDestination = CreateDestinationEventDictionary();
@@ -191,7 +191,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                     c.SyncMode.SyncModePreset = SyncModePreset.UpdateSource;
                     c.BatchSize = batchSize;
                 })
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             IDictionary<int?, Event> expectedSource = CreateSourceEventDictionary()
                 , expectedDestination = CreateDestinationEventDictionary();
@@ -221,7 +221,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                     c.SyncMode.SyncModePreset = SyncModePreset.MirrorToSource;
                     c.BatchSize = batchSize;
                 })
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             IDictionary<int?, Event> expectedSource = CreateSourceEventDictionary()
                 , expectedDestination = CreateDestinationEventDictionary();
@@ -250,7 +250,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetComparerAgent(KeyComparerAgent<int?>.Create())
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             IDictionary<int?, Event> expectedSource = CreateSourceEventDictionary()
                 , expectedDestination = CreateDestinationEventDictionary();
@@ -285,16 +285,16 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
 
             // The sync agent should handle changes to source and destination gracefully.
             if (syncModePreset == SyncModePreset.MirrorToDestination)
-                await source.DeleteAsync(new List<int?> { 5 }, CancellationToken.None).ConfigureAwait(false);
+                await source.DeleteAsync(new List<int?> { 5 }, CancellationToken.None);
             else if (syncModePreset == SyncModePreset.MirrorToSource)
-                await destination.DeleteAsync(new List<int?> { 5 }, CancellationToken.None).ConfigureAwait(false);
+                await destination.DeleteAsync(new List<int?> { 5 }, CancellationToken.None);
 
             await syncAgent
                 .Configure((c) => c.SyncMode.SyncModePreset = syncModePreset)
                 .SetComparerAgent(null)
                 .SetSourceProvider((IBatchSyncProvider<int?, Event>)source)
                 .SetDestinationProvider((IBatchSyncProvider<int?, Event>)destination)
-                .SyncAsync(keyComparisonResult, CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(keyComparisonResult, CancellationToken.None);
 
             source.Items.Should().BeEquivalentTo(destination.Items);
         }

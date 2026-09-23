@@ -75,7 +75,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
             var comparisonResult = await ComparerAgent<int>.Create()
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
             comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
@@ -91,7 +91,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
             var comparisonResult = await ComparerAgent<int>.Create()
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<int> { 1 });
@@ -107,7 +107,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
             var comparisonResult = await ComparerAgent<int>.Create()
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<int> { 1 });
             comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
@@ -123,7 +123,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
             var comparisonResult = await ComparerAgent<int>.Create()
                     .SetSourceProvider(source)
                     .SetDestinationProvider(destination)
-                    .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                    .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
             comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
@@ -139,7 +139,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
             var comparisonResult = await ComparerAgent<int>.Create()
                     .SetSourceProvider(source)
                     .SetDestinationProvider(destination)
-                    .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                    .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
             comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
@@ -170,7 +170,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
             var comparisonResult = await ComparerAgent<int>.Create()
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
             comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();

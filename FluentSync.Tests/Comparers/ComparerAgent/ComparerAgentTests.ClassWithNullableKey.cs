@@ -23,7 +23,7 @@
                 .SetCompareItemFunc((s, d) => (s.Id == d.Id && s.FirstName == d.FirstName && s.LastName == d.LastName && s.DOB == d.DOB) ? MatchComparisonResultType.Same : MatchComparisonResultType.Conflict)
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<Person> { source[2], source[3] });
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<Person> { destination[2] });
@@ -59,7 +59,7 @@
                 .SetCompareItemFunc((s, d) => (s.Id == d.Id && s.FirstName == d.FirstName && s.LastName == d.LastName && s.DOB == d.DOB) ? MatchComparisonResultType.Same : MatchComparisonResultType.Conflict)
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<Person> { source[1], source[2], source[3], source[4], source[5], source[7] });
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<Person> { destination[2] });

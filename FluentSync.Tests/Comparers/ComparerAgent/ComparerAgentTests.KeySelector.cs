@@ -12,7 +12,7 @@
                 .SetKeySelector(x => x?.ToLower())
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { null });
             comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
@@ -35,7 +35,7 @@
                 .SetKeySelector(x => x?.ToLower())
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
             comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
@@ -56,7 +56,7 @@
                 .SetKeySelector(x => x?.ToLower())
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
             comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
@@ -78,7 +78,7 @@
                 .SetKeySelector(x => x?.ToLower())
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { null });
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Tom" });
@@ -96,7 +96,7 @@
                 .SetKeySelector(x => x?.ToLower())
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { "Tom" });
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { null });

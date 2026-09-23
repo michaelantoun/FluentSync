@@ -13,7 +13,7 @@
                 .SetCompareItemFunc((s, d) => string.Equals(s, d, StringComparison.OrdinalIgnoreCase) ? MatchComparisonResultType.Same : MatchComparisonResultType.Conflict)
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { "Tom", "Zoo" });
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Sam" });
@@ -35,7 +35,7 @@
                 .SetCompareItemFunc((s, d) => string.Equals(s, d, StringComparison.OrdinalIgnoreCase) ? MatchComparisonResultType.Same : MatchComparisonResultType.Conflict)
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
             comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
@@ -56,7 +56,7 @@
                 .SetCompareItemFunc((s, d) => string.Equals(s, d, StringComparison.OrdinalIgnoreCase) ? MatchComparisonResultType.Same : MatchComparisonResultType.Conflict)
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
             comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
@@ -78,7 +78,7 @@
                 .SetCompareItemFunc((s, d) => string.Equals(s, d, StringComparison.OrdinalIgnoreCase) ? MatchComparisonResultType.Same : MatchComparisonResultType.Conflict)
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { null });
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Tom" });
@@ -95,7 +95,7 @@
                 .SetCompareItemFunc((s, d) => string.Equals(s, d, StringComparison.OrdinalIgnoreCase) ? MatchComparisonResultType.Same : MatchComparisonResultType.Conflict)
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { "Tom" });
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { null });
@@ -112,7 +112,7 @@
                 .SetCompareItemFunc((s, d) => string.Equals(s, d, StringComparison.OrdinalIgnoreCase) ? MatchComparisonResultType.Same : MatchComparisonResultType.Conflict)
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { null, "bob" });
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Bob" });

@@ -150,7 +150,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination);
 
-            await syncAgent.SyncAsync(CancellationToken.None).ConfigureAwait(false);
+            await syncAgent.SyncAsync(CancellationToken.None);
 
             source.Items.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
             destination.Items.Should().BeEquivalentTo(source.Items);

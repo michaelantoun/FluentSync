@@ -11,7 +11,7 @@
             var keysComparisonResult = await KeyComparerAgent<int>.Create()
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             keysComparisonResult.KeysInSourceOnly.Should().BeEquivalentTo(new List<int> { 20 });
             keysComparisonResult.KeysInDestinationOnly.Should().BeEquivalentTo(new List<int> { 25 });
@@ -27,7 +27,7 @@
             var keysComparisonResult = await KeyComparerAgent<int?>.Create()
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             keysComparisonResult.KeysInSourceOnly.Should().BeEquivalentTo(new List<int?> { 20 });
             keysComparisonResult.KeysInDestinationOnly.Should().BeEquivalentTo(new List<int?> { 25 });

@@ -16,7 +16,7 @@ namespace FluentSync.Tests.Sync.SyncAgent.LoadTests
 
             await CreateSyncAgent(sourceItems, destinationItems)
                 .Configure((c) => c.SyncMode.SyncModePreset = SyncModePreset.MirrorToDestination)
-                .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+                .SyncAsync(CancellationToken.None);
 
             // Very slow, interesting!!!
             //sourceItems.Should().BeEquivalentTo(expectedSourceList);

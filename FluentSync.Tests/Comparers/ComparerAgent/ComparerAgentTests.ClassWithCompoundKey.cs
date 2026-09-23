@@ -24,7 +24,7 @@
                 .SetCompareItemFunc((s, d) => (s.PersonId == d.PersonId && s.HobbyId == d.HobbyId && s.LoveScale == d.LoveScale) ? MatchComparisonResultType.Same : MatchComparisonResultType.Conflict)
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination)
-                .CompareAsync(CancellationToken.None).ConfigureAwait(false);
+                .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<PersonHobby> { source[1], source[2], source[4] });
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<PersonHobby> { destination[1] });

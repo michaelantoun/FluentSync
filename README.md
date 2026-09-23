@@ -46,7 +46,7 @@ var comparisonResult = await ComparerAgent<string>.Create()
 	.SetSourceProvider(source)
 	.SetDestinationProvider(destination)
 	.CompareAsync(CancellationToken.None).ConfigureAwait(false);
-    
+
 // This is the comparison result which is verified by the FluentAssertions library
 comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { "Tom", "bob", "Zoo" });
 comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Bob", "Sam" });
@@ -165,7 +165,7 @@ await SyncAgent<string>.Create()
 		.SetCompareItemFunc((s, d) => s == d ? MatchComparisonResultType.Same : MatchComparisonResultType.Conflict))
 	.SetSourceProvider(sourceItems)
 	.SetDestinationProvider(destinationItems)
-    .SyncAsync(CancellationToken.None).ConfigureAwait(false);
+	.SyncAsync(CancellationToken.None).ConfigureAwait(false);
 ```
 
 **Call order matters:** `SetSourceProvider` and `SetDestinationProvider` also wire the provider into the comparer agent, so `SetComparerAgent` has to come first. Calling them the other way round throws a `NullReferenceException` telling you the ComparerAgent must be set first. The same applies to the BatchSyncAgent, where the dictionary overloads additionally need `SetKeySelector` to have been called.
@@ -219,7 +219,7 @@ await BatchSyncAgent<int, Person>.Create()
 	})
 	.SetSourceProvider(sourceProvider)
 	.SetDestinationProvider(destinationProvider)
-    // You can use these actions to show the progress on the screen or in a log file.
+	// You can use these actions to show the progress on the screen or in a log file.
 	.SetBeforeSyncingKeysAction((cr) => Console.WriteLine($"Before syncing persons > persons in source only: {cr.KeysInSourceOnly.Count}, persons in destination only: {cr.KeysInDestinationOnly.Count}, persons in source and destination: {cr.Matches.Count}"))
 	.SetBeforeSyncingAction((cr) => Console.WriteLine($"Syncing persons batch > add: {cr.ItemsInSourceOnly.Count}, remove: {cr.ItemsInDestinationOnly.Count}, update: {cr.Matches.Count(x => x.ComparisonResult != MatchComparisonResultType.Same)}, Same: {cr.Matches.Count(x => x.ComparisonResult == MatchComparisonResultType.Same)}"))
 	.SetBeforeDeletingItemsFromSourceAction((list) => Console.WriteLine($"Deleting from source {list.Count} persons"))

@@ -47,11 +47,11 @@ var comparisonResult = await ComparerAgent<string>.Create()
 	.SetDestinationProvider(destination)
 	.CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-// This is the comparison result which is verified by the FluentAssertions library
-comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { "Tom", "bob", "Zoo" });
-comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Bob", "Sam" });
+// This is the comparison result which is verified by the Shouldly library
+comparisonResult.ItemsInSourceOnly.ShouldBe(new List<string> { "Tom", "bob", "Zoo" });
+comparisonResult.ItemsInDestinationOnly.ShouldBe(new List<string> { "Bob", "Sam" });
 
-comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<string>>
+comparisonResult.Matches.ShouldBeEquivalentTo(new List<MatchComparisonResult<string>>
 {
 	new MatchComparisonResult<string>{Source = "Tim", Destination = "Tim", ComparisonResult = MatchComparisonResultType.Same}
 });
@@ -69,10 +69,10 @@ var comparisonResult = await ComparerAgent<string>.Create()
 	.CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
 // This is the comparison result
-comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { "Tom", "Zoo" });
-comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Sam" });
+comparisonResult.ItemsInSourceOnly.ShouldBe(new List<string> { "Tom", "Zoo" });
+comparisonResult.ItemsInDestinationOnly.ShouldBe(new List<string> { "Sam" });
 
-comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<string>>
+comparisonResult.Matches.ShouldBeEquivalentTo(new List<MatchComparisonResult<string>>
 {
 	new MatchComparisonResult<string>{Source = "Tim", Destination = "Tim", ComparisonResult = MatchComparisonResultType.Same},
 	new MatchComparisonResult<string>{Source = "bob", Destination = "Bob", ComparisonResult = MatchComparisonResultType.Conflict}
@@ -152,8 +152,8 @@ await SyncAgent<int>.Create()
 	.SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
 // This code is here to verify the two lists
-source.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
-destination.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
+source.ShouldBe(new List<int> { 5, 4, 9 });
+destination.ShouldBe(new List<int> { 5, 4, 9 });
 ```
 
 Another example of the sync agent with a custom key selector and an item comparer function.

@@ -1,5 +1,4 @@
-﻿global using FluentAssertions;
-global using FluentSync.Comparers;
+﻿global using FluentSync.Comparers;
 global using FluentSync.Comparers.Configurations;
 global using FluentSync.Comparers.Providers;
 global using FluentSync.Tests.Internals;

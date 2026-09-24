@@ -307,4 +307,4 @@ dotnet run -c Release --project FluentSync.Benchmarks -- --filter * --job Dry
 Results are written to `BenchmarkDotNet.Artifacts/` in the directory you run the command from (the repository root for the commands above). To capture a baseline before optimizing, save a copy of that folder and diff against a re-run after your changes.
 
 ### License
-FluentSync is licensed under the [Apache License 2.0](LICENSE.txt).
+FluentSync is licensed under the [Apache License 2.0](https://github.com/michaelantoun/FluentSync/blob/master/LICENSE.txt).

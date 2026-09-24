@@ -6,7 +6,7 @@
     <Authors>Michael Antoun</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A .Net library with fluent interface for comparing and synchronizing entities/records.</Description>
-    <Copyright>Copyright (c) Michael Antoun 2019 - 2023</Copyright>
+    <Copyright>Copyright (c) Michael Antoun 2019 - 2026</Copyright>
     <PackageProjectUrl>https://github.com/michaelantoun/FluentSync</PackageProjectUrl>
     <RepositoryUrl>https://github.com/michaelantoun/FluentSync</RepositoryUrl>
     <NeutralLanguage>English</NeutralLanguage>
@@ -16,8 +16,10 @@
     <FileVersion>1.2.0.0</FileVersion>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <PackageIcon>Icon512x512.png</PackageIcon>
-    <PackageReleaseNotes>Fixed the duplicate-key count and the misreported exception messages, corrected the XML documentation, and included the XML documentation file in the package.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed the duplicate-key count and the misreported exception messages, corrected the XML documentation, and included the XML documentation file and the README in the package.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <BeforePack>$(BeforePack);PackReadme</BeforePack>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -36,4 +38,18 @@
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
+
+  <!-- nuget.org shows raw HTML as literal text, so the package gets a copy of the repository README
+       without the HTML icon line at the top (the package page shows the package icon instead). -->
+  <Target Name="PackReadme">
+    <PropertyGroup>
+      <_PackReadmePath>$(IntermediateOutputPath)README.md</_PackReadmePath>
+      <_PackReadmeText>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)\..\README.md'))</_PackReadmeText>
+      <_PackReadmeText>$([System.Text.RegularExpressions.Regex]::Replace($(_PackReadmeText), '(?m)^&lt;img [^\n]*\n\s*', ''))</_PackReadmeText>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(_PackReadmePath)" Lines="$([MSBuild]::Escape($(_PackReadmeText)))" Overwrite="true" WriteOnlyWhenDifferent="true" />
+    <ItemGroup>
+      <None Include="$(_PackReadmePath)" Pack="true" PackagePath="" />
+    </ItemGroup>
+  </Target>
 </Project>

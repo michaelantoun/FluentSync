@@ -13,10 +13,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<int> { 10, 20 });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<int> { 15 });
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 10, 20 });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 15 });
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<int>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<int>>
             {
                 new MatchComparisonResult<int>{Source = 30, Destination = 30, ComparisonResult = MatchComparisonResultType.Same},
                 new MatchComparisonResult<int>{Source = 5, Destination = 5, ComparisonResult = MatchComparisonResultType.Same}
@@ -34,10 +34,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<int>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<int>>
             {
                 new MatchComparisonResult<int>{Source = 10, Destination = 10, ComparisonResult = MatchComparisonResultType.Same},
                 new MatchComparisonResult<int>{Source = 20, Destination = 20, ComparisonResult = MatchComparisonResultType.Same},
@@ -56,10 +56,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<int>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<int>>
             {
                 new MatchComparisonResult<int>{Source = 10, Destination = 10, ComparisonResult = MatchComparisonResultType.Same}
             });
@@ -77,7 +77,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the source list, 1 key was found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated keys are not allowed in the source list, 1 key was found.");
         }
 
         [Fact]
@@ -92,7 +92,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the destination list, 1 key was found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated keys are not allowed in the destination list, 1 key was found.");
         }
 
         [Fact]
@@ -107,7 +107,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Null-able items are not allowed in the source list, 1 item was found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Null-able items are not allowed in the source list, 1 item was found.");
         }
 
         [Fact]
@@ -122,7 +122,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Null-able items are not allowed in the destination list, 1 item was found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Null-able items are not allowed in the destination list, 1 item was found.");
         }
     }
 }

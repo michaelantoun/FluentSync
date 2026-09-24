@@ -27,7 +27,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 })
                 .SyncAsync(CancellationToken.None);
 
-            actionCalledCount.Should().Be(expectedActionCalledCount);
+            actionCalledCount.ShouldBe(expectedActionCalledCount);
         }
 
         [Theory]
@@ -52,7 +52,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 })
                 .SyncAsync(CancellationToken.None);
 
-            actionCalledCount.Should().Be(expectedActionCalledCount);
+            actionCalledCount.ShouldBe(expectedActionCalledCount);
         }
 
         [Theory]
@@ -76,7 +76,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 })
                 .SyncAsync(CancellationToken.None);
 
-            actionCalledCount.Should().Be(expectedActionCalledCount);
+            actionCalledCount.ShouldBe(expectedActionCalledCount);
         }
 
         [Theory]
@@ -101,7 +101,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 })
                 .SyncAsync(CancellationToken.None);
 
-            actionCalledCount.Should().Be(expectedActionCalledCount);
+            actionCalledCount.ShouldBe(expectedActionCalledCount);
         }
     }
 }

@@ -10,12 +10,12 @@
         /// <param name="set2"></param>
         internal static void VerifySortedSetsAreEquivalent<T>(SortedSet<T> set1, SortedSet<T> set2)
         {
-            set1.Count.Should().Be(set2.Count);
+            set1.Count.ShouldBe(set2.Count);
 
             // Verify that the 2 sets are different
-            (set1 == set2).Should().BeFalse();
+            (set1 == set2).ShouldBeFalse();
 
-            set1.All(s => set2.Contains(s)).Should().BeTrue();
+            set1.All(s => set2.Contains(s)).ShouldBeTrue();
         }
 
         /// <summary>
@@ -26,15 +26,15 @@
         /// <param name="dic2"></param>
         internal static void VerifyDictionariesAreEquivalent<TKey, TValue>(IDictionary<TKey, TValue> dic1, IDictionary<TKey, TValue> dic2)
         {
-            dic1.Count.Should().Be(dic2.Count);
+            dic1.Count.ShouldBe(dic2.Count);
 
             // Verify that the 2 dictionaries are different
-            (dic1 == dic2).Should().BeFalse();
+            (dic1 == dic2).ShouldBeFalse();
 
             foreach (var pair1 in dic1)
             {
-                dic2.TryGetValue(pair1.Key, out var value2).Should().BeTrue();
-                pair1.Value.Should().BeEquivalentTo(value2);
+                dic2.TryGetValue(pair1.Key, out var value2).ShouldBeTrue();
+                pair1.Value.ShouldBeEquivalentTo(value2);
             }
         }
     }

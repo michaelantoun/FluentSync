@@ -19,8 +19,8 @@ namespace FluentSync.Tests.Sync.SyncAgent.LoadTests
                 .SyncAsync(CancellationToken.None);
 
             // Very slow, interesting!!!
-            //sourceItems.Should().BeEquivalentTo(expectedSourceList);
-            //destinationItems.Should().BeEquivalentTo(expectedDestinationList);
+            //sourceItems.ShouldBeEquivalentToIgnoringOrder(expectedSourceList);
+            //destinationItems.ShouldBeEquivalentToIgnoringOrder(expectedDestinationList);
 
             AssertionHelper.VerifySortedSetsAreEquivalent(sourceItems, expectedSourceList);
             AssertionHelper.VerifySortedSetsAreEquivalent(destinationItems, expectedDestinationList);

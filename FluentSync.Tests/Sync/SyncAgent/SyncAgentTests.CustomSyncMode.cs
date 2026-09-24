@@ -75,8 +75,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ItemsInSourceOnly = SyncItemOperation.Add)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(CreateSourceEventList());
-            destination.Should().BeEquivalentTo(CreateDestinationEventList().Union(CreateSourceEventList().Where(x => !x.Id.HasValue)));
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList());
+            destination.ShouldBeEquivalentToIgnoringOrder(CreateDestinationEventList().Union(CreateSourceEventList().Where(x => !x.Id.HasValue)));
         }
 
         [Fact]
@@ -88,8 +88,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ItemsInSourceOnly = SyncItemOperation.Delete)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(CreateSourceEventList().Where(x => x.Id.HasValue));
-            destination.Should().BeEquivalentTo(CreateDestinationEventList());
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList().Where(x => x.Id.HasValue));
+            destination.ShouldBeEquivalentToIgnoringOrder(CreateDestinationEventList());
         }
 
         #endregion
@@ -106,8 +106,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SyncAsync(CancellationToken.None);
 
             var originalDestinationList = CreateDestinationEventList();
-            source.Should().BeEquivalentTo(CreateSourceEventList().Union(new[] { originalDestinationList[2] }));
-            destination.Should().BeEquivalentTo(originalDestinationList);
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList().Union(new[] { originalDestinationList[2] }));
+            destination.ShouldBeEquivalentToIgnoringOrder(originalDestinationList);
         }
 
         [Fact]
@@ -119,8 +119,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ItemsInDestinationOnly = SyncItemOperation.Delete)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(CreateSourceEventList());
-            destination.Should().BeEquivalentTo(CreateDestinationEventList().Where(x => x.Id != 3));
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList());
+            destination.ShouldBeEquivalentToIgnoringOrder(CreateDestinationEventList().Where(x => x.Id != 3));
         }
 
         #endregion
@@ -136,8 +136,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.SameMatches = SyncMatchOperation.None)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(CreateSourceEventList());
-            destination.Should().BeEquivalentTo(CreateDestinationEventList());
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList());
+            destination.ShouldBeEquivalentToIgnoringOrder(CreateDestinationEventList());
         }
 
         [Fact]
@@ -149,8 +149,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.SameMatches = SyncMatchOperation.UpdateDestination)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(CreateSourceEventList());
-            destination.Should().BeEquivalentTo(CreateDestinationEventList());
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList());
+            destination.ShouldBeEquivalentToIgnoringOrder(CreateDestinationEventList());
         }
 
         [Fact]
@@ -162,8 +162,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.SameMatches = SyncMatchOperation.UpdateOldDestination)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(CreateSourceEventList());
-            destination.Should().BeEquivalentTo(CreateDestinationEventList());
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList());
+            destination.ShouldBeEquivalentToIgnoringOrder(CreateDestinationEventList());
         }
 
         [Fact]
@@ -175,8 +175,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.SameMatches = SyncMatchOperation.UpdateOldItem)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(CreateSourceEventList());
-            destination.Should().BeEquivalentTo(CreateDestinationEventList());
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList());
+            destination.ShouldBeEquivalentToIgnoringOrder(CreateDestinationEventList());
         }
 
         [Fact]
@@ -188,8 +188,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.SameMatches = SyncMatchOperation.UpdateSource)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(CreateSourceEventList());
-            destination.Should().BeEquivalentTo(CreateDestinationEventList());
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList());
+            destination.ShouldBeEquivalentToIgnoringOrder(CreateDestinationEventList());
         }
 
         [Fact]
@@ -201,8 +201,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.SameMatches = SyncMatchOperation.UpdateOldSource)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(CreateSourceEventList());
-            destination.Should().BeEquivalentTo(CreateDestinationEventList());
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList());
+            destination.ShouldBeEquivalentToIgnoringOrder(CreateDestinationEventList());
         }
 
         #endregion
@@ -218,8 +218,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.None)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(CreateSourceEventList());
-            destination.Should().BeEquivalentTo(CreateDestinationEventList());
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList());
+            destination.ShouldBeEquivalentToIgnoringOrder(CreateDestinationEventList());
         }
 
         [Fact]
@@ -231,11 +231,11 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.UpdateDestination)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(CreateSourceEventList());
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList());
 
             var expectedDestinationResult = CreateDestinationEventList();
             expectedDestinationResult.First(x => x.Id == 5).Title = "bad";
-            destination.Should().BeEquivalentTo(expectedDestinationResult);
+            destination.ShouldBeEquivalentToIgnoringOrder(expectedDestinationResult);
         }
 
         [Fact]
@@ -247,7 +247,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.UpdateOldDestination)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<Exception>().WithMessage($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldDestination.ToString()}.");
+            (await Should.ThrowAsync<Exception>(act)).Message.ShouldBe($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldDestination.ToString()}.");
         }
 
         [Fact]
@@ -259,7 +259,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.UpdateOldItem)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<Exception>().WithMessage($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldItem.ToString()}.");
+            (await Should.ThrowAsync<Exception>(act)).Message.ShouldBe($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldItem.ToString()}.");
         }
 
         [Fact]
@@ -273,8 +273,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             var expectedSourceResult = CreateSourceEventList();
             expectedSourceResult.First(x => x.Id == 5).Title = "Bad";
-            source.Should().BeEquivalentTo(expectedSourceResult);
-            destination.Should().BeEquivalentTo(CreateDestinationEventList());
+            source.ShouldBeEquivalentToIgnoringOrder(expectedSourceResult);
+            destination.ShouldBeEquivalentToIgnoringOrder(CreateDestinationEventList());
         }
 
         [Fact]
@@ -286,7 +286,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.UpdateOldSource)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<Exception>().WithMessage($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldSource.ToString()}.");
+            (await Should.ThrowAsync<Exception>(act)).Message.ShouldBe($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldSource.ToString()}.");
         }
 
         #endregion
@@ -302,8 +302,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.NewerMatches = SyncMatchOperation.None)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(CreateSourceEventList());
-            destination.Should().BeEquivalentTo(CreateDestinationEventList());
+            source.ShouldBeEquivalentToIgnoringOrder(CreateSourceEventList());
+            destination.ShouldBeEquivalentToIgnoringOrder(CreateDestinationEventList());
         }
 
         [Fact]
@@ -321,8 +321,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
             expectedDestinationList.RemoveAll(x => new int?[] { 1, 4 }.Contains(x.Id));
             expectedDestinationList.AddRange(expectedSourceList.Where(x => new int?[] { 1, 4 }.Contains(x.Id)));
 
-            source.Should().BeEquivalentTo(expectedSourceList);
-            destination.Should().BeEquivalentTo(expectedDestinationList);
+            source.ShouldBeEquivalentToIgnoringOrder(expectedSourceList);
+            destination.ShouldBeEquivalentToIgnoringOrder(expectedDestinationList);
         }
 
         [Fact]
@@ -363,8 +363,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
             expectedDestinationList.RemoveAll(x => x.Id == 4);
             expectedDestinationList.AddRange(expectedSourceList.Where(x => x.Id == 4));
 
-            source.Should().BeEquivalentTo(expectedSourceList);
-            destination.Should().BeEquivalentTo(expectedDestinationList);
+            source.ShouldBeEquivalentToIgnoringOrder(expectedSourceList);
+            destination.ShouldBeEquivalentToIgnoringOrder(expectedDestinationList);
         }
 
         [Fact]
@@ -385,8 +385,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
             expectedDestinationList.RemoveAll(x => x.Id == 4);
             expectedDestinationList.Add(expectedSourceList.First(x => x.Id == 4));
 
-            source.Should().BeEquivalentTo(expectedSourceList);
-            destination.Should().BeEquivalentTo(expectedDestinationList);
+            source.ShouldBeEquivalentToIgnoringOrder(expectedSourceList);
+            destination.ShouldBeEquivalentToIgnoringOrder(expectedDestinationList);
         }
 
         [Fact]
@@ -404,8 +404,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
             expectedSourceList.RemoveAll(x => new int?[] { 1, 4 }.Contains(x.Id));
             expectedSourceList.AddRange(expectedDestinationList.Where(x => new int?[] { 1, 4 }.Contains(x.Id)));
 
-            source.Should().BeEquivalentTo(expectedSourceList);
-            destination.Should().BeEquivalentTo(expectedDestinationList);
+            source.ShouldBeEquivalentToIgnoringOrder(expectedSourceList);
+            destination.ShouldBeEquivalentToIgnoringOrder(expectedDestinationList);
         }
 
         [Fact]
@@ -423,8 +423,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
             expectedSourceList.RemoveAll(x => x.Id == 1);
             expectedSourceList.Add(expectedDestinationList.First(x => x.Id == 1));
 
-            source.Should().BeEquivalentTo(expectedSourceList);
-            destination.Should().BeEquivalentTo(expectedDestinationList);
+            source.ShouldBeEquivalentToIgnoringOrder(expectedSourceList);
+            destination.ShouldBeEquivalentToIgnoringOrder(expectedDestinationList);
         }
 
         #endregion
@@ -445,7 +445,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 })
                 .SyncAsync(CancellationToken.None);
 
-            actionCalledCount.Should().Be(1);
+            actionCalledCount.ShouldBe(1);
         }
 
         [Theory]
@@ -487,7 +487,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetDestinationProvider((ISyncProvider<Event>)destination)
                 .SyncAsync(comparisonResult, CancellationToken.None);
 
-            source.Items.Should().BeEquivalentTo(destination.Items);
+            source.Items.ShouldBeEquivalentToIgnoringOrder(destination.Items);
         }
 
     }

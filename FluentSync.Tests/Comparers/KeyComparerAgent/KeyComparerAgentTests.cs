@@ -13,7 +13,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.SourceProvider)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(ComparerAgent<int>.SourceProvider)} cannot be null.");
         }
 
         [Fact]
@@ -25,7 +25,7 @@
                 .SetSourceProvider(source)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.DestinationProvider)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(ComparerAgent<int>.DestinationProvider)} cannot be null.");
         }
 
         #endregion
@@ -43,9 +43,9 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.KeysInSourceOnly.Should().BeEmpty();
-            comparisonResult.KeysInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.KeysInSourceOnly.ShouldBeEmpty();
+            comparisonResult.KeysInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -59,9 +59,9 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.KeysInSourceOnly.Should().BeEmpty();
-            comparisonResult.KeysInDestinationOnly.Should().BeEquivalentTo(new List<int> { 1 });
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.KeysInSourceOnly.ShouldBeEmpty();
+            comparisonResult.KeysInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 1 });
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -75,9 +75,9 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.KeysInSourceOnly.Should().BeEquivalentTo(new List<int> { 1 });
-            comparisonResult.KeysInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.KeysInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 1 });
+            comparisonResult.KeysInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -91,9 +91,9 @@
                     .SetDestinationProvider(destination)
                     .CompareAsync(CancellationToken.None);
 
-            comparisonResult.KeysInSourceOnly.Should().BeEmpty();
-            comparisonResult.KeysInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.KeysInSourceOnly.ShouldBeEmpty();
+            comparisonResult.KeysInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -107,9 +107,9 @@
                     .SetDestinationProvider(destination)
                     .CompareAsync(CancellationToken.None);
 
-            comparisonResult.KeysInSourceOnly.Should().BeEmpty();
-            comparisonResult.KeysInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.KeysInSourceOnly.ShouldBeEmpty();
+            comparisonResult.KeysInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         #endregion
@@ -127,7 +127,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage("Null-able keys found in the source list.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe("Null-able keys found in the source list.");
         }
 
         [Fact]
@@ -141,7 +141,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage("Null-able keys found in the destination list.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe("Null-able keys found in the destination list.");
         }
 
         [Fact]
@@ -155,7 +155,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Key '1' already exists in the source list.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Key '1' already exists in the source list.");
         }
 
         [Fact]
@@ -169,7 +169,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Key '2' already exists in the destination list.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Key '2' already exists in the destination list.");
         }
 
         #endregion

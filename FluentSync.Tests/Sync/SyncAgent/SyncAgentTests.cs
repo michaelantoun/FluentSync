@@ -15,7 +15,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
             Func<Task> act = async () => await SyncAgent<int>.Create()
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(SyncAgent<int>.ComparerAgent)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(SyncAgent<int>.ComparerAgent)} cannot be null.");
         }
 
         [Fact]
@@ -29,7 +29,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetDestinationProvider(destination)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(SyncAgent<int>.SourceProvider)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(SyncAgent<int>.SourceProvider)} cannot be null.");
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetSourceProvider(source)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(SyncAgent<int>.DestinationProvider)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(SyncAgent<int>.DestinationProvider)} cannot be null.");
         }
 
         [Fact]
@@ -58,7 +58,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetDestinationProvider(destination)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(SyncAgent<int>.ComparerAgent)} must be set first.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(SyncAgent<int>.ComparerAgent)} must be set first.");
         }
 
         [Fact]
@@ -73,7 +73,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetSourceProvider(source)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(SyncAgent<int>.ComparerAgent)} must be set first.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(SyncAgent<int>.ComparerAgent)} must be set first.");
         }
 
         #region Set Source/Destination lists
@@ -90,7 +90,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetDestinationProvider(destination)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage("The source items cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe("The source items cannot be null.");
         }
 
         [Fact]
@@ -105,7 +105,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetDestinationProvider(destination)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(SyncAgent<int>.ComparerAgent)} must be set first.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(SyncAgent<int>.ComparerAgent)} must be set first.");
         }
 
         [Fact]
@@ -120,7 +120,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetSourceProvider(source)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(SyncAgent<int>.ComparerAgent)} must be set first.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(SyncAgent<int>.ComparerAgent)} must be set first.");
         }
 
         [Fact]
@@ -135,7 +135,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetDestinationProvider(destination)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage("The destination items cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe("The destination items cannot be null.");
         }
 
         [Fact]
@@ -152,10 +152,10 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await syncAgent.SyncAsync(CancellationToken.None);
 
-            source.Items.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
-            destination.Items.Should().BeEquivalentTo(source.Items);
+            source.Items.ShouldBeEquivalentToIgnoringOrder(new List<int> { 5, 4, 9 });
+            destination.Items.ShouldBeEquivalentToIgnoringOrder(source.Items);
 
-            syncAgent.ToString().Should().Be($"{nameof(syncAgent.Configurations)}: {{{syncAgent.Configurations}}}");
+            syncAgent.ToString().ShouldBe($"{nameof(syncAgent.Configurations)}: {{{syncAgent.Configurations}}}");
         }
 
         #endregion
@@ -174,7 +174,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetDestinationProvider(destination)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage("The source items cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe("The source items cannot be null.");
         }
 
         [Fact]
@@ -189,7 +189,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetDestinationProvider(destination)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(SyncAgent<int>.ComparerAgent)} must be set first.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(SyncAgent<int>.ComparerAgent)} must be set first.");
         }
 
         [Fact]
@@ -204,7 +204,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetSourceProvider(source)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(SyncAgent<int>.ComparerAgent)} must be set first.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(SyncAgent<int>.ComparerAgent)} must be set first.");
         }
 
         [Fact]
@@ -219,7 +219,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetDestinationProvider(destination)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage("The destination items cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe("The destination items cannot be null.");
         }
 
         #endregion

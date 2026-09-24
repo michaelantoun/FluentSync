@@ -7,7 +7,7 @@
         {
             var matchComparisonResult = new MatchComparisonResult<int> { ComparisonResult = MatchComparisonResultType.Same };
 
-            matchComparisonResult.ToString().Should().Be($"{nameof(matchComparisonResult.ComparisonResult)}: {matchComparisonResult.ComparisonResult}");
+            matchComparisonResult.ToString().ShouldBe($"{nameof(matchComparisonResult.ComparisonResult)}: {matchComparisonResult.ComparisonResult}");
         }
     }
 }

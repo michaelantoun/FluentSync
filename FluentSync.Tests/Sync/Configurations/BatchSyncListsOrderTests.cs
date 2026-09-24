@@ -9,15 +9,15 @@ namespace FluentSync.Tests.Sync.Configurations
         {
             var syncOperationsOrder = new BatchSyncListsOrder();
 
-            syncOperationsOrder.HasDuplicates().Should().BeFalse();
+            syncOperationsOrder.HasDuplicates().ShouldBeFalse();
 
-            syncOperationsOrder.Order.Should().NotBeNull();
-            syncOperationsOrder.Order.Length.Should().Be(3);
-            syncOperationsOrder.Order[0].Should().Be(BatchSyncListType.ItemsInSourceOnly);
-            syncOperationsOrder.Order[1].Should().Be(BatchSyncListType.ItemsInDestinationOnly);
-            syncOperationsOrder.Order[2].Should().Be(BatchSyncListType.Matches);
+            syncOperationsOrder.Order.ShouldNotBeNull();
+            syncOperationsOrder.Order.Length.ShouldBe(3);
+            syncOperationsOrder.Order[0].ShouldBe(BatchSyncListType.ItemsInSourceOnly);
+            syncOperationsOrder.Order[1].ShouldBe(BatchSyncListType.ItemsInDestinationOnly);
+            syncOperationsOrder.Order[2].ShouldBe(BatchSyncListType.Matches);
 
-            syncOperationsOrder.ToString().Should().Be($"First: {BatchSyncListType.ItemsInSourceOnly}, Second: {BatchSyncListType.ItemsInDestinationOnly}, Finally: {BatchSyncListType.Matches}");
+            syncOperationsOrder.ToString().ShouldBe($"First: {BatchSyncListType.ItemsInSourceOnly}, Second: {BatchSyncListType.ItemsInDestinationOnly}, Finally: {BatchSyncListType.Matches}");
         }
 
         [Theory]
@@ -33,7 +33,7 @@ namespace FluentSync.Tests.Sync.Configurations
             syncOperationsOrder.Order[1] = secondOperation;
             syncOperationsOrder.Order[2] = thirdOperation;
 
-            syncOperationsOrder.HasDuplicates().Should().BeTrue();
+            syncOperationsOrder.HasDuplicates().ShouldBeTrue();
         }
 
         [Theory]
@@ -46,7 +46,7 @@ namespace FluentSync.Tests.Sync.Configurations
             syncOperationsOrder.Order[1] = secondOperation;
             syncOperationsOrder.Order[2] = thirdOperation;
 
-            syncOperationsOrder.HasDuplicates().Should().BeFalse();
+            syncOperationsOrder.HasDuplicates().ShouldBeFalse();
         }
     }
 }

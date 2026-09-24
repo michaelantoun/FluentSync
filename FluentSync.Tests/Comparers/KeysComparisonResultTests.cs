@@ -12,7 +12,7 @@
             keysComparisonResult.KeysInDestinationOnly.Add(2);
             keysComparisonResult.KeysInDestinationOnly.Add(3);
 
-            keysComparisonResult.ToString().Should().Be($"{nameof(keysComparisonResult.KeysInSourceOnly)}: {keysComparisonResult.KeysInSourceOnly.Count}, {nameof(keysComparisonResult.KeysInDestinationOnly)}: {keysComparisonResult.KeysInDestinationOnly.Count}, {nameof(keysComparisonResult.Matches)}: {keysComparisonResult.Matches.Count}");
+            keysComparisonResult.ToString().ShouldBe($"{nameof(keysComparisonResult.KeysInSourceOnly)}: {keysComparisonResult.KeysInSourceOnly.Count}, {nameof(keysComparisonResult.KeysInDestinationOnly)}: {keysComparisonResult.KeysInDestinationOnly.Count}, {nameof(keysComparisonResult.Matches)}: {keysComparisonResult.Matches.Count}");
         }
     }
 }

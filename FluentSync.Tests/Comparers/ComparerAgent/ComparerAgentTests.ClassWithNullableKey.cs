@@ -25,10 +25,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<Person> { source[2], source[3] });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<Person> { destination[2] });
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<Person> { source[2], source[3] });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<Person> { destination[2] });
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<Person>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<Person>>
             {
                 new MatchComparisonResult<Person>{Source = source[0], Destination = destination[0], ComparisonResult = MatchComparisonResultType.Same},
                 new MatchComparisonResult<Person>{Source = source[1], Destination = destination[1], ComparisonResult = MatchComparisonResultType.Conflict},
@@ -61,10 +61,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<Person> { source[1], source[2], source[3], source[4], source[5], source[7] });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<Person> { destination[2] });
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<Person> { source[1], source[2], source[3], source[4], source[5], source[7] });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<Person> { destination[2] });
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<Person>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<Person>>
             {
                 new MatchComparisonResult<Person>{Source = source[0], Destination = destination[1], ComparisonResult = MatchComparisonResultType.Same},
                 new MatchComparisonResult<Person>{Source = source[6], Destination = destination[0], ComparisonResult = MatchComparisonResultType.Conflict},
@@ -98,7 +98,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the source list, 5 keys were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated keys are not allowed in the source list, 5 keys were found.");
         }
 
         [Fact]
@@ -128,7 +128,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the destination list, 5 keys were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated keys are not allowed in the destination list, 5 keys were found.");
         }
 
         [Fact]
@@ -160,7 +160,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 6 items were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated items are not allowed in the source list, 6 items were found.");
         }
 
         [Fact]
@@ -191,7 +191,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the destination list, 5 items were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated items are not allowed in the destination list, 5 items were found.");
         }
 
         [Fact]
@@ -226,7 +226,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Negative Ids are invalid in the source list, 1 item was found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Negative Ids are invalid in the source list, 1 item was found.");
         }
 
         [Fact]
@@ -261,7 +261,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Negative Ids are invalid in the destination list, 2 items were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Negative Ids are invalid in the destination list, 2 items were found.");
         }
     }
 }

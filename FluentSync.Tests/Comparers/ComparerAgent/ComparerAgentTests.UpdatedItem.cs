@@ -38,10 +38,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<Event> { source[2], source[3] });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<Event> { destination[2] });
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<Event> { source[2], source[3] });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<Event> { destination[2] });
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<Event>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<Event>>
             {
                 new MatchComparisonResult<Event>{Source = source[1], Destination = destination[0], ComparisonResult = MatchComparisonResultType.NewerDestination},
                 new MatchComparisonResult<Event>{Source = source[0], Destination = destination[1], ComparisonResult = MatchComparisonResultType.Same},

@@ -9,8 +9,8 @@ namespace FluentSync.Tests.Sync.Configurations
         {
             var syncConfigurations = new SyncConfigurations();
 
-            syncConfigurations.SyncMode.Should().NotBeNull();
-            syncConfigurations.SyncOperationsOrder.Should().NotBeNull();
+            syncConfigurations.SyncMode.ShouldNotBeNull();
+            syncConfigurations.SyncOperationsOrder.ShouldNotBeNull();
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace FluentSync.Tests.Sync.Configurations
 
             Action act = () => syncConfigurations.Validate();
 
-            act.Should().Throw<ArgumentException>().WithMessage($"Cannot have duplicates in the {nameof(syncConfigurations.SyncOperationsOrder)} array.");
+            Should.Throw<ArgumentException>(act).Message.ShouldBe($"Cannot have duplicates in the {nameof(syncConfigurations.SyncOperationsOrder)} array.");
         }
     }
 }

@@ -13,9 +13,9 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            keysComparisonResult.KeysInSourceOnly.Should().BeEquivalentTo(new List<int> { 20 });
-            keysComparisonResult.KeysInDestinationOnly.Should().BeEquivalentTo(new List<int> { 25 });
-            keysComparisonResult.Matches.Should().BeEquivalentTo(new List<int> { 5, 10 });
+            keysComparisonResult.KeysInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 20 });
+            keysComparisonResult.KeysInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 25 });
+            keysComparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<int> { 5, 10 });
         }
 
         [Fact]
@@ -29,9 +29,9 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            keysComparisonResult.KeysInSourceOnly.Should().BeEquivalentTo(new List<int?> { 20 });
-            keysComparisonResult.KeysInDestinationOnly.Should().BeEquivalentTo(new List<int?> { 25 });
-            keysComparisonResult.Matches.Should().BeEquivalentTo(new List<int?> { 5, 10 });
+            keysComparisonResult.KeysInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<int?> { 20 });
+            keysComparisonResult.KeysInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<int?> { 25 });
+            keysComparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<int?> { 5, 10 });
         }
     }
 }

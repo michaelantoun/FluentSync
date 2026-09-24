@@ -11,7 +11,7 @@
         [InlineData(3, 2, 1)]
         public void ValueTypeCompareMethodShouldReturnValidNumber(int? x, int? y, int expectedResult)
         {
-            ValueTypeExtensions.CompareTo(x, y).Should().Be(expectedResult);
+            ValueTypeExtensions.CompareTo(x, y).ShouldBe(expectedResult);
         }
     }
 }

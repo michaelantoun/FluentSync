@@ -13,7 +13,7 @@ namespace FluentSync.Tests.Sync.Configurations
 
             Action act = () => syncConfigurations.BatchSize = batchSize;
 
-            act.Should().Throw<ArgumentException>().WithMessage("Batch size must be greater than 0.");
+            Should.Throw<ArgumentException>(act).Message.ShouldBe("Batch size must be greater than 0.");
         }
 
         [Fact]
@@ -26,7 +26,7 @@ namespace FluentSync.Tests.Sync.Configurations
 
             Action act = () => syncConfigurations.Validate();
 
-            act.Should().Throw<ArgumentException>().WithMessage($"Cannot have duplicates in the {nameof(syncConfigurations.SyncOperationsOrder)} array.");
+            Should.Throw<ArgumentException>(act).Message.ShouldBe($"Cannot have duplicates in the {nameof(syncConfigurations.SyncOperationsOrder)} array.");
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace FluentSync.Tests.Sync.Configurations
 
             Action act = () => syncConfigurations.Validate();
 
-            act.Should().Throw<ArgumentException>().WithMessage($"Cannot have duplicates in the {nameof(syncConfigurations.BatchSyncListsOrder)} array.");
+            Should.Throw<ArgumentException>(act).Message.ShouldBe($"Cannot have duplicates in the {nameof(syncConfigurations.BatchSyncListsOrder)} array.");
         }
 
         [Fact]
@@ -47,12 +47,12 @@ namespace FluentSync.Tests.Sync.Configurations
         {
             var syncConfigurations = new BatchSyncConfigurations();
 
-            syncConfigurations.SyncMode.Should().NotBeNull();
-            syncConfigurations.SyncOperationsOrder.Should().NotBeNull();
-            syncConfigurations.BatchSyncListsOrder.Should().NotBeNull();
-            syncConfigurations.BatchSize.Should().BeGreaterThan(0);
+            syncConfigurations.SyncMode.ShouldNotBeNull();
+            syncConfigurations.SyncOperationsOrder.ShouldNotBeNull();
+            syncConfigurations.BatchSyncListsOrder.ShouldNotBeNull();
+            syncConfigurations.BatchSize.ShouldBeGreaterThan(0);
 
-            syncConfigurations.ToString().Should().Be($"{nameof(syncConfigurations.SyncMode)}: {{{syncConfigurations.SyncMode}}}, {nameof(syncConfigurations.SyncOperationsOrder)}: {{{syncConfigurations.SyncOperationsOrder}}}, {nameof(syncConfigurations.BatchSyncListsOrder)}: {{{syncConfigurations.BatchSyncListsOrder}}}, {nameof(syncConfigurations.BatchSize)}: {syncConfigurations.BatchSize}");
+            syncConfigurations.ToString().ShouldBe($"{nameof(syncConfigurations.SyncMode)}: {{{syncConfigurations.SyncMode}}}, {nameof(syncConfigurations.SyncOperationsOrder)}: {{{syncConfigurations.SyncOperationsOrder}}}, {nameof(syncConfigurations.BatchSyncListsOrder)}: {{{syncConfigurations.BatchSyncListsOrder}}}, {nameof(syncConfigurations.BatchSize)}: {syncConfigurations.BatchSize}");
         }
     }
 }

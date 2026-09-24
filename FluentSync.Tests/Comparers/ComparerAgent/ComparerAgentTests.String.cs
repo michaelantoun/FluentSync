@@ -13,10 +13,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { "Tom", "bob", "Zoo" });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Bob", "Sam" });
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<string> { "Tom", "bob", "Zoo" });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<string> { "Bob", "Sam" });
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<string>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<string>>
             {
                 new MatchComparisonResult<string>{Source = "Tim", Destination = "Tim", ComparisonResult = MatchComparisonResultType.Same}
             });
@@ -34,10 +34,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { "Tom", "Zoo" });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Sam" });
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<string> { "Tom", "Zoo" });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<string> { "Sam" });
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<string>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<string>>
             {
                 new MatchComparisonResult<string>{Source = "Tim", Destination = "Tim", ComparisonResult = MatchComparisonResultType.Same},
                 new MatchComparisonResult<string>{Source = "bob", Destination = "Bob", ComparisonResult = MatchComparisonResultType.Conflict}
@@ -55,10 +55,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<string>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<string>>
             {
                 new MatchComparisonResult<string>{Source = null, Destination = null, ComparisonResult = MatchComparisonResultType.Same}
             });
@@ -75,10 +75,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<string>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<string>>
             {
                 new MatchComparisonResult<string>{Source = null, Destination = null, ComparisonResult = MatchComparisonResultType.Same},
                 new MatchComparisonResult<string>{Source = null, Destination = null, ComparisonResult = MatchComparisonResultType.Same}
@@ -96,9 +96,9 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { null });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Tom" });
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<string> { null });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<string> { "Tom" });
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -112,9 +112,9 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { "Tom" });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { null });
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<string> { "Tom" });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<string> { null });
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -128,10 +128,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { null, "bob" });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Bob" });
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<string> { null, "bob" });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<string> { "Bob" });
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<string>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<string>>
             {
                 new MatchComparisonResult<string>{Source = null, Destination = null, ComparisonResult = MatchComparisonResultType.Same},
                 new MatchComparisonResult<string>{Source = "Tim", Destination = "Tim", ComparisonResult = MatchComparisonResultType.Same}

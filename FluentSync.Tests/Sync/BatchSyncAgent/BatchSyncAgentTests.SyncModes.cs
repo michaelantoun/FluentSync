@@ -77,8 +77,8 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
             IDictionary<int?, Event> expectedSource = CreateSourceEventDictionary()
                 , expectedDestination = CreateDestinationEventDictionary();
 
-            source.Should().BeEquivalentTo(expectedSource);
-            destination.Should().BeEquivalentTo(expectedDestination);
+            source.ShouldBeEquivalentToIgnoringOrder(expectedSource);
+            destination.ShouldBeEquivalentToIgnoringOrder(expectedDestination);
         }
 
         [Theory]
@@ -102,11 +102,11 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
             IDictionary<int?, Event> expectedSource = CreateSourceEventDictionary()
                 , expectedDestination = CreateDestinationEventDictionary();
 
-            source.Should().BeEquivalentTo(expectedSource);
+            source.ShouldBeEquivalentToIgnoringOrder(expectedSource);
 
             expectedDestination.Add(6, expectedSource[6]);
             expectedDestination[4] = expectedSource[4];
-            destination.Should().BeEquivalentTo(expectedDestination);
+            destination.ShouldBeEquivalentToIgnoringOrder(expectedDestination);
         }
 
         [Theory]
@@ -130,7 +130,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
             IDictionary<int?, Event> expectedSource = CreateSourceEventDictionary()
                 , expectedDestination = CreateDestinationEventDictionary();
 
-            source.Should().BeEquivalentTo(expectedSource);
+            source.ShouldBeEquivalentToIgnoringOrder(expectedSource);
 
             expectedDestination.Remove(3);
             expectedDestination.Remove(7);
@@ -139,7 +139,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
             expectedDestination[1] = expectedSource[1];
             expectedDestination[4] = expectedSource[4];
             expectedDestination[5] = expectedSource[5];
-            destination.Should().BeEquivalentTo(expectedDestination);
+            destination.ShouldBeEquivalentToIgnoringOrder(expectedDestination);
         }
 
         [Theory]
@@ -171,8 +171,8 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
             expectedDestination[4] = expectedSource[4];
             expectedDestination.Add(6, expectedSource[6]);
 
-            source.Should().BeEquivalentTo(expectedSource);
-            destination.Should().BeEquivalentTo(expectedDestination);
+            source.ShouldBeEquivalentToIgnoringOrder(expectedSource);
+            destination.ShouldBeEquivalentToIgnoringOrder(expectedDestination);
         }
 
         [Theory]
@@ -201,8 +201,8 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
             expectedSource.Add(7, expectedDestination[7]);
             expectedSource.Add(8, expectedDestination[8]);
 
-            source.Should().BeEquivalentTo(expectedSource);
-            destination.Should().BeEquivalentTo(expectedDestination);
+            source.ShouldBeEquivalentToIgnoringOrder(expectedSource);
+            destination.ShouldBeEquivalentToIgnoringOrder(expectedDestination);
         }
 
         [Theory]
@@ -234,8 +234,8 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
             expectedSource.Add(8, expectedDestination[8]);
             expectedSource.Remove(6);
 
-            source.Should().BeEquivalentTo(expectedSource);
-            destination.Should().BeEquivalentTo(expectedDestination);
+            source.ShouldBeEquivalentToIgnoringOrder(expectedSource);
+            destination.ShouldBeEquivalentToIgnoringOrder(expectedDestination);
         }
 
         [Fact]
@@ -263,10 +263,10 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
             expectedDestination[4] = expectedSource[4];
             expectedDestination.Add(6, expectedSource[6]);
 
-            source.Items.Should().BeEquivalentTo(expectedSource);
-            destination.Items.Should().BeEquivalentTo(expectedDestination);
+            source.Items.ShouldBeEquivalentToIgnoringOrder(expectedSource);
+            destination.Items.ShouldBeEquivalentToIgnoringOrder(expectedDestination);
 
-            syncAgent.ToString().Should().Be($"{nameof(syncAgent.Configurations)}: {{{syncAgent.Configurations}}}");
+            syncAgent.ToString().ShouldBe($"{nameof(syncAgent.Configurations)}: {{{syncAgent.Configurations}}}");
         }
 
         [Theory]
@@ -296,7 +296,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
                 .SetDestinationProvider((IBatchSyncProvider<int?, Event>)destination)
                 .SyncAsync(keyComparisonResult, CancellationToken.None);
 
-            source.Items.Should().BeEquivalentTo(destination.Items);
+            source.Items.ShouldBeEquivalentToIgnoringOrder(destination.Items);
         }
     }
 }

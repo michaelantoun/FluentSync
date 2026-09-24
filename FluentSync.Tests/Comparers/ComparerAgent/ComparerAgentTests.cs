@@ -13,7 +13,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.SourceProvider)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(ComparerAgent<int>.SourceProvider)} cannot be null.");
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetSourceProvider(source)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.DestinationProvider)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(ComparerAgent<int>.DestinationProvider)} cannot be null.");
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
             Func<Task> act = async () => await comparerAgent
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.KeySelector)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(ComparerAgent<int>.KeySelector)} cannot be null.");
         }
 
         [Fact]
@@ -59,7 +59,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
             Func<Task> act = async () => await comparerAgent
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.CompareItemFunc)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(ComparerAgent<int>.CompareItemFunc)} cannot be null.");
         }
 
         #endregion
@@ -77,9 +77,9 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -93,9 +93,9 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<int> { 1 });
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 1 });
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -109,9 +109,9 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<int> { 1 });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 1 });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -125,9 +125,9 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                     .SetDestinationProvider(destination)
                     .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -141,9 +141,9 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                     .SetDestinationProvider(destination)
                     .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         #endregion
@@ -158,7 +158,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination);
 
-            comparerAgent.ToString().Should().Be($"{nameof(comparerAgent.Configurations)}: {{{comparerAgent.Configurations}}}");
+            comparerAgent.ToString().ShouldBe($"{nameof(comparerAgent.Configurations)}: {{{comparerAgent.Configurations}}}");
         }
 
         [Fact]
@@ -172,9 +172,9 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
     }
 }

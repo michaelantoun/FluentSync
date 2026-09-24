@@ -39,7 +39,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             Func<Task> act = async () => await syncAgent.SyncAsync(comparisonResult, CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NotSupportedException>().WithMessage($"Not supported source {nameof(SyncItemOperation)} '99'.");
+            (await Should.ThrowAsync<NotSupportedException>(act)).Message.ShouldBe($"Not supported source {nameof(SyncItemOperation)} '99'.");
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             Func<Task> act = async () => await syncAgent.SyncAsync(comparisonResult, CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NotSupportedException>().WithMessage($"Not supported destination {nameof(SyncItemOperation)} '99'.");
+            (await Should.ThrowAsync<NotSupportedException>(act)).Message.ShouldBe($"Not supported destination {nameof(SyncItemOperation)} '99'.");
         }
 
         [Fact]
@@ -64,8 +64,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             Func<Task> act = async () => await syncAgent.SyncAsync(MatchWith(MatchComparisonResultType.Same), CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NotSupportedException>()
-                .WithMessage($"Not supported {nameof(SyncMatchOperation)} '99' for {MatchComparisonResultType.Same} matches.");
+            (await Should.ThrowAsync<NotSupportedException>(act))
+                .Message.ShouldBe($"Not supported {nameof(SyncMatchOperation)} '99' for {MatchComparisonResultType.Same} matches.");
         }
 
         [Fact]
@@ -76,8 +76,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             Func<Task> act = async () => await syncAgent.SyncAsync(MatchWith(MatchComparisonResultType.Conflict), CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NotSupportedException>()
-                .WithMessage($"Not supported {nameof(SyncMatchOperation)} '99' for {MatchComparisonResultType.Conflict} matches.");
+            (await Should.ThrowAsync<NotSupportedException>(act))
+                .Message.ShouldBe($"Not supported {nameof(SyncMatchOperation)} '99' for {MatchComparisonResultType.Conflict} matches.");
         }
 
         [Theory]
@@ -90,8 +90,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             Func<Task> act = async () => await syncAgent.SyncAsync(MatchWith(comparisonResult), CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NotSupportedException>()
-                .WithMessage($"Not supported {nameof(SyncMatchOperation)} '99' for newer matches.");
+            (await Should.ThrowAsync<NotSupportedException>(act))
+                .Message.ShouldBe($"Not supported {nameof(SyncMatchOperation)} '99' for newer matches.");
         }
     }
 }

@@ -25,10 +25,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<Hobby> { source[2], source[3] });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<Hobby> { destination[2] });
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<Hobby> { source[2], source[3] });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<Hobby> { destination[2] });
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<Hobby>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<Hobby>>
             {
                 new MatchComparisonResult<Hobby>{Source = source[0], Destination = destination[0], ComparisonResult = MatchComparisonResultType.Same},
                 new MatchComparisonResult<Hobby>{Source = source[1], Destination = destination[1], ComparisonResult = MatchComparisonResultType.Conflict},

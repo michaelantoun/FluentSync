@@ -9,15 +9,15 @@ namespace FluentSync.Tests.Sync.Configurations
         {
             var syncOperationsOrder = new SyncOperationsOrder();
 
-            syncOperationsOrder.HasDuplicates().Should().BeFalse();
+            syncOperationsOrder.HasDuplicates().ShouldBeFalse();
 
-            syncOperationsOrder.Order.Should().NotBeNull();
-            syncOperationsOrder.Order.Length.Should().Be(3);
-            syncOperationsOrder.Order[0].Should().Be(SyncOperationType.Delete);
-            syncOperationsOrder.Order[1].Should().Be(SyncOperationType.Update);
-            syncOperationsOrder.Order[2].Should().Be(SyncOperationType.Insert);
+            syncOperationsOrder.Order.ShouldNotBeNull();
+            syncOperationsOrder.Order.Length.ShouldBe(3);
+            syncOperationsOrder.Order[0].ShouldBe(SyncOperationType.Delete);
+            syncOperationsOrder.Order[1].ShouldBe(SyncOperationType.Update);
+            syncOperationsOrder.Order[2].ShouldBe(SyncOperationType.Insert);
 
-            syncOperationsOrder.ToString().Should().Be($"First: {SyncOperationType.Delete}, Second: {SyncOperationType.Update}, Finally: {SyncOperationType.Insert}");
+            syncOperationsOrder.ToString().ShouldBe($"First: {SyncOperationType.Delete}, Second: {SyncOperationType.Update}, Finally: {SyncOperationType.Insert}");
         }
 
         [Theory]
@@ -33,7 +33,7 @@ namespace FluentSync.Tests.Sync.Configurations
             syncOperationsOrder.Order[1] = secondOperation;
             syncOperationsOrder.Order[2] = thirdOperation;
 
-            syncOperationsOrder.HasDuplicates().Should().BeTrue();
+            syncOperationsOrder.HasDuplicates().ShouldBeTrue();
         }
 
         [Theory]
@@ -46,7 +46,7 @@ namespace FluentSync.Tests.Sync.Configurations
             syncOperationsOrder.Order[1] = secondOperation;
             syncOperationsOrder.Order[2] = thirdOperation;
 
-            syncOperationsOrder.HasDuplicates().Should().BeFalse();
+            syncOperationsOrder.HasDuplicates().ShouldBeFalse();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace FluentSync.Tests.Sync.Providers
         {
             var provider = new SortedSetSyncProvider<int>();
 
-            provider.ToString().Should().NotBeNullOrWhiteSpace();
+            provider.ToString().ShouldNotBeNullOrWhiteSpace();
         }
 
         [Fact]
@@ -20,7 +20,7 @@ namespace FluentSync.Tests.Sync.Providers
             provider.Items = new SortedSet<int>();
             provider.Items.Add(1);
 
-            provider.ToString().Should().Be(provider.Items.ToString());
+            provider.ToString().ShouldBe(provider.Items.ToString());
         }
     }
 }

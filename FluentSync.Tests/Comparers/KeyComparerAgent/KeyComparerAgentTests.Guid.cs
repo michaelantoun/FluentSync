@@ -20,10 +20,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            keysComparisonResult.KeysInSourceOnly.Count.Should().Be(3);
-            keysComparisonResult.KeysInDestinationOnly.Count.Should().Be(3);
-            keysComparisonResult.KeysInSourceOnly.Should().NotBeEquivalentTo(keysComparisonResult.KeysInDestinationOnly);
-            keysComparisonResult.Matches.Should().BeEquivalentTo(new List<Guid> { commonGuid });
+            keysComparisonResult.KeysInSourceOnly.Count.ShouldBe(3);
+            keysComparisonResult.KeysInDestinationOnly.Count.ShouldBe(3);
+            keysComparisonResult.KeysInSourceOnly.ShouldNotBeEquivalentToIgnoringOrder(keysComparisonResult.KeysInDestinationOnly);
+            keysComparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<Guid> { commonGuid });
         }
 
         [Fact]
@@ -44,9 +44,9 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            keysComparisonResult.KeysInSourceOnly.Count.Should().Be(0);
-            keysComparisonResult.KeysInDestinationOnly.Count.Should().Be(0);
-            keysComparisonResult.Matches.Count.Should().Be(3);
+            keysComparisonResult.KeysInSourceOnly.Count.ShouldBe(0);
+            keysComparisonResult.KeysInDestinationOnly.Count.ShouldBe(0);
+            keysComparisonResult.Matches.Count.ShouldBe(3);
         }
     }
 }

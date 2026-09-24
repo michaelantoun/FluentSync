@@ -19,7 +19,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the source list, 2 keys were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated keys are not allowed in the source list, 2 keys were found.");
         }
 
         [Fact]
@@ -34,7 +34,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the destination list, 2 keys were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated keys are not allowed in the destination list, 2 keys were found.");
         }
 
         [Fact]
@@ -50,7 +50,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the source list, 3 keys were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated keys are not allowed in the source list, 3 keys were found.");
         }
 
         [Fact]
@@ -76,7 +76,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the source list, 4 keys were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated keys are not allowed in the source list, 4 keys were found.");
         }
 
         /// <summary>
@@ -101,8 +101,8 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await duplicateKeys.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the source list, 2 keys were found.");
-            await duplicateItems.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 2 items were found.");
+            (await Should.ThrowAsync<ArgumentException>(duplicateKeys)).Message.ShouldBe("Duplicated keys are not allowed in the source list, 2 keys were found.");
+            (await Should.ThrowAsync<ArgumentException>(duplicateItems)).Message.ShouldBe("Duplicated items are not allowed in the source list, 2 items were found.");
         }
     }
 }

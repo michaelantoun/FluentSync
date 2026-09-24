@@ -1,3 +1,14 @@
+1.2.0 - Sep 23 2026
+* Fixed the duplicate-key count in the ArgumentException message: it now counts every extra copy of a key, not the number of keys that have copies
+* Fixed three NotSupportedException messages that named the wrong sync mode setting
+* Fixed the missing separator in SyncContext.ToString() between the source and destination counts
+* Corrected the inaccurate XML documentation, filled in the empty tags, and documented the thrown exceptions
+* The XML documentation file is now generated for each target framework and included in the NuGet package
+* Corrected the README and documented the sync mode, the call order, and the KeyComparerAgent rules
+* Replaced the FluentSync icon
+* Updated the Test project to .Net 10 and fixed the async assertions that were not being awaited
+* Added a BenchmarkDotNet project for the comparer and sync agents
+
 1.1 - Oct 7 2021
 * Supported .Net Framework v4.6.2
 * Updated the NuGet packages for the Test project and used .Net 5.0

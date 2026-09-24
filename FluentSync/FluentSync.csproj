@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;net462</TargetFrameworks>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Authors>Michael Antoun</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A .Net library with fluent interface for comparing and synchronizing entities/records.</Description>
@@ -12,11 +12,11 @@
     <NeutralLanguage>English</NeutralLanguage>
     <PackageTags>fluent, sync, fluentsync, fluentdatasync</PackageTags>
     <PackageIconUrl></PackageIconUrl>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <PackageIcon>Icon512x512.png</PackageIcon>
-    <PackageReleaseNotes>Updated the library to .Net Standard 2.1 and supported .Net Framework v4.6.2</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed the duplicate-key count and the misreported exception messages, corrected the XML documentation, and included the XML documentation file in the package.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 

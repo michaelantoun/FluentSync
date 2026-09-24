@@ -98,7 +98,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the source list, 5 keys were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated keys are not allowed in the source list, 5 keys were found.");
         }
 
         [Fact]
@@ -128,7 +128,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the destination list, 5 keys were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated keys are not allowed in the destination list, 5 keys were found.");
         }
 
         [Fact]
@@ -160,7 +160,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the source list, 6 items were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated items are not allowed in the source list, 6 items were found.");
         }
 
         [Fact]
@@ -191,7 +191,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated items are not allowed in the destination list, 5 items were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated items are not allowed in the destination list, 5 items were found.");
         }
 
         [Fact]
@@ -226,7 +226,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Negative Ids are invalid in the source list, 1 item was found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Negative Ids are invalid in the source list, 1 item was found.");
         }
 
         [Fact]
@@ -261,7 +261,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Negative Ids are invalid in the destination list, 2 items were found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Negative Ids are invalid in the destination list, 2 items were found.");
         }
     }
 }

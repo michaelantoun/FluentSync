@@ -77,7 +77,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the source list, 1 key was found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated keys are not allowed in the source list, 1 key was found.");
         }
 
         [Fact]
@@ -92,7 +92,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Duplicated keys are not allowed in the destination list, 1 key was found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Duplicated keys are not allowed in the destination list, 1 key was found.");
         }
 
         [Fact]
@@ -107,7 +107,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Null-able items are not allowed in the source list, 1 item was found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Null-able items are not allowed in the source list, 1 item was found.");
         }
 
         [Fact]
@@ -122,7 +122,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<ArgumentException>().WithMessage("Null-able items are not allowed in the destination list, 1 item was found.");
+            (await Should.ThrowAsync<ArgumentException>(act)).Message.ShouldBe("Null-able items are not allowed in the destination list, 1 item was found.");
         }
     }
 }

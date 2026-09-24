@@ -247,7 +247,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.UpdateOldDestination)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<Exception>().WithMessage($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldDestination.ToString()}.");
+            (await Should.ThrowAsync<Exception>(act)).Message.ShouldBe($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldDestination.ToString()}.");
         }
 
         [Fact]
@@ -259,7 +259,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.UpdateOldItem)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<Exception>().WithMessage($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldItem.ToString()}.");
+            (await Should.ThrowAsync<Exception>(act)).Message.ShouldBe($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldItem.ToString()}.");
         }
 
         [Fact]
@@ -286,7 +286,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .Configure((c) => c.SyncMode.ConflictMatches = SyncMatchOperation.UpdateOldSource)
                 .SyncAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<Exception>().WithMessage($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldSource.ToString()}.");
+            (await Should.ThrowAsync<Exception>(act)).Message.ShouldBe($"Conflict matches operation cannot be set to {SyncMatchOperation.UpdateOldSource.ToString()}.");
         }
 
         #endregion

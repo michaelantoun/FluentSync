@@ -13,7 +13,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.SourceProvider)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(ComparerAgent<int>.SourceProvider)} cannot be null.");
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetSourceProvider(source)
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.DestinationProvider)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(ComparerAgent<int>.DestinationProvider)} cannot be null.");
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
             Func<Task> act = async () => await comparerAgent
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.KeySelector)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(ComparerAgent<int>.KeySelector)} cannot be null.");
         }
 
         [Fact]
@@ -59,7 +59,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
             Func<Task> act = async () => await comparerAgent
                 .CompareAsync(CancellationToken.None).ConfigureAwait(false);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(ComparerAgent<int>.CompareItemFunc)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(ComparerAgent<int>.CompareItemFunc)} cannot be null.");
         }
 
         #endregion

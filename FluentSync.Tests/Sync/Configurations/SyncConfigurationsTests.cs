@@ -23,7 +23,7 @@ namespace FluentSync.Tests.Sync.Configurations
 
             Action act = () => syncConfigurations.Validate();
 
-            act.Should().Throw<ArgumentException>().WithMessage($"Cannot have duplicates in the {nameof(syncConfigurations.SyncOperationsOrder)} array.");
+            Should.Throw<ArgumentException>(act).Message.ShouldBe($"Cannot have duplicates in the {nameof(syncConfigurations.SyncOperationsOrder)} array.");
         }
     }
 }

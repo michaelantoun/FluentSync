@@ -29,7 +29,7 @@ namespace FluentSync.Tests.Sync.Providers
             var provider = new DictionaryBatchSyncProvider<int, int>();
             Func<Task> act = async () => await provider.AddAsync(new List<int> { }, CancellationToken.None);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(provider.Items)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(provider.Items)} cannot be null.");
         }
 
         [Fact]
@@ -38,7 +38,7 @@ namespace FluentSync.Tests.Sync.Providers
             var provider = new DictionaryBatchSyncProvider<int, int> { Items = new Dictionary<int, int>() };
             Func<Task> act = async () => await provider.AddAsync(new List<int> { }, CancellationToken.None);
 
-            await act.Should().ThrowAsync<NullReferenceException>().WithMessage($"The {nameof(provider.KeySelector)} cannot be null.");
+            (await Should.ThrowAsync<NullReferenceException>(act)).Message.ShouldBe($"The {nameof(provider.KeySelector)} cannot be null.");
         }
     }
 }

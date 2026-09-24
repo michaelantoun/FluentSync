@@ -3,6 +3,7 @@ global using FluentSync.Comparers;
 global using FluentSync.Comparers.Configurations;
 global using FluentSync.Comparers.Providers;
 global using FluentSync.Tests.Models;
+global using Shouldly;
 global using System;
 global using System.Collections.Generic;
 global using System.Linq;

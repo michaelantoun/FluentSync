@@ -34,7 +34,7 @@
             foreach (var pair1 in dic1)
             {
                 dic2.TryGetValue(pair1.Key, out var value2).ShouldBeTrue();
-                pair1.Value.Should().BeEquivalentTo(value2);
+                pair1.Value.ShouldBeEquivalentTo(value2);
             }
         }
     }

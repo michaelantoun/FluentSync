@@ -22,8 +22,8 @@
 
             keysComparisonResult.KeysInSourceOnly.Count.ShouldBe(3);
             keysComparisonResult.KeysInDestinationOnly.Count.ShouldBe(3);
-            keysComparisonResult.KeysInSourceOnly.Should().NotBeEquivalentTo(keysComparisonResult.KeysInDestinationOnly);
-            keysComparisonResult.Matches.Should().BeEquivalentTo(new List<Guid> { commonGuid });
+            keysComparisonResult.KeysInSourceOnly.ShouldNotBeEquivalentToIgnoringOrder(keysComparisonResult.KeysInDestinationOnly);
+            keysComparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<Guid> { commonGuid });
         }
 
         [Fact]

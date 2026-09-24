@@ -25,10 +25,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<Person> { source[2], source[3] });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<Person> { destination[2] });
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<Person> { source[2], source[3] });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<Person> { destination[2] });
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<Person>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<Person>>
             {
                 new MatchComparisonResult<Person>{Source = source[0], Destination = destination[0], ComparisonResult = MatchComparisonResultType.Same},
                 new MatchComparisonResult<Person>{Source = source[1], Destination = destination[1], ComparisonResult = MatchComparisonResultType.Conflict},
@@ -61,10 +61,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<Person> { source[1], source[2], source[3], source[4], source[5], source[7] });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<Person> { destination[2] });
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<Person> { source[1], source[2], source[3], source[4], source[5], source[7] });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<Person> { destination[2] });
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<Person>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<Person>>
             {
                 new MatchComparisonResult<Person>{Source = source[0], Destination = destination[1], ComparisonResult = MatchComparisonResultType.Same},
                 new MatchComparisonResult<Person>{Source = source[6], Destination = destination[0], ComparisonResult = MatchComparisonResultType.Conflict},

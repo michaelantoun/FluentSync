@@ -64,5 +64,42 @@
         {
             Should.Throw<ShouldAssertException>(() => new List<int> { 1, 2 }.ShouldNotBeEquivalentToIgnoringOrder(new List<int> { 2, 1 }));
         }
+
+        [Fact]
+        public void DictionariesWithEquivalentValuesShouldPass()
+        {
+            IDictionary<int?, Hobby> actual = new Dictionary<int?, Hobby> { { 1, new Hobby { Id = 1, Name = "Chess" } }, { 2, new Hobby { Id = 2, Name = "Golf" } } };
+            IDictionary<int?, Hobby> expected = new Dictionary<int?, Hobby> { { 2, new Hobby { Id = 2, Name = "Golf" } }, { 1, new Hobby { Id = 1, Name = "Chess" } } };
+
+            actual.ShouldBeEquivalentToIgnoringOrder(expected);
+        }
+
+        [Fact]
+        public void DictionaryWithDifferentValueShouldFail()
+        {
+            IDictionary<int?, Hobby> actual = new Dictionary<int?, Hobby> { { 1, new Hobby { Id = 1, Name = "Chess" } } };
+            IDictionary<int?, Hobby> expected = new Dictionary<int?, Hobby> { { 1, new Hobby { Id = 1, Name = "Golf" } } };
+
+            var exception = Should.Throw<ShouldAssertException>(() => actual.ShouldBeEquivalentToIgnoringOrder(expected));
+            exception.Message.ShouldBe("Expected the entry with key 1 to be equivalent to {\"Id\":1,\"Name\":\"Golf\"}, but found {\"Id\":1,\"Name\":\"Chess\"}.");
+        }
+
+        [Fact]
+        public void DictionaryWithDifferentKeyShouldFail()
+        {
+            IDictionary<int?, Hobby> actual = new Dictionary<int?, Hobby> { { 1, new Hobby { Id = 1, Name = "Chess" } } };
+            IDictionary<int?, Hobby> expected = new Dictionary<int?, Hobby> { { 2, new Hobby { Id = 1, Name = "Chess" } } };
+
+            var exception = Should.Throw<ShouldAssertException>(() => actual.ShouldBeEquivalentToIgnoringOrder(expected));
+            exception.Message.ShouldBe("Expected an entry with key 2, but none was found in [{\"Key\":1,\"Value\":{\"Id\":1,\"Name\":\"Chess\"}}].");
+        }
+
+        [Fact]
+        public void DictionariesWithDifferentCountShouldFail()
+        {
+            IDictionary<int?, int> actual = new Dictionary<int?, int> { { 1, 1 }, { 2, 2 } };
+
+            Should.Throw<ShouldAssertException>(() => actual.ShouldBeEquivalentToIgnoringOrder(new Dictionary<int?, int> { { 1, 1 } }));
+        }
     }
 }

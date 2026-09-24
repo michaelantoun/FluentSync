@@ -152,8 +152,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
 
             await syncAgent.SyncAsync(CancellationToken.None);
 
-            source.Items.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
-            destination.Items.Should().BeEquivalentTo(source.Items);
+            source.Items.ShouldBeEquivalentToIgnoringOrder(new List<int> { 5, 4, 9 });
+            destination.Items.ShouldBeEquivalentToIgnoringOrder(source.Items);
 
             syncAgent.ToString().ShouldBe($"{nameof(syncAgent.Configurations)}: {{{syncAgent.Configurations}}}");
         }

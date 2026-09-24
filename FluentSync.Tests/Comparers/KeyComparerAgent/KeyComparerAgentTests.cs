@@ -60,7 +60,7 @@
                 .CompareAsync(CancellationToken.None);
 
             comparisonResult.KeysInSourceOnly.ShouldBeEmpty();
-            comparisonResult.KeysInDestinationOnly.Should().BeEquivalentTo(new List<int> { 1 });
+            comparisonResult.KeysInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 1 });
             comparisonResult.Matches.ShouldBeEmpty();
         }
 
@@ -75,7 +75,7 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.KeysInSourceOnly.Should().BeEquivalentTo(new List<int> { 1 });
+            comparisonResult.KeysInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 1 });
             comparisonResult.KeysInDestinationOnly.ShouldBeEmpty();
             comparisonResult.Matches.ShouldBeEmpty();
         }

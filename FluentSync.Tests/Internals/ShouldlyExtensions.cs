@@ -21,6 +21,35 @@ namespace FluentSync.Tests.Internals
         }
 
         /// <summary>
+        /// Verify the 2 dictionaries have the same keys, and equivalent values for each key.
+        /// </summary>
+        /// <remarks>
+        /// Shouldly compares value types such as <see cref="KeyValuePair{TKey, TValue}"/> using <see cref="object.Equals(object)"/>,
+        /// which would compare the values by reference, so the entries are matched by key instead.
+        /// </remarks>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="actual"></param>
+        /// <param name="expected"></param>
+        internal static void ShouldBeEquivalentToIgnoringOrder<TKey, TValue>(this IDictionary<TKey, TValue> actual, IDictionary<TKey, TValue> expected)
+        {
+            actual.ShouldNotBeNull();
+            ArgumentNullException.ThrowIfNull(expected);
+
+            if (actual.Count != expected.Count)
+                throw new ShouldAssertException($"Expected {expected.Count} entries {Format(expected.ToList())}, but found {actual.Count} entries {Format(actual.ToList())}.");
+
+            foreach (var expectedPair in expected)
+            {
+                if (!actual.TryGetValue(expectedPair.Key, out var actualValue))
+                    throw new ShouldAssertException($"Expected an entry with key {Format(expectedPair.Key)}, but none was found in {Format(actual.ToList())}.");
+
+                if (!IsEquivalent(actualValue, expectedPair.Value))
+                    throw new ShouldAssertException($"Expected the entry with key {Format(expectedPair.Key)} to be equivalent to {Format(expectedPair.Value)}, but found {Format(actualValue)}.");
+            }
+        }
+
+        /// <summary>
         /// Verify the 2 collections don't contain equivalent items, regardless of their order.
         /// </summary>
         /// <typeparam name="T"></typeparam>

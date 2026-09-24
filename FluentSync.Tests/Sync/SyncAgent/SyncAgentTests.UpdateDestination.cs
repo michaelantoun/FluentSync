@@ -18,8 +18,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetDestinationProvider(destination)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
-            destination.Should().BeEquivalentTo(new List<int> { 4, 6, 10, 5, 9 });
+            source.ShouldBeEquivalentToIgnoringOrder(new List<int> { 5, 4, 9 });
+            destination.ShouldBeEquivalentToIgnoringOrder(new List<int> { 4, 6, 10, 5, 9 });
         }
 
         [Fact]
@@ -35,8 +35,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetDestinationProvider(destination)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
-            destination.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
+            source.ShouldBeEquivalentToIgnoringOrder(new List<int> { 5, 4, 9 });
+            destination.ShouldBeEquivalentToIgnoringOrder(new List<int> { 5, 4, 9 });
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SyncAsync(CancellationToken.None);
 
             source.ShouldBeEmpty();
-            destination.Should().BeEquivalentTo(new List<int> { 6, 10, 5 });
+            destination.ShouldBeEquivalentToIgnoringOrder(new List<int> { 6, 10, 5 });
         }
 
         [Fact]

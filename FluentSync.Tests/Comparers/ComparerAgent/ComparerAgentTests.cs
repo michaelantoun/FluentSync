@@ -94,7 +94,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<int> { 1 });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 1 });
             comparisonResult.Matches.ShouldBeEmpty();
         }
 
@@ -109,7 +109,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<int> { 1 });
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 1 });
             comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
             comparisonResult.Matches.ShouldBeEmpty();
         }

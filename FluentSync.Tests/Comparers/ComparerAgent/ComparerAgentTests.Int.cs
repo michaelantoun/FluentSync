@@ -13,10 +13,10 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<int> { 10, 20 });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<int> { 15 });
+            comparisonResult.ItemsInSourceOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 10, 20 });
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEquivalentToIgnoringOrder(new List<int> { 15 });
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<int>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<int>>
             {
                 new MatchComparisonResult<int>{Source = 30, Destination = 30, ComparisonResult = MatchComparisonResultType.Same},
                 new MatchComparisonResult<int>{Source = 5, Destination = 5, ComparisonResult = MatchComparisonResultType.Same}
@@ -37,7 +37,7 @@
             comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
             comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<int>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<int>>
             {
                 new MatchComparisonResult<int>{Source = 10, Destination = 10, ComparisonResult = MatchComparisonResultType.Same},
                 new MatchComparisonResult<int>{Source = 20, Destination = 20, ComparisonResult = MatchComparisonResultType.Same},
@@ -59,7 +59,7 @@
             comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
             comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
 
-            comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<int>>
+            comparisonResult.Matches.ShouldBeEquivalentToIgnoringOrder(new List<MatchComparisonResult<int>>
             {
                 new MatchComparisonResult<int>{Source = 10, Destination = 10, ComparisonResult = MatchComparisonResultType.Same}
             });

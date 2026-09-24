@@ -43,9 +43,9 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.KeysInSourceOnly.Should().BeEmpty();
-            comparisonResult.KeysInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.KeysInSourceOnly.ShouldBeEmpty();
+            comparisonResult.KeysInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -59,9 +59,9 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.KeysInSourceOnly.Should().BeEmpty();
+            comparisonResult.KeysInSourceOnly.ShouldBeEmpty();
             comparisonResult.KeysInDestinationOnly.Should().BeEquivalentTo(new List<int> { 1 });
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -76,8 +76,8 @@
                 .CompareAsync(CancellationToken.None);
 
             comparisonResult.KeysInSourceOnly.Should().BeEquivalentTo(new List<int> { 1 });
-            comparisonResult.KeysInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.KeysInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -91,9 +91,9 @@
                     .SetDestinationProvider(destination)
                     .CompareAsync(CancellationToken.None);
 
-            comparisonResult.KeysInSourceOnly.Should().BeEmpty();
-            comparisonResult.KeysInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.KeysInSourceOnly.ShouldBeEmpty();
+            comparisonResult.KeysInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -107,9 +107,9 @@
                     .SetDestinationProvider(destination)
                     .CompareAsync(CancellationToken.None);
 
-            comparisonResult.KeysInSourceOnly.Should().BeEmpty();
-            comparisonResult.KeysInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.KeysInSourceOnly.ShouldBeEmpty();
+            comparisonResult.KeysInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         #endregion

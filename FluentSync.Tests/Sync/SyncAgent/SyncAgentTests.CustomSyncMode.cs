@@ -445,7 +445,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 })
                 .SyncAsync(CancellationToken.None);
 
-            actionCalledCount.Should().Be(1);
+            actionCalledCount.ShouldBe(1);
         }
 
         [Theory]

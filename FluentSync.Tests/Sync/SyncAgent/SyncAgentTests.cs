@@ -155,7 +155,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
             source.Items.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
             destination.Items.Should().BeEquivalentTo(source.Items);
 
-            syncAgent.ToString().Should().Be($"{nameof(syncAgent.Configurations)}: {{{syncAgent.Configurations}}}");
+            syncAgent.ToString().ShouldBe($"{nameof(syncAgent.Configurations)}: {{{syncAgent.Configurations}}}");
         }
 
         #endregion

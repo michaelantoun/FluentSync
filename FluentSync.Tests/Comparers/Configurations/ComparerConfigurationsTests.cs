@@ -7,7 +7,7 @@
         {
             var configurations = new ComparerConfigurations { AllowDuplicateKeys = RuleAllowanceType.Source, AllowNullableItems = RuleAllowanceType.Destination, AllowDuplicateItems = RuleAllowanceType.None };
 
-            configurations.ToString().Should().Be($"{nameof(configurations.AllowDuplicateKeys)}: {configurations.AllowDuplicateKeys}, {nameof(configurations.AllowDuplicateItems)}: {configurations.AllowDuplicateItems}, {nameof(configurations.AllowNullableItems)}: {configurations.AllowNullableItems}");
+            configurations.ToString().ShouldBe($"{nameof(configurations.AllowDuplicateKeys)}: {configurations.AllowDuplicateKeys}, {nameof(configurations.AllowDuplicateItems)}: {configurations.AllowDuplicateItems}, {nameof(configurations.AllowNullableItems)}: {configurations.AllowNullableItems}");
         }
     }
 }

@@ -77,9 +77,9 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -93,9 +93,9 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<int> { 1 });
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -110,8 +110,8 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .CompareAsync(CancellationToken.None);
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<int> { 1 });
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -125,9 +125,9 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                     .SetDestinationProvider(destination)
                     .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -141,9 +141,9 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                     .SetDestinationProvider(destination)
                     .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         #endregion
@@ -158,7 +158,7 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetSourceProvider(source)
                 .SetDestinationProvider(destination);
 
-            comparerAgent.ToString().Should().Be($"{nameof(comparerAgent.Configurations)}: {{{comparerAgent.Configurations}}}");
+            comparerAgent.ToString().ShouldBe($"{nameof(comparerAgent.Configurations)}: {{{comparerAgent.Configurations}}}");
         }
 
         [Fact]
@@ -172,9 +172,9 @@ namespace FluentSync.Tests.Comparers.ComparerAgent
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
     }
 }

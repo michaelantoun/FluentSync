@@ -47,12 +47,12 @@ namespace FluentSync.Tests.Sync.Configurations
         {
             var syncConfigurations = new BatchSyncConfigurations();
 
-            syncConfigurations.SyncMode.Should().NotBeNull();
-            syncConfigurations.SyncOperationsOrder.Should().NotBeNull();
-            syncConfigurations.BatchSyncListsOrder.Should().NotBeNull();
-            syncConfigurations.BatchSize.Should().BeGreaterThan(0);
+            syncConfigurations.SyncMode.ShouldNotBeNull();
+            syncConfigurations.SyncOperationsOrder.ShouldNotBeNull();
+            syncConfigurations.BatchSyncListsOrder.ShouldNotBeNull();
+            syncConfigurations.BatchSize.ShouldBeGreaterThan(0);
 
-            syncConfigurations.ToString().Should().Be($"{nameof(syncConfigurations.SyncMode)}: {{{syncConfigurations.SyncMode}}}, {nameof(syncConfigurations.SyncOperationsOrder)}: {{{syncConfigurations.SyncOperationsOrder}}}, {nameof(syncConfigurations.BatchSyncListsOrder)}: {{{syncConfigurations.BatchSyncListsOrder}}}, {nameof(syncConfigurations.BatchSize)}: {syncConfigurations.BatchSize}");
+            syncConfigurations.ToString().ShouldBe($"{nameof(syncConfigurations.SyncMode)}: {{{syncConfigurations.SyncMode}}}, {nameof(syncConfigurations.SyncOperationsOrder)}: {{{syncConfigurations.SyncOperationsOrder}}}, {nameof(syncConfigurations.BatchSyncListsOrder)}: {{{syncConfigurations.BatchSyncListsOrder}}}, {nameof(syncConfigurations.BatchSize)}: {syncConfigurations.BatchSize}");
         }
     }
 }

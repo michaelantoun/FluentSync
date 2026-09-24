@@ -15,7 +15,7 @@ namespace FluentSync.Tests.Sync
             AddItemsToList(syncContext.ItemsToBeInsertedInDestination, 4);
             AddItemsToList(syncContext.ItemsToBeInsertedInSource, 5);
 
-            syncContext.ToString().Should().Be($"{nameof(syncContext.ItemsToBeInsertedInSource)}: {syncContext.ItemsToBeInsertedInSource.Count}, {nameof(syncContext.ItemsToBeDeletedFromSource)}: {syncContext.ItemsToBeDeletedFromSource.Count}, {nameof(syncContext.ItemsToBeUpdatedInSource)}: {syncContext.ItemsToBeUpdatedInSource.Count}, "
+            syncContext.ToString().ShouldBe($"{nameof(syncContext.ItemsToBeInsertedInSource)}: {syncContext.ItemsToBeInsertedInSource.Count}, {nameof(syncContext.ItemsToBeDeletedFromSource)}: {syncContext.ItemsToBeDeletedFromSource.Count}, {nameof(syncContext.ItemsToBeUpdatedInSource)}: {syncContext.ItemsToBeUpdatedInSource.Count}, "
                 + $"{nameof(syncContext.ItemsToBeInsertedInDestination)}: {syncContext.ItemsToBeInsertedInDestination.Count}, {nameof(syncContext.ItemsToBeDeletedFromDestination)}: {syncContext.ItemsToBeDeletedFromDestination.Count}, {nameof(syncContext.ItemsToBeUpdatedInDestination)}: {syncContext.ItemsToBeUpdatedInDestination.Count}");
         }
 

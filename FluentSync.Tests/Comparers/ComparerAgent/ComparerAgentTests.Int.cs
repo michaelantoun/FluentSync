@@ -34,8 +34,8 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
 
             comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<int>>
             {
@@ -56,8 +56,8 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
 
             comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<int>>
             {

@@ -266,7 +266,7 @@ namespace FluentSync.Tests.Sync.BatchSyncAgent
             source.Items.Should().BeEquivalentTo(expectedSource);
             destination.Items.Should().BeEquivalentTo(expectedDestination);
 
-            syncAgent.ToString().Should().Be($"{nameof(syncAgent.Configurations)}: {{{syncAgent.Configurations}}}");
+            syncAgent.ToString().ShouldBe($"{nameof(syncAgent.Configurations)}: {{{syncAgent.Configurations}}}");
         }
 
         [Theory]

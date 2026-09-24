@@ -36,7 +36,7 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SyncAsync(CancellationToken.None);
 
             source.Should().BeEquivalentTo(new List<int> { 5, 4, 9 });
-            destination.Should().BeEmpty();
+            destination.ShouldBeEmpty();
         }
 
         [Fact]
@@ -69,8 +69,8 @@ namespace FluentSync.Tests.Sync.SyncAgent
                 .SetDestinationProvider(destination)
                 .SyncAsync(CancellationToken.None);
 
-            source.Should().BeEmpty();
-            destination.Should().BeEmpty();
+            source.ShouldBeEmpty();
+            destination.ShouldBeEmpty();
         }
     }
 }

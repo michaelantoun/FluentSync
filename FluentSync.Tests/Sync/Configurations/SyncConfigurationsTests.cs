@@ -9,8 +9,8 @@ namespace FluentSync.Tests.Sync.Configurations
         {
             var syncConfigurations = new SyncConfigurations();
 
-            syncConfigurations.SyncMode.Should().NotBeNull();
-            syncConfigurations.SyncOperationsOrder.Should().NotBeNull();
+            syncConfigurations.SyncMode.ShouldNotBeNull();
+            syncConfigurations.SyncOperationsOrder.ShouldNotBeNull();
         }
 
         [Fact]

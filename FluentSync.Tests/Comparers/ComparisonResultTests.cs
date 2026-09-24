@@ -11,7 +11,7 @@
 
             comparisonResult.ItemsInDestinationOnly.AddRange(new int[] { 2, 3 });
 
-            comparisonResult.ToString().Should().Be($"{nameof(comparisonResult.ItemsInSourceOnly)}: {comparisonResult.ItemsInSourceOnly.Count}, {nameof(comparisonResult.ItemsInDestinationOnly)}: {comparisonResult.ItemsInDestinationOnly.Count}, {nameof(comparisonResult.Matches)}: {comparisonResult.Matches.Count}");
+            comparisonResult.ToString().ShouldBe($"{nameof(comparisonResult.ItemsInSourceOnly)}: {comparisonResult.ItemsInSourceOnly.Count}, {nameof(comparisonResult.ItemsInDestinationOnly)}: {comparisonResult.ItemsInDestinationOnly.Count}, {nameof(comparisonResult.Matches)}: {comparisonResult.Matches.Count}");
         }
     }
 }

@@ -37,8 +37,8 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
 
             comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<string>>
             {
@@ -58,8 +58,8 @@
                 .SetDestinationProvider(destination)
                 .CompareAsync(CancellationToken.None);
 
-            comparisonResult.ItemsInSourceOnly.Should().BeEmpty();
-            comparisonResult.ItemsInDestinationOnly.Should().BeEmpty();
+            comparisonResult.ItemsInSourceOnly.ShouldBeEmpty();
+            comparisonResult.ItemsInDestinationOnly.ShouldBeEmpty();
 
             comparisonResult.Matches.Should().BeEquivalentTo(new List<MatchComparisonResult<string>>
             {
@@ -82,7 +82,7 @@
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { null });
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { "Tom" });
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
@@ -99,7 +99,7 @@
 
             comparisonResult.ItemsInSourceOnly.Should().BeEquivalentTo(new List<string> { "Tom" });
             comparisonResult.ItemsInDestinationOnly.Should().BeEquivalentTo(new List<string> { null });
-            comparisonResult.Matches.Should().BeEmpty();
+            comparisonResult.Matches.ShouldBeEmpty();
         }
 
         [Fact]
